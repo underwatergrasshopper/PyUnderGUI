@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as file:
 
 setuptools.setup(
     name                            = "PyUnderGUI",
-    version                         = "0.1.0",
+    version                         = "0.1.1",
     author                          = "underwatergrasshopper",
     author_email                    = "",
     description                     = "Simple GUI library.",
@@ -21,6 +21,11 @@ setuptools.setup(
         "Operating System :: Microsoft :: Windows",
     ],
     package_dir                     = {"": "src"},
-    packages                        = ["PyOpenGL", "Pillow"], 
+    packages                        = setuptools.find_packages(where = "src"),
+    install_requires                = [
+        "PyOpenGL @ git+https://github.com/mcfletch/pyopengl.git#egg=pyopengl", 
+        "Pillow",
+    ],
+    license                         = "MIT",
     python_requires                 = ">=3.7",
 )
