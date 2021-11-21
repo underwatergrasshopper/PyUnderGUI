@@ -1,3 +1,8 @@
+# v0.2.1
+
+Changes:
+- Optimized OpenGL_Texture class.
+
 # v0.2.0
 
 Changes:
