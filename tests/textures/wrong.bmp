@@ -1,0 +1,13 @@
+@echo off
+
+::if not exist glut32.vc7 mklink /h glut32.vc7 glut32.dll 
+::if not exist glut32.vc9 mklink /h glut32.vc9 glut32.dll 
+::if not exist glut32.vc10 mklink /h glut32.vc10 glut32.dll 
+::if not exist glut32.vc14 mklink /h glut32.vc14 glut32.dll 
+
+call python %1
+
+::del /q /f glut32.vc7
+::del /q /f glut32.vc9
+::del /q /f glut32.vc10
+::del /q /f glut32.vc14
