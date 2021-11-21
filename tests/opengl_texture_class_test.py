@@ -51,6 +51,9 @@ def create():
     assert g_texture.is_error() == True
     assert g_texture.get_err_msg() == "Cannot identify format or open 'textures/wrong.bmp' file.", g_texture.get_err_msg()
 
+    g_texture.clear_error()
+    assert g_texture.get_err_msg() == "", g_texture.get_err_msg()
+
     g_texture.load("textures/not_exist.png")
     assert g_texture.get_width() == 0, g_texture.get_width()
     assert g_texture.get_height() == 0, g_texture.get_height()
