@@ -95,23 +95,19 @@ def destroy():
 
 
 def display():
+    global g_texture
+    
     glClear(GL_COLOR_BUFFER_BIT)
 
-    glBegin(GL_TRIANGLE_STRIP)
+    g_texture.draw(Range(-1, -1, 0, 0), Range(0, 0, 1, 1))
+    g_texture.draw(Range(0, 0, 1, 1), Range(1.0 / 6, 0.25, 5.0 / 6, 0.75))
     
-    glTexCoord2f(0, 0)
-    glVertex2f(-0.5, -0.5)
+    g_texture.draw_from_pixel_range(Range(-1, 0, 0, 1), Range(0, 0, 6, 4))
+    g_texture.draw_from_pixel_range(Range(0, -1, 1, 0), Range(1, 1, 5, 3))
     
-    glTexCoord2f(1, 0)
-    glVertex2f(0.5, -0.5)
-    
-    glTexCoord2f(0, 1)
-    glVertex2f(-0.5, 0.5)
-    
-    glTexCoord2f(1, 1)
-    glVertex2f(0.5, 0.5)
-    
-    glEnd()
+    # g_texture.draw_from_pixel_range(Range(-0.5, -0.5, 0.5, 0.5), Range(0, 0, 6, 4))
+    # g_texture.draw_from_pixel_range(Range(-0.5, -0.5, 0.5, 0.5), Range(2, 2, 6, 4))
+    # g_texture.draw_from_pixel_range(Range(-0.5, -0.5, 0.5, 0.5), Range(0, 0, 2, 4))
 
     glutSwapBuffers()
 

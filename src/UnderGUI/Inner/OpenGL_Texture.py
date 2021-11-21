@@ -20,7 +20,7 @@ class OpenGL_Texture(Texture):
         self._tex_obj_id = glGenTextures(1)
         
         if self._tex_obj_id == 0:
-            self.store_err_msg("Can not create OpenGL texture object id.")
+            self._register_err_msg("Can not create OpenGL texture object id.")
         else:
             glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
             
@@ -36,8 +36,22 @@ class OpenGL_Texture(Texture):
                 glDeleteTextures(self._tex_obj_id)
                 self._tex_obj_id = 0
                 
-                self.store_err_msg("Unsupported '%s' pixel format." % (pixel_format.name))
+                self._register_err_msg("Unsupported '%s' pixel format." % (pixel_format.name))
                 
 
+    def draw(self, view_range, texture_range):
+        glBegin(GL_TRIANGLE_STRIP)
         
-    
+        glTexCoord2f(   texture_range.x1,   texture_range.y1)
+        glVertex2f(     view_range.x1,      view_range.y1)
+        
+        glTexCoord2f(   texture_range.x2,   texture_range.y1)
+        glVertex2f(     view_range.x2,      view_range.y1)
+        
+        glTexCoord2f(   texture_range.x1,   texture_range.y2)
+        glVertex2f(     view_range.x1,      view_range.y2)
+        
+        glTexCoord2f(   texture_range.x2,   texture_range.y2)
+        glVertex2f(     view_range.x2,      view_range.y2)
+        
+        glEnd()

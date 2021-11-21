@@ -1,3 +1,9 @@
+# v0.2.0
+
+Changes:
+- Added Texture class with tests.
+- Added tests for Utility.
+
 # v0.1.1
 
 Changes:

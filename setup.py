@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as file:
 
 setuptools.setup(
     name                            = "PyUnderGUI",
-    version                         = "0.1.1",
+    version                         = "0.2.0",
     author                          = "underwatergrasshopper",
     author_email                    = "",
     description                     = "Simple GUI library.",
