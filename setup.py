@@ -23,7 +23,7 @@ setuptools.setup(
     package_dir                     = {"": "src"},
     packages                        = setuptools.find_packages(where = "src"),
     install_requires                = [
-        "PyOpenGL>=3.1.5 @ git+https://github.com/mcfletch/pyopengl.git#egg=pyopengl", 
+        "PyOpenGL @ git+https://github.com/mcfletch/pyopengl.git#egg=pyopengl", 
         "Pillow>=7.2.0",
     ],
     license                         = "MIT",
