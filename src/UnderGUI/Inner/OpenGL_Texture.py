@@ -17,6 +17,8 @@ class OpenGL_Texture(Texture):
         super().__del__()
 
     def draw(self, view_range, texture_range):
+        glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
+        
         glBegin(GL_TRIANGLE_STRIP)
         
         glTexCoord2f(   texture_range.x1,   texture_range.y1)
