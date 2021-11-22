@@ -2,6 +2,8 @@ import TestKit
 
 from UnderGUI.Utility import *
 from UnderGUI.Inner.OpenGL_Texture import *
+from UnderGUI.Inner.OpenGL_Shunter import *
+from UnderGUI.Inner.OpenGL_Drawer import *
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
@@ -12,30 +14,22 @@ from PIL import Image
 
 ################################################################################
 
-WIDTH = 800
-HEIGHT = 600
+WIDTH       = 800
+HEIGHT      = 600
 
-g_texture = None
+g_texture   = None
+g_shunter   = None
+g_drawer    = None
 
 ################################################################################
 
 def create():
-    global g_texture
+    global g_texture, g_shunter, g_drawer
     
-    ### Setting-Up OpenGL  ###
-
-    glEnable(GL_CULL_FACE)
+    g_shunter   = OpenGL_Shunter()
+    g_drawer    = OpenGL_Drawer()
     
-    glEnable(GL_BLEND)
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
-    
-    glEnable(GL_TEXTURE_2D)
-    
-    glClearColor(0, 0, 0.5, 1)
-    
-    #### Tests ###
-    
-    g_texture = OpenGL_Texture()
+    g_texture   = OpenGL_Texture()
     assert g_texture.get_width() == 0, g_texture.get_width()
     assert g_texture.get_height() == 0, g_texture.get_height()
     assert g_texture.is_created() == False
@@ -89,15 +83,16 @@ def create():
     assert g_texture.get_err_msg() == "", g_texture.get_err_msg()
     
 def destroy():
-    global g_texture
+    global g_texture, g_shunter, g_drawer
     
     # del g_texture # Cannot be done here. Glut destroys opengl rendering context before this.
 
 
 def display():
-    global g_texture
+    global g_texture, g_shunter, g_drawer
     
-    glClear(GL_COLOR_BUFFER_BIT)
+    g_drawer.fill_view(Color(0, 0, 0.5))
+    g_shunter.setup_texture_draw()
 
     g_texture.draw(Range(-1, -1, 0, 0), Range(0, 0, 1, 1))
     g_texture.draw(Range(0, 0, 1, 1), Range(1.0 / 6, 0.25, 5.0 / 6, 0.75))

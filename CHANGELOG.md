@@ -1,3 +1,9 @@
+# v0.3.0
+
+Changes:
+- Added Drawer class.
+- Added Shunter class.
+
 # v0.2.2
 
 Changes:
