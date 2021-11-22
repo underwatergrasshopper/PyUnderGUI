@@ -16,8 +16,10 @@ class OpenGL_Texture(Texture):
         
         super().__del__()
 
-    def draw(self, view_range, texture_range):
+    def draw(self, view_range, texture_range, tint = Color(1, 1, 1)):
         glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
+        
+        glColor4f(tint.r, tint.g, tint.b, tint.a)
         
         glBegin(GL_TRIANGLE_STRIP)
         

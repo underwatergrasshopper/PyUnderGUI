@@ -28,7 +28,6 @@ class Range:
         return Range(self.x1 / other, self.y1 / other, self.x2 / other, self.y2 / other)
         
     def __floordiv__(self, other):
-        print("uuu")
         if isinstance(other, Range):
             return Range(self.x1 / other.x1, self.y1 / other.y1, self.x2 / other.x2, self.y2 / other.y2)
         return Range(self.x1 / other, self.y1 / other, self.x2 / other, self.y2 / other)
@@ -50,6 +49,12 @@ class ImageInfo:
         self.height     = height
         self.err_msg    = err_msg   if err_msg else ""  # str
     
+class Color:
+    def __init__(self, r, g, b, a = 1):
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
 
 # Loads image and converts it to RGBA format.
 # image_url         (is str).

@@ -71,15 +71,17 @@ class Texture:
         
     # client_range          (is Range) Range in coordinates space of window client area.
     # texture_range         (is Range) Range in coordinates space of texture, where boundaries are (0, 0, 1, 1).
+    # tint                  (is Color) Tint color for texture. 
     # This method must be overrode to do that. By default Range in OpenGL will be corresponding to (left, bottom, right, top).
-    def draw(self, view_range, texture_range):
+    def draw(self, view_range, texture_range, tint = Color(1, 1, 1)):
         pass
         
     # client_range          (is Range) Range in coordinates space of window client area.
     # texture_range         (is Range) Range in pixels, in coordinates space of texture, where boundaries are (0, 0, texture_width, texture_height).
+    # tint                  (is Color) Tint color for texture. 
     # By default Range in OpenGL will be corresponding to (left, bottom, right, top).
-    def draw_from_pixel_range(self, view_range, texture_range):
-        self.draw(view_range, texture_range / Range(self._width, self._height, self._width, self._height))
+    def draw_from_pixel_range(self, view_range, texture_range, tint = Color(1, 1, 1)):
+        self.draw(view_range, texture_range / Range(self._width, self._height, self._width, self._height), tint)
 
     
     def clear_error(self):
