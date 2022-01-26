@@ -3,7 +3,7 @@ from enum import Enum
 from UnderGUI.Utility import *
         
 class PixelFormat(Enum):
-    Unknown = 0
+    UNKNOWN = 0
     RGBA    = 1
 
 class Texture:
@@ -42,7 +42,7 @@ class Texture:
     # If fails then error message is registered. Call is_error() to check if error occurred. Call get_err_msg() to get registered error message. 
     def create(self, data, pixel_format, width, height):
         self.destroy()
-        if pixel_format == PixelFormat.Unknown:
+        if pixel_format == PixelFormat.UNKNOWN:
             self._register_err_msg("Unknown pixel format.")
         elif width == 0 or height == 0:
             self._register_err_msg("Width or height is 0.")
