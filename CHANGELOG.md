@@ -3,6 +3,7 @@
 Changes:
 - Added Drawer class.
 - Added Shunter class.
+- Added exception handling. 
 
 # v0.2.2
 

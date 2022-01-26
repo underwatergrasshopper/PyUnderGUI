@@ -1,7 +1,8 @@
 from enum import Enum
 
 from UnderGUI.Utility import *
-        
+from UnderGUI.Exception import *
+
 class PixelFormat(Enum):
     UNKNOWN = 0
     RGBA    = 1
@@ -11,7 +12,6 @@ class Texture:
         self._width         = 0
         self._height        = 0
 
-        self._err_msg       = ""
         self._is_created    = False
 
     def __del__(self):
@@ -20,35 +20,35 @@ class Texture:
         
     # Creates texture form loaded image.
     # image_url     (is str)
-    # If fails then error message is stored. Call get_err_msg() to get stored error message. 
+    # Raises: UnderGUI.Exception.Fail. 
     def load(self, image_url):
-        self.clear_error()
-        
-        image_info = load_image_and_convert_to_rgba(image_url)
-        
-        if image_info.err_msg:
-            self._register_err_msg(image_info.err_msg)
+        try:
+            image_data = load_image_and_convert_to_rgba(image_url)
+        except Fail as exception:
+            raise exception
         else:
-            self.create(image_info.data, PixelFormat.RGBA, image_info.width, image_info.height) 
-            
-            if image_info.err_msg:
-                self._register_err_msg("From '%s'." % (image_url))
+            self.create(image_data.data, PixelFormat.RGBA, image_data.width, image_data.height) 
             
             
     # data          (is bytes)
     # pixel_format  (is PixelFormat)
     # width         (is int)
     # height        (is int)
-    # If fails then error message is registered. Call is_error() to check if error occurred. Call get_err_msg() to get registered error message. 
+    # Raises: UnderGUI.Exception.Fail. 
     def create(self, data, pixel_format, width, height):
         self.destroy()
         if pixel_format == PixelFormat.UNKNOWN:
-            self._register_err_msg("Unknown pixel format.")
-        elif width == 0 or height == 0:
-            self._register_err_msg("Width or height is 0.")
+            raise Fail("Unknown pixel format.")
+        elif width == 0:
+            raise Fail("Width is 0.")
+        elif height == 0:
+            raise Fail("Height is 0.")
         else:
-            self._bare_create(data, pixel_format, width, height)
-            if self.is_ok():
+            try:
+                self._bare_create(data, pixel_format, width, height)
+            except Fail as exception:
+                raise exception
+            else:
                 self._width      = width
                 self._height     = height
                 self._is_created = True
@@ -82,32 +82,9 @@ class Texture:
     # By default Range in OpenGL will be corresponding to (left, bottom, right, top).
     def draw_from_pixel_range(self, view_range, texture_range, tint = Color(1, 1, 1)):
         self.draw(view_range, texture_range / Range(self._width, self._height, self._width, self._height), tint)
-
-    
-    def clear_error(self):
-        self._err_msg = ""
-        
-    # Returns (str) error message.
-    def get_err_msg(self):
-        return self._err_msg
-        
-    # Returns True if any error message is registered.
-    def is_error(self):
-        return self._err_msg != ""
-
-    # Returns True if no error message is registered.
-    def is_ok(self):
-        return self._err_msg == ""
-        
-       
-       
-    def _register_err_msg(self, err_msg):
-        if self._err_msg != "":
-            self._err_msg += " "
-            
-        self._err_msg += err_msg 
     
     # Creates texture in specific API. This method must be overrode to do that.
+    # Raises                UnderGUI.Exception.Fail
     def _bare_create(self, data, pixel_format, width, height):
-        self._register_err_msg("Method Texture._bare_create is not overrode.")
+        raise Fail("Method Texture._bare_create is not overrode.")
     

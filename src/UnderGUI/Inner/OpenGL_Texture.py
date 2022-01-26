@@ -3,6 +3,7 @@ from OpenGL.GLU import *
 
 from UnderGUI.Utility import *
 from UnderGUI.Inner.Texture import *
+from UnderGUI.Exception import *
   
 class OpenGL_Texture(Texture):
     def __init__(self):
@@ -41,13 +42,13 @@ class OpenGL_Texture(Texture):
         if pixel_format == PixelFormat.RGBA:
             self._create_opengl_texture(data, GL_RGBA, width, height)
         else:
-            self._register_err_msg("Unsupported '%s' pixel format." % (pixel_format.name))
+            raise Fail("Unsupported pixel format: '%s'." % (pixel_format.name))
            
     def _create_opengl_texture(self, data, opengl_texture_format, width, height):
         self._tex_obj_id = glGenTextures(1)
         
         if self._tex_obj_id == 0:
-            self._register_err_msg("Can not create OpenGL texture object id.")
+            raise Fail("Can not create OpenGL texture object id.")
         else:
             glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
             

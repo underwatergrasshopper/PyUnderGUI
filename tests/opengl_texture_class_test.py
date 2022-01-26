@@ -1,5 +1,7 @@
 import TestKit
 
+
+import UnderGUI.Exception
 from UnderGUI.Utility import *
 from UnderGUI.Inner.OpenGL_Texture import *
 from UnderGUI.Inner.OpenGL_Shunter import *
@@ -29,58 +31,50 @@ def create():
     g_shunter   = OpenGL_Shunter()
     g_drawer    = OpenGL_Drawer()
     
-    g_texture   = OpenGL_Texture()
+    g_texture   = OpenGL_Texture()  
     assert g_texture.get_width() == 0, g_texture.get_width()
     assert g_texture.get_height() == 0, g_texture.get_height()
     assert g_texture.is_created() == False
-    assert g_texture.is_ok() == True
-    assert g_texture.is_error() == False
-    assert g_texture.get_err_msg() == "", g_texture.get_err_msg()
     
-    g_texture.load("textures/wrong.bmp")
+    
+    try:
+        g_texture.load("textures/wrong.bmp")
+    except UnderGUI.Exception.Fail as exception:
+        assert str(exception) == "Cannot identify format or open 'textures/wrong.bmp' file.", str(exception)
+    else:
+        assert False, "Expected exception."
     assert g_texture.get_width() == 0, g_texture.get_width()
     assert g_texture.get_height() == 0, g_texture.get_height()
     assert g_texture.is_created() == False
-    assert g_texture.is_ok() == False
-    assert g_texture.is_error() == True
-    assert g_texture.get_err_msg() == "Cannot identify format or open 'textures/wrong.bmp' file.", g_texture.get_err_msg()
 
-    g_texture.clear_error()
-    assert g_texture.get_err_msg() == "", g_texture.get_err_msg()
 
-    g_texture.load("textures/not_exist.png")
+
+    try:
+        g_texture.load("textures/not_exist.png")
+    except UnderGUI.Exception.Fail as exception:
+        assert str(exception) == "Cannot find 'textures/not_exist.png' file.", str(exception)
+    else:
+        assert False, "Expected exception."
     assert g_texture.get_width() == 0, g_texture.get_width()
     assert g_texture.get_height() == 0, g_texture.get_height()
     assert g_texture.is_created() == False
-    assert g_texture.is_ok() == False
-    assert g_texture.is_error() == True
-    assert g_texture.get_err_msg() == "Cannot find 'textures/not_exist.png' file.", g_texture.get_err_msg()
 
     g_texture.load("textures/image.png")
-    assert g_texture.is_created() == True
+    assert g_texture.is_created() == True, g_texture.get_err_msg() 
     assert g_texture.get_width() == 6, g_texture.get_width()
     assert g_texture.get_height() == 4, g_texture.get_height()
     assert g_texture.is_created() == True
-    assert g_texture.is_ok() == True
-    assert g_texture.is_error() == False
-    assert g_texture.get_err_msg() == "", g_texture.get_err_msg()
   
     g_texture.destroy()
     assert g_texture.get_width() == 0, g_texture.get_width()
     assert g_texture.get_height() == 0, g_texture.get_height()
     assert g_texture.is_created() == False
-    assert g_texture.is_ok() == True
-    assert g_texture.is_error() == False
-    assert g_texture.get_err_msg() == "", g_texture.get_err_msg()
  
     g_texture.load("textures/image_alpha.png")
     assert g_texture.is_created() == True
     assert g_texture.get_width() == 6, g_texture.get_width()
     assert g_texture.get_height() == 4, g_texture.get_height()
     assert g_texture.is_created() == True
-    assert g_texture.is_ok() == True
-    assert g_texture.is_error() == False
-    assert g_texture.get_err_msg() == "", g_texture.get_err_msg()
     
 def destroy():
     global g_texture, g_shunter, g_drawer

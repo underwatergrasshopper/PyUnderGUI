@@ -3,6 +3,9 @@
 import PIL
 from PIL import Image
 
+from UnderGUI.Exception import *
+
+
 # Range form point (x1, y1) to point (x2, y2).
 class Range:
     def __init__(self, x1, y1, x2, y2):
@@ -42,12 +45,11 @@ class Range:
             return Range(self.x1 - other.x1, self.y1 - other.y1, self.x2 - other.x2, self.y2 - other.y2)
         return Range(self.x1 - other, self.y1 - other, self.x2 - other, self.y2 - other)
 
-class ImageInfo:
+class ImageData:
     def __init__(self, data = None, width = 0, height = 0, err_msg = None):
         self.data       = data      if data else b''    # bytes
         self.width      = width
         self.height     = height
-        self.err_msg    = err_msg   if err_msg else ""  # str
     
 class Color:
     def __init__(self, r, g, b, a = 1):
@@ -56,34 +58,37 @@ class Color:
         self.b = b
         self.a = a
 
+# Chooses RGBA or RGBX pixel format (if conversion to RGBA is not acceptable for PIL.Image.tobytes raw converter).
+# image     (is PIL.Image)
+# Returns   (str) 
+def get_proper_image_conversion_mode(image):
+    if image.mode in ["RGB", "BGR"]:
+        return "RGBX"
+    return "RGBA"
+
 # Loads image and converts it to RGBA format.
-# image_url         (is str).
-# Returns ImageInfo object. 
-# If ImageInfo.err_msg contains message (is not "") then loading image failed.
+# image_url         (is str)
+# Returns           (ImageData)
+# Raises            UnderGUI.Exception.Fail
 def load_image_and_convert_to_rgba(image_url):
-    image_info = ImageInfo()
+    image_data = ImageData()
 
     try:
         image = Image.open(image_url)
-        
-    except FileNotFoundError:
-        image_info.err_msg = "Cannot find '%s' file." % (image_url)
-    except PIL.UnidentifiedImageError:
-        image_info.err_msg = "Cannot identify format or open '%s' file." % (image_url)
+    except FileNotFoundError as exception:
+        raise Fail("Cannot find '%s' file." % (image_url)) from exception 
+    except PIL.UnidentifiedImageError as exception:
+        raise Fail("Cannot identify format or open '%s' file." % (image_url)) from exception
     except Exception as exception:
-        image_info.err_msg = str(exception)
+        raise Fail("Cannot load '%s' file. %s" % (image_url, str(exception))) from exception 
     else:
-        raw_mode = "RGBA"
-        if image.mode in ["RGB", "BGR"]:
-            raw_mode = "RGBX"
-            
         try:
             # ("raw", raw_mode, stride, orientation)
-            data = image.tobytes("raw", raw_mode, 0, -1)
+            data = image.tobytes("raw", get_proper_image_conversion_mode(image), 0, -1)
             
         except Exception as exception:
-            image_info.err_msg = str(exception)
+            raise Fail("Cannot convert '%s' file to raw pixels. %s" % (image_url, str(exception))) from exception 
         else:
-            image_info = ImageInfo(data, image.width, image.height)
+            image_data = ImageData(data, image.width, image.height)
 
-    return image_info
+    return image_data
