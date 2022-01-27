@@ -4,6 +4,7 @@ Changes:
 - Added Drawer class.
 - Added Shunter class.
 - Added exception handling. 
+- Added integrity with Eclipse environment.
 
 # v0.2.2
 

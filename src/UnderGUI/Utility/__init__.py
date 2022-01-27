@@ -46,7 +46,7 @@ class Range:
         return Range(self.x1 - other, self.y1 - other, self.x2 - other, self.y2 - other)
 
 class ImageData:
-    def __init__(self, data = None, width = 0, height = 0, err_msg = None):
+    def __init__(self, data = None, width = 0, height = 0):
         self.data       = data      if data else b''    # bytes
         self.width      = width
         self.height     = height
