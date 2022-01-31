@@ -21,10 +21,10 @@ g_drawer    = None
 def create():
     global g_texture, g_shunter, g_drawer
     
-    g_shunter   = OpenGL_Shunter()
-    g_drawer    = OpenGL_Drawer()
+    g_shunter   = Shunter()
+    g_drawer    = Drawer()
     
-    g_texture   = OpenGL_Texture()  
+    g_texture   = Texture()  
     assert g_texture.get_width() == 0, g_texture.get_width()
     assert g_texture.get_height() == 0, g_texture.get_height()
     assert g_texture.is_created() == False

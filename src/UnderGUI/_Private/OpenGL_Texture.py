@@ -5,11 +5,11 @@ from UnderGUI.Utility import *
 from UnderGUI.Exceptions import *
 from UnderGUI.Commons import *
 
-from .Texture import *
+from .TextureBase import *
 
 __all__ = ['OpenGL_Texture']
   
-class OpenGL_Texture(Texture):
+class OpenGL_Texture(TextureBase):
     def __init__(self):
         super().__init__()
         

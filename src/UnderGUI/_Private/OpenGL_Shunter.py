@@ -1,10 +1,10 @@
 from OpenGL.GL import *
 
-from .Shunter import *
+from .ShunterBase import *
 
 __all__ = ['OpenGL_Shunter']
 
-class OpenGL_Shunter(Shunter):
+class OpenGL_Shunter(ShunterBase):
     def __init__(self):
         pass
         
