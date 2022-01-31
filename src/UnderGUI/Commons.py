@@ -1,7 +1,6 @@
 # Set of useful classes and functions for UnderGUI.
 
 from enum import Enum
-from selenium.webdriver.common.devtools.v85.headless_experimental import begin_frame
 
 __all__ = [ 
     'PixelFormat',
