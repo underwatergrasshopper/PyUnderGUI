@@ -1,9 +1,63 @@
+import math
 import TestKit
 
 from UnderGUI.Commons import *
 
 if __name__ == "__main__":
-    print("CommonsTest started")
+    print("CommonsUnitTest started")
+    
+    ### Pos ###
+    assert Pos(1, 2) == Pos(1, 2)
+    assert (Pos(1, 2) == Pos(1, 3)) == False
+    assert (Pos(1, 2) == Pos(5, 2)) == False
+    assert (Pos(1, 2) == Pos(2, 1)) == False
+
+    assert (Pos(1, 2) != Pos(1, 2)) == False
+    assert Pos(1, 2) != Pos(1, 3)
+    assert Pos(1, 2) != Pos(5, 2)
+    assert Pos(1, 2) != Pos(2, 1)
+    
+    assert Pos(2, 3) * Pos(10, 100) == Pos(20, 300)
+    assert Pos(20, 300) / Pos(10, 100) == Pos(2, 3)
+    assert Pos(40, 50) + Pos(1, 2) == Pos(41, 52)
+    assert Pos(40, 50) - Pos(1, 2) == Pos(39, 48)
+
+    assert Pos(20, 30) / 10 == Pos(2, 3)
+    assert Pos(2, 3) * 10 == Pos(20, 30)
+    assert Pos(40, 50) + 2 == Pos(42, 52)
+    assert Pos(40, 50) - 2 == Pos(38, 48)
+      
+    assert (Pos(2, 5) < Pos(3, 6)) == True
+    assert (Pos(2, 5) < Pos(2, 6)) == False
+    assert (Pos(2, 5) < Pos(3, 5)) == False
+    assert (Pos(2, 5) < Pos(2, 5)) == False
+    assert (Pos(2, 5) < Pos(1, 5)) == False
+    assert (Pos(2, 5) < Pos(2, 4)) == False
+    assert (Pos(2, 5) < Pos(1, 4)) == False
+    
+    assert (Pos(2, 5) <= Pos(3, 6)) == True
+    assert (Pos(2, 5) <= Pos(2, 6)) == True
+    assert (Pos(2, 5) <= Pos(3, 5)) == True
+    assert (Pos(2, 5) <= Pos(2, 5)) == True
+    assert (Pos(2, 5) <= Pos(1, 5)) == False
+    assert (Pos(2, 5) <= Pos(2, 4)) == False
+    assert (Pos(2, 5) <= Pos(1, 4)) == False
+    
+    assert (Pos(3, 6) > Pos(2, 5)) == True
+    assert (Pos(3, 6) > Pos(3, 5)) == False
+    assert (Pos(3, 6) > Pos(2, 6)) == False
+    assert (Pos(3, 6) > Pos(3, 6)) == False
+    assert (Pos(3, 6) > Pos(3, 7)) == False
+    assert (Pos(3, 6) > Pos(4, 6)) == False
+    assert (Pos(3, 6) > Pos(4, 7)) == False
+    
+    assert (Pos(3, 6) >= Pos(2, 5)) == True
+    assert (Pos(3, 6) >= Pos(3, 5)) == True
+    assert (Pos(3, 6) >= Pos(2, 6)) == True
+    assert (Pos(3, 6) >= Pos(3, 6)) == True
+    assert (Pos(3, 6) >= Pos(3, 7)) == False
+    assert (Pos(3, 6) >= Pos(4, 6)) == False
+    assert (Pos(3, 6) >= Pos(4, 7)) == False
     
     ### Range ###
     assert Range(0, 1, 2, 3) == Range(0, 1, 2, 3)
@@ -30,4 +84,41 @@ if __name__ == "__main__":
     assert (Range(1, 2, 3, 4) + 10) == Range(11, 12, 13, 14)
     assert (Range(10, 20, 30, 40) - 1) == Range(9, 19, 29, 39)
     
-    print("CommonsTest finished")
+    assert Range(3, 5, 10, 20).is_in(Pos(3, 5)) == True
+    assert Range(3, 5, 10, 20).is_in(Pos(4, 6)) == True
+    assert Range(3, 5, 10, 20).is_in(Pos(9, 19)) == True
+    assert Range(3, 5, 10, 20).is_in(Pos(2, 5)) == False
+    assert Range(3, 5, 10, 20).is_in(Pos(3, 4)) == False
+    assert Range(3, 5, 10, 20).is_in(Pos(2, 4)) == False
+    assert Range(3, 5, 10, 20).is_in(Pos(9, 20)) == False  
+    assert Range(3, 5, 10, 20).is_in(Pos(10, 19)) == False  
+    assert Range(3, 5, 10, 20).is_in(Pos(10, 20)) == False  
+    
+    ### Area ###
+    assert Area(0, 1, 2, 3) == Area(0, 1, 2, 3)
+    assert (Area(0, 1, 2, 3) == Area(10, 1, 2, 3)) == False
+    assert (Area(0, 1, 2, 3) == Area(0, 11, 2, 3)) == False
+    assert (Area(0, 1, 2, 3) == Area(1, 1, 12, 3)) == False
+    assert (Area(0, 1, 2, 3) == Area(1, 1, 2, 13)) == False
+    
+    assert Area(3, 5, 7, 15).is_in(Pos(3, 5)) == True
+    assert Area(3, 5, 7, 15).is_in(Pos(4, 6)) == True
+    assert Area(3, 5, 7, 15).is_in(Pos(9, 19)) == True
+    assert Area(3, 5, 7, 15).is_in(Pos(2, 5)) == False
+    assert Area(3, 5, 7, 15).is_in(Pos(3, 4)) == False
+    assert Area(3, 5, 7, 15).is_in(Pos(2, 4)) == False
+    assert Area(3, 5, 7, 15).is_in(Pos(9, 20)) == False  
+    assert Area(3, 5, 7, 15).is_in(Pos(10, 19)) == False  
+    assert Area(3, 5, 7, 15).is_in(Pos(10, 20)) == False  
+    
+    ### Area and Range ###
+    assert Area(1, 2, 10, 20).to_range() == Range(1, 2, 11, 22)
+    assert Range(1, 2, 11, 22).to_area() == Area(1, 2, 10, 20)
+    
+    print("CommonsUnitTest finished")
+    
+    
+    
+    
+    
+    

@@ -10,5 +10,6 @@ class DrawerBase:
         pass
     
     # Fills window client area with color.
+    # color     (ColorF) Color of the fulfilment.
     def fill_view(self, color):
         pass

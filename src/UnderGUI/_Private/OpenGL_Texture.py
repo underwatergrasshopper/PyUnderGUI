@@ -4,6 +4,7 @@ from OpenGL.GLU import *
 from UnderGUI.Utility import *
 from UnderGUI.Exceptions import *
 from UnderGUI.Commons import *
+from UnderGUI.Color import *
 
 from .TextureBase import *
 
@@ -21,9 +22,10 @@ class OpenGL_Texture(TextureBase):
         
         super().__del__()
 
-    def draw(self, view_range, texture_range, tint = Color(1, 1, 1)):
+    def draw(self, view_range, texture_range, tint = ColorF(1, 1, 1)):
         glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
         
+        tint = tint.to_color_f()
         glColor4f(tint.r, tint.g, tint.b, tint.a)
         
         glBegin(GL_TRIANGLE_STRIP)

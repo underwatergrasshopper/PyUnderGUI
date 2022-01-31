@@ -78,13 +78,13 @@ def destroy():
 def display():
     global g_texture, g_shunter, g_drawer
     
-    g_drawer.fill_view(Color(0, 0, 0.5))
+    g_drawer.fill_view(ColorF(0, 0, 0.5))
     g_shunter.setup_texture_draw()
 
     g_texture.draw(Range(-1, -1, 0, 0), Range(0, 0, 1, 1))
     g_texture.draw(Range(0, 0, 1, 1), Range(1.0 / 6, 0.25, 5.0 / 6, 0.75))
     
-    g_texture.draw_from_pixel_range(Range(-1, 0, 0, 1), Range(0, 0, 6, 4), Color(0, 1, 1))
+    g_texture.draw_from_pixel_range(Range(-1, 0, 0, 1), Range(0, 0, 6, 4), ColorF(0, 1, 1))
     g_texture.draw_from_pixel_range(Range(0, -1, 1, 0), Range(1, 1, 5, 3))
     
     # g_texture.draw_from_pixel_range(Range(-0.5, -0.5, 0.5, 0.5), Range(0, 0, 6, 4))
