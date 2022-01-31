@@ -3,6 +3,8 @@ from enum import Enum
 from UnderGUI.Utility import *
 from UnderGUI.Exception import *
 
+__all__ = ['PixelFormat', 'Texture']
+
 class PixelFormat(Enum):
     UNKNOWN = 0
     RGBA    = 1
@@ -20,7 +22,7 @@ class Texture:
         
     # Creates texture form loaded image.
     # image_url     (is str)
-    # Raises: UnderGUI.Exception.Fail. 
+    # Raises: UnderGUI.Exceptions.Fail. 
     def load(self, image_url):
         try:
             image_data = load_image_and_convert_to_rgba(image_url)
@@ -34,7 +36,7 @@ class Texture:
     # pixel_format  (is PixelFormat)
     # width         (is int)
     # height        (is int)
-    # Raises: UnderGUI.Exception.Fail. 
+    # Raises: UnderGUI.Exceptions.Fail. 
     def create(self, data, pixel_format, width, height):
         self.destroy()
         if pixel_format == PixelFormat.UNKNOWN:
@@ -84,7 +86,7 @@ class Texture:
         self.draw(view_range, texture_range / Range(self._width, self._height, self._width, self._height), tint)
     
     # Creates texture in specific API. This method must be overrode to do that.
-    # Raises                UnderGUI.Exception.Fail
+    # Raises                UnderGUI.Exceptions.Fail
     def _bare_create(self, data, pixel_format, width, height):
         raise Fail("Method Texture._bare_create is not overrode.")
     

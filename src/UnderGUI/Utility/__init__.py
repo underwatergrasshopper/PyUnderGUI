@@ -69,7 +69,7 @@ def get_proper_image_conversion_mode(image):
 # Loads image and converts it to RGBA format.
 # image_url         (is str)
 # Returns           (ImageData)
-# Raises            UnderGUI.Exception.Fail
+# Raises            UnderGUI.Exceptions.Fail
 def load_image_and_convert_to_rgba(image_url):
     image_data = ImageData()
 
