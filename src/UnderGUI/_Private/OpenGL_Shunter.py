@@ -1,8 +1,10 @@
-from UnderGUI.Inner.Shunter import *
-
 from OpenGL.GL import *
 
-class OpenGL_Shunter(Shunter):
+from .ShunterBase import *
+
+__all__ = ['OpenGL_Shunter']
+
+class OpenGL_Shunter(ShunterBase):
     def __init__(self):
         pass
         

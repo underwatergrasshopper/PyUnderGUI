@@ -2,9 +2,15 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 
 from UnderGUI.Utility import *
-from UnderGUI.Inner.Texture import *
+from UnderGUI.Exceptions import *
+from UnderGUI.Commons import *
+from UnderGUI.Color import *
+
+from .TextureBase import *
+
+__all__ = ['OpenGL_Texture']
   
-class OpenGL_Texture(Texture):
+class OpenGL_Texture(TextureBase):
     def __init__(self):
         super().__init__()
         
@@ -16,9 +22,10 @@ class OpenGL_Texture(Texture):
         
         super().__del__()
 
-    def draw(self, view_range, texture_range, tint = Color(1, 1, 1)):
+    def draw(self, view_range, texture_range, tint = ColorF(1, 1, 1)):
         glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
         
+        tint = tint.to_color_f()
         glColor4f(tint.r, tint.g, tint.b, tint.a)
         
         glBegin(GL_TRIANGLE_STRIP)
@@ -41,13 +48,13 @@ class OpenGL_Texture(Texture):
         if pixel_format == PixelFormat.RGBA:
             self._create_opengl_texture(data, GL_RGBA, width, height)
         else:
-            self._register_err_msg("Unsupported '%s' pixel format." % (pixel_format.name))
+            raise Fail("Unsupported pixel format: '%s'." % (pixel_format.name))
            
     def _create_opengl_texture(self, data, opengl_texture_format, width, height):
         self._tex_obj_id = glGenTextures(1)
         
         if self._tex_obj_id == 0:
-            self._register_err_msg("Can not create OpenGL texture object id.")
+            raise Fail("Can not create OpenGL texture object id.")
         else:
             glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
             

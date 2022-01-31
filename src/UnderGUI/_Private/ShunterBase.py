@@ -1,7 +1,11 @@
+# Base for Shunter class.
+
 from UnderGUI.Utility import *
 
+__all__ = ['ShunterBase']
+
 # Communicates with graphical api to do specific action. Details in methods descriptions. All methods are for override.
-class Shunter:
+class ShunterBase:
     def __init__(self):
         pass
         

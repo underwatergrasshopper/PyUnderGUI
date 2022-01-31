@@ -1,8 +1,10 @@
-from UnderGUI.Inner.Drawer import *
-
 from OpenGL.GL import *
 
-class OpenGL_Drawer(Drawer):
+from .DrawerBase import *
+
+__all__ = ['OpenGL_Drawer']
+
+class OpenGL_Drawer(DrawerBase):
     def __init__(self):
         pass
         
