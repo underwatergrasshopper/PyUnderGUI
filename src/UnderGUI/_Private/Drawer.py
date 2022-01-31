@@ -1,5 +1,7 @@
 from UnderGUI.Utility import *
 
+__all__ = ['Drawer']
+
 # Draws to window client area. All methods are for override.
 class Drawer:
     def __init__(self):

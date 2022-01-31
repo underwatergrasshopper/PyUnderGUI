@@ -1,13 +1,8 @@
-from enum import Enum
-
 from UnderGUI.Utility import *
-from UnderGUI.Exception import *
+from UnderGUI.Exceptions import *
+from UnderGUI.Commons import *
 
-__all__ = ['PixelFormat', 'Texture']
-
-class PixelFormat(Enum):
-    UNKNOWN = 0
-    RGBA    = 1
+__all__ = ['Texture']
 
 class Texture:
     def __init__(self):

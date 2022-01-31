@@ -1,6 +1,8 @@
-from UnderGUI.Inner.Drawer import *
-
 from OpenGL.GL import *
+
+from .Drawer import *
+
+__all__ = ['OpenGL_Drawer']
 
 class OpenGL_Drawer(Drawer):
     def __init__(self):

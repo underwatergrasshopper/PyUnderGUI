@@ -1,5 +1,7 @@
 from UnderGUI.Utility import *
 
+__all__ = ['Shunter']
+
 # Communicates with graphical api to do specific action. Details in methods descriptions. All methods are for override.
 class Shunter:
     def __init__(self):

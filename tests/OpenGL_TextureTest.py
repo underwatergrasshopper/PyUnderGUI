@@ -1,18 +1,11 @@
 import TestKit
 
-
-import UnderGUI.Exception
-from UnderGUI.Utility import *
-from UnderGUI.Inner.OpenGL_Texture import *
-from UnderGUI.Inner.OpenGL_Shunter import *
-from UnderGUI.Inner.OpenGL_Drawer import *
+from UnderGUI import *
+from UnderGUI._Private import *
 
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from OpenGL.GLUT import *
-
-import PIL
-from PIL import Image
 
 ################################################################################
 
@@ -39,7 +32,7 @@ def create():
     
     try:
         g_texture.load("textures/wrong.bmp")
-    except UnderGUI.Exception.Fail as exception:
+    except Fail as exception:
         assert str(exception) == "Cannot identify format or open 'textures/wrong.bmp' file.", str(exception)
     else:
         assert False, "Expected exception."
@@ -51,7 +44,7 @@ def create():
 
     try:
         g_texture.load("textures/not_exist.png")
-    except UnderGUI.Exception.Fail as exception:
+    except Fail as exception:
         assert str(exception) == "Cannot find 'textures/not_exist.png' file.", str(exception)
     else:
         assert False, "Expected exception."

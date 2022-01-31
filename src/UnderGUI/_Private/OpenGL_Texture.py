@@ -2,8 +2,12 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 
 from UnderGUI.Utility import *
-from UnderGUI.Inner.Texture import *
-from UnderGUI.Exception import *
+from UnderGUI.Exceptions import *
+from UnderGUI.Commons import *
+
+from .Texture import *
+
+__all__ = ['OpenGL_Texture']
   
 class OpenGL_Texture(Texture):
     def __init__(self):

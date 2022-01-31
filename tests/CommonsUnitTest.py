@@ -1,8 +1,10 @@
 import TestKit
 
-from UnderGUI.Utility import *
+from UnderGUI.Commons import *
 
 if __name__ == "__main__":
+    print("CommonsTest started")
+    
     ### Range ###
     assert Range(0, 1, 2, 3) == Range(0, 1, 2, 3)
     assert (Range(0, 1, 2, 3) == Range(10, 1, 2, 3)) == False
@@ -27,3 +29,5 @@ if __name__ == "__main__":
     assert (Range(10.0, 20.0, 30.0, 40.0) / 10.0) == Range(1.0, 2.0, 3.0, 4.0)
     assert (Range(1, 2, 3, 4) + 10) == Range(11, 12, 13, 14)
     assert (Range(10, 20, 30, 40) - 1) == Range(9, 19, 29, 39)
+    
+    print("CommonsTest finished")
