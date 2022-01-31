@@ -3,6 +3,7 @@
 Changes:
 - Refactored _Private.
 - Added function descriptions.
+- Added Pos and Size classes.
 
 # v0.3.0
 

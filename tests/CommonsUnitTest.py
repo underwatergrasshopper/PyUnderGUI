@@ -59,6 +59,68 @@ if __name__ == "__main__":
     assert (Pos(3, 6) >= Pos(4, 6)) == False
     assert (Pos(3, 6) >= Pos(4, 7)) == False
     
+    ### Size ###
+    assert Size(1, 2) == Size(1, 2)
+    assert (Size(1, 2) == Size(1, 3)) == False
+    assert (Size(1, 2) == Size(5, 2)) == False
+    assert (Size(1, 2) == Size(2, 1)) == False
+
+    assert (Size(1, 2) != Size(1, 2)) == False
+    assert Size(1, 2) != Size(1, 3)
+    assert Size(1, 2) != Size(5, 2)
+    assert Size(1, 2) != Size(2, 1)
+    
+    assert Size(2, 3) * Size(10, 100) == Size(20, 300)
+    assert Size(20, 300) / Size(10, 100) == Size(2, 3)
+    assert Size(40, 50) + Size(1, 2) == Size(41, 52)
+    assert Size(40, 50) - Size(1, 2) == Size(39, 48)
+
+    assert Size(20, 30) / 10 == Size(2, 3)
+    assert Size(2, 3) * 10 == Size(20, 30)
+    assert Size(40, 50) + 2 == Size(42, 52)
+    assert Size(40, 50) - 2 == Size(38, 48)
+      
+    assert (Size(2, 5) < Size(3, 6)) == True
+    assert (Size(2, 5) < Size(2, 6)) == False
+    assert (Size(2, 5) < Size(3, 5)) == False
+    assert (Size(2, 5) < Size(2, 5)) == False
+    assert (Size(2, 5) < Size(1, 5)) == False
+    assert (Size(2, 5) < Size(2, 4)) == False
+    assert (Size(2, 5) < Size(1, 4)) == False
+    
+    assert (Size(2, 5) <= Size(3, 6)) == True
+    assert (Size(2, 5) <= Size(2, 6)) == True
+    assert (Size(2, 5) <= Size(3, 5)) == True
+    assert (Size(2, 5) <= Size(2, 5)) == True
+    assert (Size(2, 5) <= Size(1, 5)) == False
+    assert (Size(2, 5) <= Size(2, 4)) == False
+    assert (Size(2, 5) <= Size(1, 4)) == False
+    
+    assert (Size(3, 6) > Size(2, 5)) == True
+    assert (Size(3, 6) > Size(3, 5)) == False
+    assert (Size(3, 6) > Size(2, 6)) == False
+    assert (Size(3, 6) > Size(3, 6)) == False
+    assert (Size(3, 6) > Size(3, 7)) == False
+    assert (Size(3, 6) > Size(4, 6)) == False
+    assert (Size(3, 6) > Size(4, 7)) == False
+    
+    assert (Size(3, 6) >= Size(2, 5)) == True
+    assert (Size(3, 6) >= Size(3, 5)) == True
+    assert (Size(3, 6) >= Size(2, 6)) == True
+    assert (Size(3, 6) >= Size(3, 6)) == True
+    assert (Size(3, 6) >= Size(3, 7)) == False
+    assert (Size(3, 6) >= Size(4, 6)) == False
+    assert (Size(3, 6) >= Size(4, 7)) == False
+    
+    ### Pos and Size ###
+    assert Pos(2, 3) * Size(10, 100) == Pos(20, 300)
+    assert Pos(20, 300) / Size(10, 100) == Pos(2, 3)
+    assert Pos(40, 50) + Size(1, 2) == Pos(41, 52)
+    assert Pos(40, 50) - Size(1, 2) == Pos(39, 48)
+    
+    assert Pos(1, 2).to_size() == Size(1, 2)
+    assert Size(1, 2).to_pos() == Pos(1, 2)
+    
     ### Range ###
     assert Range(0, 1, 2, 3) == Range(0, 1, 2, 3)
     assert (Range(0, 1, 2, 3) == Range(10, 1, 2, 3)) == False
@@ -100,6 +162,12 @@ if __name__ == "__main__":
     assert (Area(0, 1, 2, 3) == Area(0, 11, 2, 3)) == False
     assert (Area(0, 1, 2, 3) == Area(1, 1, 12, 3)) == False
     assert (Area(0, 1, 2, 3) == Area(1, 1, 2, 13)) == False
+    
+    assert (Area(0, 1, 2, 3) != Area(0, 1, 2, 3)) == False
+    assert Area(0, 1, 2, 3) != Area(10, 1, 2, 3)
+    assert Area(0, 1, 2, 3) != Area(0, 11, 2, 3)
+    assert Area(0, 1, 2, 3) != Area(1, 1, 12, 3)
+    assert Area(0, 1, 2, 3) != Area(1, 1, 2, 13)
     
     assert Area(3, 5, 7, 15).is_in(Pos(3, 5)) == True
     assert Area(3, 5, 7, 15).is_in(Pos(4, 6)) == True
