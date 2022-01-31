@@ -5,6 +5,8 @@ Changes:
 - Added Shunter class.
 - Added exception handling. 
 - Added integrity with Eclipse environment.
+- Added Color class.
+- Refactored hierarchy.
 
 # v0.2.2
 
