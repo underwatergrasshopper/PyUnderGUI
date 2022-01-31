@@ -7,6 +7,12 @@ __all__ = [
 
 # Interface for color.
 class Color:
+    def __init__(self, r, g, b, a):
+        self.r = r
+        self.g = g
+        self.b = b
+        self.a = a
+        
     # Converts to ColorF.
     def to_color_f(self):
         pass
@@ -22,10 +28,7 @@ class Color:
 # Color with each channel in range (0, 1) as float.
 class ColorF(Color):
     def __init__(self, r, g, b, a = 1.0):
-        self.r = r
-        self.g = g
-        self.b = b
-        self.a = a
+        super().__init__(float(r), float(g), float(b), float(a))
         
     # Converts to ColorF.
     def to_color_f(self):
@@ -42,10 +45,7 @@ class ColorF(Color):
 # Color with each channel in range (0, 255) as int.   
 class ColorI(Color):
     def __init__(self, r, g, b, a = 255):
-        self.r = r
-        self.g = g
-        self.b = b
-        self.a = a
+        super().__init__(int(r), int(g), int(b), int(a))
 
     # Converts to ColorF.
     def to_color_f(self):
@@ -67,20 +67,11 @@ class ColorB(Color):
     # a         (is bytes) Alpha channel (one byte).
     def __init__(self, r, g = None, b = None, a = b'\xFF'):
         if len(r) == 3:
-            self.r = r[0:1]
-            self.g = r[1:2]
-            self.b = r[2:3]
-            self.a = a
+            super().__init__(r[0:1], r[1:2], r[2:3], a)
         elif len(r) == 4:
-            self.r = r[0:1]
-            self.g = r[1:2]
-            self.b = r[2:3]
-            self.a = r[3:4]
+            super().__init__(r[0:1], r[1:2], r[2:3], r[3:4])
         else:
-            self.r = r
-            self.g = g
-            self.b = b
-            self.a = a
+            super().__init__(r, g, b, a)
         
     # Converts to ColorF.
     def to_color_f(self):

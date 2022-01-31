@@ -1,3 +1,9 @@
+# v0.4.0
+
+Changes:
+- Refactored _Private.
+- Added function descriptions.
+
 # v0.3.0
 
 Changes:

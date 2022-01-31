@@ -1,16 +1,17 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-from UnderGUI.Utility import *
-from UnderGUI.Exceptions import *
-from UnderGUI.Commons import *
 from UnderGUI.Color import *
+from UnderGUI.Commons import *
+from UnderGUI.Exceptions import *
+from UnderGUI.Utility import *
 
-from .TextureBase import *
+from .Texture import *
+
 
 __all__ = ['OpenGL_Texture']
   
-class OpenGL_Texture(TextureBase):
+class OpenGL_Texture(Texture):
     def __init__(self):
         super().__init__()
         

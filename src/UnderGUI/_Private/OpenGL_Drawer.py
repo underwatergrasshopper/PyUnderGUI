@@ -1,10 +1,11 @@
 from OpenGL.GL import *
 
-from .DrawerBase import *
+from .Drawer import *
+
 
 __all__ = ['OpenGL_Drawer']
 
-class OpenGL_Drawer(DrawerBase):
+class OpenGL_Drawer(Drawer):
     def __init__(self):
         pass
         
