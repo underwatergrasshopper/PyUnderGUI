@@ -1,12 +1,17 @@
-# Base for drawer.
 __all__ = ['Drawer']
 
-# Draws to window client area. All methods are for override.
 class Drawer:
-    def __init__(self):
-        pass
+    """
+    Draws to window client area.
+    """
     
-    # Fills window client area with color.
-    # color     (ColorF) Color of the fulfilment.
+    # to override
     def fill_view(self, color):
+        """
+        Fills window client area with color.
+        
+        :param                                     color:
+        :type                                      color: 
+            UnderGUI.ColorF or UnderGUI.ColorI or UnderGUI.ColorB
+        """
         pass

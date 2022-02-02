@@ -82,7 +82,7 @@ def display():
     global g_texture, g_shunter, g_drawer
     
     g_drawer.fill_view(ColorF(0, 0, 0.5))
-    g_shunter.setup_texture_draw()
+    g_shunter.setup_for_texture_draw()
 
     g_texture.draw(Range(-1, -1, 0, 0), Range(0, 0, 1, 1))
     g_texture.draw(Range(0, 0, 1, 1), Range(1.0 / 6, 0.25, 5.0 / 6, 0.75))

@@ -1,5 +1,3 @@
-# Set of useful classes and functions for UnderGUI.
-
 from enum import Enum
 
 __all__ = [ 
@@ -17,13 +15,18 @@ class PixelFormat(Enum):
     UNKNOWN = 0
     RGBA    = 1
     
-# Position. 
+
 class Pos:
     def __init__(self, x, y):
         self.x = x
         self.y = y
         
     def to_size(self):
+        """
+        Converts to UnderGUI.Size.
+        
+        :rtype: UnderGUI.Size
+        """
         return Size(self.x, self.y)
         
     def __eq__(self, other):
@@ -85,6 +88,11 @@ class Size:
         self.height = height  
         
     def to_pos(self):
+        """
+        Converts to UnderGUI.Pos.
+        
+        :rtype: UnderGUI.Pos
+        """
         return Pos(self.width, self.height)
         
     def __eq__(self, other):
@@ -130,20 +138,32 @@ class Size:
             return Size(self.width - other.width, self.height - other.height)
         return Size(self.width - other, self.height - other)
         
-# Range from point (x1, y1) to point (x2, y2).
 class RangePP:
+    """
+    Range from begin position to end position.
+    """
     def __init__(self, begin, end):
+        """
+        :param UnderGUI.Pos                        begin:
+        :param UnderGUI.Pos                        end:
+        """
         self.begin = begin
         self.end = end
 
-    # Converts Range to Area.
     def to_area(self):
+        """
+        Converts to UnderGUI.Area.
+        
+        :rtype: UnderGUI.Area
+        """
         return Area(self.begin.x, self.begin.y, self.end.x - self.begin.x, self.end.y - self.begin.y)
     
-    # Checks if position is inside range.
-    # pos         (UnderGUI.Pos) Position.
-    # Returns     (bool) true - if pos is inside range; false - otherwise.  
     def is_in(self, pos):
+        """
+        :param UnderGUI.Pos                        pos:
+        :rtype: bool
+        :return: True - if position is in range, False - otherwise.
+        """
         return self.begin <= pos and pos < self.end
         
     def __eq__(self, other):
@@ -187,14 +207,20 @@ class AreaPS:
         self.pos    = pos
         self.size   = size
         
-    # Converts Area to Range.
     def to_range(self):
+        """
+        Converts to UnderGUI.Range.
+        
+        :rtype: UnderGUI.Range
+        """
         return RangePP(self.pos, self.pos + self.size)
     
-    # Checks if position is inside area.
-    # pos         (UnderGUI.Pos) Position.
-    # Returns     (bool) true - if pos is inside area; false - otherwise.  
     def is_in(self, pos):
+        """
+        :param UnderGUI.Pos                        pos:
+        :rtype: bool
+        :return: True - if position is in area, False - otherwise.
+        """
         return self.to_range().is_in(pos)
     
     def __eq__(self, other):
@@ -208,6 +234,11 @@ class Area(AreaPS):
         super().__init__(Pos(x, y), Size(width, height))
 
 class ImageData:
+    """
+    :ival bytes                                    data:
+    :ival int                                      width:
+    :ival int                                      height:
+    """
     def __init__(self, data = None, width = 0, height = 0):
         self.data           = data          if data else b'' # bytes
         self.width          = width

@@ -9,19 +9,21 @@ __all__ = [
     'load_image_and_convert_to_rgba'
 ]
 
-# Chooses RGBA or RGBX pixel format (if conversion to RGBA is not acceptable for PIL.Image.tobytes raw converter).
-# image     (is PIL.Image)
-# Returns   (str) 
 def get_proper_image_conversion_mode(image):
+    """
+    :param PIL.Image                               image:
+    :rtype: str
+    :return: One of formats to which image can be converted, by PIL.Image.tobytes with raw converter. Either "RGBA" or "RGBX".
+    """
     if image.mode in ["RGB", "BGR"]:
         return "RGBX"
     return "RGBA"
 
-# Loads image and converts it to RGBA format.
-# image_url         (is str)
-# Returns           (ImageData)
-# Raises            UnderGUI.Exceptions.Fail
 def load_image_and_convert_to_rgba(image_url):
+    """
+    :param str                                     image_url:
+    :rtype: Under.GUI.ImageData
+    """
     image_data = ImageData()
 
     try:
