@@ -235,9 +235,9 @@ class Area(AreaPS):
 
 class ImageData:
     """
-    :ival bytes                                    data:
-    :ival int                                      width:
-    :ival int                                      height:
+    :ivar bytes                                    data:
+    :ivar int                                      width:
+    :ivar int                                      height:
     """
     def __init__(self, data = None, width = 0, height = 0):
         self.data           = data          if data else b'' # bytes
