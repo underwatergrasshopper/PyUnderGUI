@@ -104,7 +104,7 @@ class ColorI(Color):
      
 class ColorB(Color):
     """
-    With each channel as bytes.
+    Color with each channel as bytes.
     """
     def __init__(self, r, g = None, b = None, a = b'\xFF'):
         """

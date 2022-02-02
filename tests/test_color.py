@@ -1,11 +1,12 @@
 import math
-import TestKit
+
+from TestKit import *
 
 from UnderGUI.Color import *
 
-if __name__ == "__main__":
-    print("ColorUnitTest started")
-    
+__all__ = ['test_color']
+
+def test_color():
     ### ColorF ###
     c = ColorF(1, 0.5, 0.75, 0.25).to_color_i()
     assert c.r == 255 and c.g == 127 and c.b == 191 and c.a == 63
@@ -39,11 +40,6 @@ if __name__ == "__main__":
     # immediate tests
     #print(int.from_bytes(b'\xff', "little"))
     #print((255).to_bytes(1, byteorder='little'))
-    
-    print("ColorUnitTest finished")
-    
-    
-    
-    
-    
-    
+
+if __name__ == "__main__":
+    run_test(test_color)

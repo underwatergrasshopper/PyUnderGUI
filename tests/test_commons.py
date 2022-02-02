@@ -1,11 +1,10 @@
 import math
-import TestKit
-
+from TestKit import *
 from UnderGUI.Commons import *
 
-if __name__ == "__main__":
-    print("CommonsUnitTest started")
-    
+__all__ = ['test_commons']
+
+def test_commons():
     ### Pos ###
     assert Pos(1, 2) == Pos(1, 2)
     assert (Pos(1, 2) == Pos(1, 3)) == False
@@ -183,10 +182,6 @@ if __name__ == "__main__":
     assert Area(1, 2, 10, 20).to_range() == Range(1, 2, 11, 22)
     assert Range(1, 2, 11, 22).to_area() == Area(1, 2, 10, 20)
     
-    print("CommonsUnitTest finished")
-    
-    
-    
-    
-    
+if __name__ == "__main__":
+    run_test(test_commons)
     

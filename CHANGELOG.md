@@ -6,6 +6,7 @@ Changes:
 - Added Pos and Size classes.
 - Changed comments to be sphinx compatible.
 - Added documentation.
+- Updated tests.
 
 # v0.3.0
 
