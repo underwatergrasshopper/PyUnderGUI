@@ -42,6 +42,12 @@ class Color:
         """
         pass
     
+    def get_rgba(self):
+        """
+        :rtype: tuple(auto, auto, auto, auto)
+        """
+        return (self.r, self.g, self.b, self.a)
+    
 class ColorF(Color):
     """
     Color with each channel as float.

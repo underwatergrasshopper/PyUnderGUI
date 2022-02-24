@@ -55,7 +55,7 @@ class OpenGL_Texture(Texture):
         if pixel_format == PixelFormat.RGBA:
             self._create_opengl_texture(data, GL_RGBA, width, height)
         else:
-            raise Fail("Unsupported pixel format: '%s'." % (pixel_format.name))
+            raise Fail("UnderGUI: Unsupported pixel format: '%s'." % (pixel_format.name))
            
     def _create_opengl_texture(self, data, internal_format, width, height):
         """
@@ -69,7 +69,7 @@ class OpenGL_Texture(Texture):
         self._tex_obj_id = glGenTextures(1)
         
         if self._tex_obj_id == 0:
-            raise Fail("Can not create OpenGL texture object id.")
+            raise Fail("UnderGUI: Can not create OpenGL texture object id.")
         else:
             glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
             

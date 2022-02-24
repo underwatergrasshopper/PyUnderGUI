@@ -4,6 +4,7 @@ Changes:
 - Refactored _Private.
 - Added Pos and Size classes.
 - Added documentation.
+- Added prefix UnderGUI to raised exceptions.
 
 # v0.3.0
 

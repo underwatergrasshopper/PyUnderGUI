@@ -227,6 +227,19 @@ def test_commons():
     assert register.get("y", FontStyle.BOLD_AND_ITALIC) == "d2"
     assert register.get("y", 100) == ""
     
+    ### GlyphCodeBlock ###
+    glyph_code_block = GlyphCodeBlock(10, 20)
+    assert glyph_code_block.first == 10
+    assert glyph_code_block.last == 20
+    
+    glyph_code_block_group = GlyphCodeBlockGroup(GlyphCodeBlock(10, 20)) + GlyphCodeBlockGroup(GlyphCodeBlock(21, 30), GlyphCodeBlock(31, 40))
+    assert glyph_code_block_group.blocks[0].first == 10
+    assert glyph_code_block_group.blocks[0].last == 20
+    assert glyph_code_block_group.blocks[1].first == 21
+    assert glyph_code_block_group.blocks[1].last == 30
+    assert glyph_code_block_group.blocks[2].first == 31
+    assert glyph_code_block_group.blocks[2].last == 40
+    
 if __name__ == "__main__":
     run_test(test_commons)
 

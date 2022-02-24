@@ -49,11 +49,11 @@ class Texture:
         """
         self.destroy()
         if pixel_format == PixelFormat.UNKNOWN:
-            raise Fail("Unknown pixel format.")
+            raise Fail("UnderGUI: Unknown pixel format.")
         elif width == 0:
-            raise Fail("Width is 0.")
+            raise Fail("UnderGUI: Width is 0.")
         elif height == 0:
-            raise Fail("Height is 0.")
+            raise Fail("UnderGUI: Height is 0.")
         else:
             try:
                 self._bare_create(data, pixel_format, width, height)
@@ -133,4 +133,4 @@ class Texture:
         :param int                                 height:
         :raises UnderGUI.Fail:
         """
-        raise Fail("Method Texture._bare_create is not overrode.")
+        raise Fail("UnderGUI: Method Texture._bare_create is not overrode.")

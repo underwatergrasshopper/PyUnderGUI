@@ -15,7 +15,9 @@ __all__ = [
     'FontInfo',
     'FontData',
     'FontSource',
-    'FontSourceRegister'
+    'FontSourceRegister',
+    'GlyphCodeBlock',
+    'GlyphCodeBlockGroup'
 ]
 
 class PixelFormat(Enum):
@@ -351,5 +353,31 @@ class FontSourceRegister:
                 FontStyle.BOLD_AND_ITALIC   : font_source.bold_and_italic_url,
             }.get(font_style, "")
 
+class GlyphCodeBlock:
+    """
+    Represent subset set of characters (glyphs) from range: first to last (last is also included).
+    :ivar int                                      first:
+    :ivar int                                      last:
+    """
+    def __init__(self, first, last):
+        self.first  = first
+        self.last   = last
 
+class GlyphCodeBlockGroup:
+    """
+    :ivar list(UnderGUI.GlyphCodeBlock)            blocks:
+    """
+    def __init__(self, *blocks):
+        """
+        :param UnderGUI.GlyphCodeBlock, ...            blocks:
+        """
+        self.blocks = [*blocks]
+    
+    def __add__(self, other):
+        """
+        :param UnderGUI.GlyphCodeBlockGroup            other:
+        """
+        combined = GlyphCodeBlockGroup()
+        combined.blocks = self.blocks + other.blocks
+        return combined
 

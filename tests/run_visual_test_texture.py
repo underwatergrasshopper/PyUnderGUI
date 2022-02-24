@@ -33,7 +33,7 @@ def create():
     try:
         g_texture.load("textures/wrong.bmp")
     except Fail as exception:
-        assert str(exception) == "Cannot identify format or open 'textures/wrong.bmp' file.", str(exception)
+        assert str(exception) == "UnderGUI: Cannot identify format or open 'textures/wrong.bmp' file.", str(exception)
     else:
         assert False, "Expected exception."
     assert g_texture.get_width() == 0, g_texture.get_width()
@@ -45,7 +45,7 @@ def create():
     try:
         g_texture.load("textures/not_exist.png")
     except Fail as exception:
-        assert str(exception) == "Cannot find 'textures/not_exist.png' file.", str(exception)
+        assert str(exception) == "UnderGUI: Cannot find 'textures/not_exist.png' file.", str(exception)
     else:
         assert False, "Expected exception."
     assert g_texture.get_width() == 0, g_texture.get_width()
