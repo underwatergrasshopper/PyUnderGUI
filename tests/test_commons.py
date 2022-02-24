@@ -1,6 +1,7 @@
 import math
 from TestKit import *
 from UnderGUI.Commons import *
+from lxml.html.builder import FONT
 
 __all__ = ['test_commons']
 
@@ -155,6 +156,8 @@ def test_commons():
     assert Range(3, 5, 10, 20).is_in(Pos(10, 19)) == False  
     assert Range(3, 5, 10, 20).is_in(Pos(10, 20)) == False  
     
+    assert RangeF(0, 1, 2, 3) == Range(0.0, 1.0, 2.0, 3.0)
+    
     ### Area ###
     assert Area(0, 1, 2, 3) == Area(0, 1, 2, 3)
     assert (Area(0, 1, 2, 3) == Area(10, 1, 2, 3)) == False
@@ -182,6 +185,50 @@ def test_commons():
     assert Area(1, 2, 10, 20).to_range() == Range(1, 2, 11, 22)
     assert Range(1, 2, 11, 22).to_area() == Area(1, 2, 10, 20)
     
+    ### FontInfo ###
+    font_info = FontInfo("Courier New", 22, FontStyle.ITALIC, SizeUnit.POINT)
+    assert font_info.name       == "Courier New"
+    assert font_info.size       == 22
+    assert font_info.style      == FontStyle.ITALIC
+    assert font_info.size_unit  == SizeUnit.POINT
+    
+    ### FontData ###
+    font_data = FontData()
+    assert font_data.data                       == b''
+    assert font_data.pixel_format               == PixelFormat.RGBA
+    assert font_data.size                       == Size(0, 1)
+    assert font_data.glyph_texture_locations    == {}
+
+    font_data = FontData(b'abc', PixelFormat.UNKNOWN, Size(12, 13), {4 : Range(1, 2, 3, 4)})
+    assert font_data.data                       == b'abc'
+    assert font_data.pixel_format               == PixelFormat.UNKNOWN
+    assert font_data.size                       == Size(12, 13)
+    assert font_data.glyph_texture_locations    == {4 : Range(1, 2, 3, 4)}
+    
+    ### FontSource ###
+    font_source = FontSource("a", "b", "c", "d")
+    assert font_source.normal_url           == "a"
+    assert font_source.bold_url             == "b"
+    assert font_source.italic_url           == "c"
+    assert font_source.bold_and_italic_url  == "d"
+    
+    ### FontSourceRegister ###
+    register = FontSourceRegister()
+    assert register.get("x", FontStyle.BOLD)    == ""
+    
+    register.add("x", FontSource("a", "b", "c", "d"))
+    register.add("y", FontSource(normal_url = "a2", bold_url = "b2", italic_url = "c2", bold_and_italic_url = "d2"))
+    
+    assert register.get("x", FontStyle.BOLD)            == "b"
+    
+    assert register.get("y", FontStyle.NORMAL)          == "a2"
+    assert register.get("y", FontStyle.BOLD)            == "b2"
+    assert register.get("y", FontStyle.ITALIC)          == "c2"
+    assert register.get("y", FontStyle.BOLD_AND_ITALIC) == "d2"
+    assert register.get("y", 100) == ""
+    
 if __name__ == "__main__":
     run_test(test_commons)
-    
+
+
+
