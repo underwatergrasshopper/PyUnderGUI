@@ -44,7 +44,7 @@ class Color:
     
 class ColorF(Color):
     """
-    With each channel as float.
+    Color with each channel as float.
     """
     
     def __init__(self, r, g, b, a = 1.0):
@@ -75,7 +75,7 @@ class ColorF(Color):
 
 class ColorI(Color):
     """
-    With each channel as int.
+    Color with each channel as int.
     """
     def __init__(self, r, g, b, a = 255):
         """
