@@ -1,9 +1,10 @@
-from .Exceptions    import *
-from .Commons       import *
-from .Utility       import *
-from .Color         import *
+from .Exceptions        import *
+from .Commons           import *
+from .Utility           import *
+from .Color             import *
+from .GlyphCodeBlocks   import *
 
-from .FontFetcher   import *
+from .FontFetcher       import *
 
 def print_heyo():
     """

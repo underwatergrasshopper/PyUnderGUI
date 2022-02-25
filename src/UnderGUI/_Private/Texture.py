@@ -33,7 +33,7 @@ class Texture:
         except Fail as exception:
             raise exception
         else:
-            self.create(image_data.data, PixelFormat.RGBA, image_data.width, image_data.height) 
+            self.create(image_data.data, image_data.pixel_format, image_data.size.width, image_data.size.height) 
 
     def create(self, data, pixel_format, width, height):
         """

@@ -194,16 +194,16 @@ def test_commons():
     
     ### FontData ###
     font_data = FontData()
-    assert font_data.data                       == b''
-    assert font_data.pixel_format               == PixelFormat.RGBA
-    assert font_data.size                       == Size(0, 1)
+    assert font_data.image_data.data            == b''
+    assert font_data.image_data.pixel_format    == PixelFormat.UNKNOWN
+    assert font_data.image_data.size            == Size(0, 1)
     assert font_data.glyph_texture_locations    == {}
 
-    font_data = FontData(b'abc', PixelFormat.UNKNOWN, Size(12, 13), {4 : Range(1, 2, 3, 4)})
-    assert font_data.data                       == b'abc'
-    assert font_data.pixel_format               == PixelFormat.UNKNOWN
-    assert font_data.size                       == Size(12, 13)
-    assert font_data.glyph_texture_locations    == {4 : Range(1, 2, 3, 4)}
+    font_data = FontData(ImageData(b'abc', PixelFormat.RGBA, Size(12, 13)), {4 : (1.0, 2.0, 3.0, 4.0)})
+    assert font_data.image_data.data            == b'abc'
+    assert font_data.image_data.pixel_format    == PixelFormat.RGBA
+    assert font_data.image_data.size            == Size(12, 13)
+    assert font_data.glyph_texture_locations    == {4 : (1.0, 2.0, 3.0, 4.0)}
     
     ### FontSource ###
     font_source = FontSource("a", "b", "c", "d")

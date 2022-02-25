@@ -1,9 +1,11 @@
 import os
+import json
 
-from .Commons       import *
-from .Utility       import *
-from .Exceptions    import *
-from .Color         import *
+from .Commons           import *
+from .Utility           import *
+from .Exceptions        import *
+from .Color             import *
+from .GlyphCodeBlocks   import *
 
 import PIL.ImageFont, PIL.Image, PIL.ImageDraw
 
@@ -50,12 +52,28 @@ class FontFetcher:
         
     def add_glyph_range(self, first, last):
         """
-        Registers block of glyphs from range <frist, last>, which will be drawn into generated font texture.
+        Registers block of glyph codes from range <frist, last>, which will be drawn into generated font texture.
         
         :param int                                 first:
         :param int                                 last:
         """
         self._glyph_code_blocks += [GlyphCodeBlock(first, last)]
+        
+    def add_glyph_block(self, block):
+        """
+        Registers block of glyph codes, which will be drawn into generated font texture.
+        
+        :param UnderGUI.GlyphCodeBlock             block:
+        """
+        self._glyph_code_blocks += [block]
+        
+    def add_glyph_block_group(self, block_group):
+        """
+        Registers group of glyph code blocks, which will be drawn into generated font texture.
+        
+        :param UnderGUI.GlyphCodeBlock             block:
+        """
+        self._glyph_code_blocks += block_group.blocks
         
     def fetch(self, font_info, background_color = ColorI(0, 0, 0, 0)):  
         """
@@ -89,6 +107,7 @@ class FontFetcher:
             for glyph_code_block in self._glyph_code_blocks:
                 for code in range(glyph_code_block.first, glyph_code_block.last + 1):
                     try:
+                        # checks if code corresponds to glyph
                         glyph = chr(code)
                     except Exception as exception:
                         raise Fail("UnderGUI: %s" % str(exception)) from exception
@@ -114,10 +133,12 @@ class FontFetcher:
                 draw.text((location.begin.x, location.begin.y), chr(glyph_code), (255, 255, 255, 255), font, spacing = 0)
                 
             for glyph_code in glyph_texture_locations:
-                glyph_texture_locations[glyph_code] /= Range(self._min_size.width, final_height, self._min_size.width, final_height)
+                location = glyph_texture_locations[glyph_code] / Range(self._min_size.width, final_height, self._min_size.width, final_height)
+                # converts from Range to tuple(float, float, float, float)
+                glyph_texture_locations[glyph_code] = (location.begin.x, location.begin.y, location.end.x, location.end.y) 
 
             self._font_info = font_info
-
+            self._font_data = FontData(get_image_data_and_convert_to_rgba(self._image), glyph_texture_locations)
 
             
     def set_export_path(self, export_path):
@@ -127,6 +148,9 @@ class FontFetcher:
         self._export_path = export_path
         
     def export(self):
+        """
+        Export texture and glyph locations to location set by 'set_export_path'.
+        """
         if self._image and self._font_info:
             
             url = self._font_info.name
@@ -137,11 +161,15 @@ class FontFetcher:
             if not os.path.exists(url):
                 os.makedirs(url)
   
-            url += "/Font.png"   
-                
-            self._image.save(url, "PNG")
-            
-            # TODO: export data to Font.json
+            self._image.save(url + "/Font.png", "PNG")
+ 
+            json_url = url + "/Font.json"
+            try:
+                with open(json_url, "w", encoding = "utf-8") as file:
+                    json.dump(self._font_data.glyph_texture_locations, file, ensure_ascii = False, indent = 4)
+            except Exception as exception:
+                raise Fail("UnderGUI: Cannot save font data in '%s' file. %s" % (json_url, str(exception))) from exception 
+
         
     def is_exported(self):
         """

@@ -252,13 +252,13 @@ class Area(AreaPS):
 class ImageData:
     """
     :ivar bytes                                    data:
-    :ivar int                                      width:
-    :ivar int                                      height:
+    :ivar UnderGUI.PixelFormat                     pixel_format:
+    :ivar UnderGUI.Size                            size:
     """
-    def __init__(self, data = None, width = 0, height = 0):
-        self.data           = data          if data else b'' # bytes
-        self.width          = width
-        self.height         = height
+    def __init__(self, data = None, pixel_format = PixelFormat.UNKNOWN, size = None):
+        self.data           = data          if data else b''
+        self.pixel_format   = pixel_format
+        self.size           = size          if size else Size(0, 1)
     
 class SizeUnit(Enum): 
     POINT           = 0
@@ -291,21 +291,15 @@ class FontData:
     :ivar UnderGUI.Size                            size:
     :ivar dict(int, RangeF)                        glyph_texture_locations:
     """
-    def __init__(self, data = None, pixel_format = PixelFormat.RGBA, size = None, glyph_texture_locations = None):
+    def __init__(self, image_data = None, glyph_texture_locations = None):
         """
-        :param bytes                                   data:
-            Pixels of font texture.
-        :param UnderGUI.PixelFormat                    pixel_format:
-        :param UnderGUI.Size                           size:
-            Size of font texture.
-        :param dict(int, RangeF)                       glyph_texture_locations:
-            Maps glyph code to location in font texture. Range values are in normalized coordinates, from 0 to 1.
+        :param UnderGUI.ImageData                      image_data:
+            Image data of font texture.
+        :param dict(int, tuple(float, float, float))   glyph_texture_locations:
+            Maps glyph code to location as tuble (x1, y1, x2, y2) in font texture. Values of tuple are in range from 0 to 1.
         """
-        self.data                       = data if data else b''
-        self.pixel_format               = pixel_format
-        self.size                       = size if size else Size(0, 1)
-        
-        self.glyph_texture_locations    = glyph_texture_locations if glyph_texture_locations else {}
+        self.image_data                 = image_data                if image_data else ImageData()
+        self.glyph_texture_locations    = glyph_texture_locations   if glyph_texture_locations else {}
         
 class FontSource:
     """

@@ -7,7 +7,8 @@ from .Commons import *
 __all__ = [
     'convert_size_in_points_to_size_in_pixels',
     'get_proper_image_conversion_mode',
-    'load_image_and_convert_to_rgba'
+    'load_image_and_convert_to_rgba',
+    'get_image_data_and_convert_to_rgba'
 ]
 
 
@@ -76,13 +77,22 @@ def load_image_and_convert_to_rgba(image_url):
     except Exception as exception:
         raise Fail("UnderGUI: Cannot load '%s' file. %s" % (image_url, str(exception))) from exception 
     else:
-        try:
-            # ("raw", raw_mode, stride, orientation)
-            data = image.tobytes("raw", get_proper_image_conversion_mode(image), 0, -1)
-            
-        except Exception as exception:
-            raise Fail("UnderGUI: Cannot convert '%s' file to raw pixels. %s" % (image_url, str(exception))) from exception 
-        else:
-            image_data = ImageData(data, image.width, image.height)
+        return get_image_data_and_convert_to_rgba(image)
 
     return image_data
+
+
+def get_image_data_and_convert_to_rgba(image):
+    """
+    :param PIL.Image                               image:
+    :rtype: UnderGUI.ImageData
+    :raises UnderGUI.Fail:
+    """
+    try:
+        # ("raw", raw_mode, stride, orientation)
+        data = image.tobytes("raw", get_proper_image_conversion_mode(image), 0, -1)
+        
+    except Exception as exception:
+        raise Fail("UnderGUI: Cannot convert image to raw pixels. %s" % (str(exception))) from exception 
+    else:
+        return ImageData(data, PixelFormat.RGBA, Size(image.width, image.height))
