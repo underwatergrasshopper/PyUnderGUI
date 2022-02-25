@@ -8,7 +8,7 @@ __all__ = [
     'convert_size_in_points_to_size_in_pixels',
     'get_proper_image_conversion_mode',
     'load_image_and_convert_to_rgba',
-    'get_image_data_and_convert_to_rgba'
+    'get_texture_data_and_convert_to_rgba'
 ]
 
 
@@ -63,10 +63,10 @@ def get_proper_image_conversion_mode(image):
 def load_image_and_convert_to_rgba(image_url):
     """
     :param str                                     image_url:
-    :rtype: Under.GUI.ImageData
+    :rtype: Under.GUI.TextureData
     :raises UnderGUI.Fail:
     """
-    image_data = ImageData()
+    texture_data = TextureData()
 
     try:
         image = PIL.Image.open(image_url)
@@ -77,15 +77,15 @@ def load_image_and_convert_to_rgba(image_url):
     except Exception as exception:
         raise Fail("UnderGUI: Cannot load '%s' file. %s" % (image_url, str(exception))) from exception 
     else:
-        return get_image_data_and_convert_to_rgba(image)
+        return get_texture_data_and_convert_to_rgba(image)
 
-    return image_data
+    return texture_data
 
 
-def get_image_data_and_convert_to_rgba(image):
+def get_texture_data_and_convert_to_rgba(image):
     """
     :param PIL.Image                               image:
-    :rtype: UnderGUI.ImageData
+    :rtype: UnderGUI.TextureData
     :raises UnderGUI.Fail:
     """
     try:
@@ -95,4 +95,4 @@ def get_image_data_and_convert_to_rgba(image):
     except Exception as exception:
         raise Fail("UnderGUI: Cannot convert image to raw pixels. %s" % (str(exception))) from exception 
     else:
-        return ImageData(data, PixelFormat.RGBA, Size(image.width, image.height))
+        return TextureData(data, PixelFormat.RGBA, Size(image.width, image.height))

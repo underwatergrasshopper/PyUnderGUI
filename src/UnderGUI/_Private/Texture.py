@@ -29,11 +29,11 @@ class Texture:
         :raises UnderGUI.Fail:
         """
         try:
-            image_data = load_image_and_convert_to_rgba(image_url)
+            texture_data = load_image_and_convert_to_rgba(image_url)
         except Fail as exception:
             raise exception
         else:
-            self.create(image_data.data, image_data.pixel_format, image_data.size.width, image_data.size.height) 
+            self.create(texture_data.data, texture_data.pixel_format, texture_data.size.width, texture_data.size.height) 
 
     def create(self, data, pixel_format, width, height):
         """

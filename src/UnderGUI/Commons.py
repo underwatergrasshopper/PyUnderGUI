@@ -9,7 +9,7 @@ __all__ = [
     'RangeF',
     'AreaPS',
     'Area',
-    'ImageData',
+    'TextureData',
     'SizeUnit',
     'FontStyle',
     'FontInfo',
@@ -249,7 +249,7 @@ class Area(AreaPS):
     def __init__(self, x, y, width, height):
         super().__init__(Pos(x, y), Size(width, height))
 
-class ImageData:
+class TextureData:
     """
     :ivar bytes                                    data:
     :ivar UnderGUI.PixelFormat                     pixel_format:
@@ -291,14 +291,14 @@ class FontData:
     :ivar UnderGUI.Size                            size:
     :ivar dict(int, RangeF)                        glyph_texture_locations:
     """
-    def __init__(self, image_data = None, glyph_texture_locations = None):
+    def __init__(self, texture_data = None, glyph_texture_locations = None):
         """
-        :param UnderGUI.ImageData                      image_data:
+        :param UnderGUI.TextureData                    texture_data:
             Image data of font texture.
         :param dict(int, tuple(float, float, float))   glyph_texture_locations:
             Maps glyph code to location as tuble (x1, y1, x2, y2) in font texture. Values of tuple are in range from 0 to 1.
         """
-        self.image_data                 = image_data                if image_data else ImageData()
+        self.texture_data               = texture_data              if texture_data else TextureData()
         self.glyph_texture_locations    = glyph_texture_locations   if glyph_texture_locations else {}
         
 class FontSource:

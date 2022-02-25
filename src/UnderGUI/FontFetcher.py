@@ -138,7 +138,7 @@ class FontFetcher:
                 glyph_texture_locations[glyph_code] = (location.begin.x, location.begin.y, location.end.x, location.end.y) 
 
             self._font_info = font_info
-            self._font_data = FontData(get_image_data_and_convert_to_rgba(self._image), glyph_texture_locations)
+            self._font_data = FontData(get_texture_data_and_convert_to_rgba(self._image), glyph_texture_locations)
 
             
     def set_export_path(self, export_path):
