@@ -19,7 +19,7 @@ if __name__ == "__main__":
     font_fetcher.add_glyph_block_group(UnicodeBlockGroup.EUROPE)
     font_fetcher.set_export_path("../temp_junk")
     
-    font_fetcher.fetch(FontInfo("Courier New", 12, size_unit = SizeUnit.POINT), ColorF(0, 0, 0, 1))
+    font_fetcher.fetch(FontInfo("Courier New", 12, size_unit = SizeUnit.POINT), glyph_color = ColorF(1, 0, 0, 1), background_color = ColorF(0, 0, 0, 1))
     
     if os.path.exists("../temp_junk"):
         shutil.rmtree("../temp_junk")

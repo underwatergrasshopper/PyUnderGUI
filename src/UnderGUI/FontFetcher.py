@@ -75,7 +75,7 @@ class FontFetcher:
         """
         self._glyph_code_blocks += block_group.blocks
         
-    def fetch(self, font_info, background_color = ColorI(0, 0, 0, 0)):  
+    def fetch(self, font_info, glyph_color = ColorI(255, 255, 255, 255), background_color = ColorI(0, 0, 0, 0)):  
         """
         Fetches font from file and creates texture.
         
@@ -130,7 +130,7 @@ class FontFetcher:
             for glyph_code in glyph_texture_locations:
                 location = glyph_texture_locations[glyph_code]
                 
-                draw.text((location.begin.x, location.begin.y), chr(glyph_code), (255, 255, 255, 255), font, spacing = 0)
+                draw.text((location.begin.x, location.begin.y), chr(glyph_code), glyph_color.to_color_i().get_rgba(), font, spacing = 0)
                 
             for glyph_code in glyph_texture_locations:
                 location = glyph_texture_locations[glyph_code] / Range(self._min_size.width, final_height, self._min_size.width, final_height)
@@ -196,14 +196,9 @@ class FontFetcher:
             
         self._image     = None
         self._font_info = None
-
-""" TODO:
-
-FontFetcher
-    add_character_block(character_block)
-    add_character_block_group(character_block_gorup)
-    
-    export() # finish
-
-    get_font_data() : FontData
-"""
+        
+    def get_font_data(self):
+        """
+        :rtype: UnderGUI.FontData
+        """
+        return self._font_data
