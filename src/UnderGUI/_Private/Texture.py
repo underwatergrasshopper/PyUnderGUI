@@ -118,7 +118,7 @@ class Texture:
             UnderGUI.ColorF or UnderGUI.ColorB or UnderGUI.ColorI
         :raises UnderGUI.Fail:
         """
-        self.draw(view_range, texture_range / Range(self._width, self._height, self._width, self._height), tint)
+        self.draw(view_range, texture_range / Size(self._width, self._height), tint)
     
     # to override
     def _bare_create(self, data, pixel_format, width, height):

@@ -36,17 +36,17 @@ class OpenGL_Texture(Texture):
         
         glBegin(GL_TRIANGLE_STRIP)
         
-        glTexCoord2f(   texture_range.begin.x,  texture_range.begin.y)
-        glVertex2f(     view_range.begin.x,     view_range.begin.y)
+        glTexCoord2f(   texture_range.x1,   texture_range.y1)
+        glVertex2f(     view_range.x1,      view_range.y1)
         
-        glTexCoord2f(   texture_range.end.x,    texture_range.begin.y)
-        glVertex2f(     view_range.end.x,       view_range.begin.y)
+        glTexCoord2f(   texture_range.x2,   texture_range.y1)
+        glVertex2f(     view_range.x2,      view_range.y1)
         
-        glTexCoord2f(   texture_range.begin.x,  texture_range.end.y)
-        glVertex2f(     view_range.begin.x,     view_range.end.y)
+        glTexCoord2f(   texture_range.x1,   texture_range.y2)
+        glVertex2f(     view_range.x1,      view_range.y2)
         
-        glTexCoord2f(   texture_range.end.x,    texture_range.end.y)
-        glVertex2f(     view_range.end.x,       view_range.end.y)
+        glTexCoord2f(   texture_range.x2,   texture_range.y2)
+        glVertex2f(     view_range.x2,      view_range.y2)
         
         glEnd()
 

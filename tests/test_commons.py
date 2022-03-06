@@ -7,6 +7,9 @@ __all__ = ['test_commons']
 
 def test_commons():
     ### Pos ###
+    pos = Pos(1, 2)
+    assert pos.x == 1 and pos.y == 2
+    
     assert Pos(1, 2) == Pos(1, 2)
     assert (Pos(1, 2) == Pos(1, 3)) == False
     assert (Pos(1, 2) == Pos(5, 2)) == False
@@ -60,6 +63,9 @@ def test_commons():
     assert (Pos(3, 6) >= Pos(4, 7)) == False
     
     ### Size ###
+    size = Size(1, 2)
+    assert size.width == 1 and size.height == 2
+    
     assert Size(1, 2) == Size(1, 2)
     assert (Size(1, 2) == Size(1, 3)) == False
     assert (Size(1, 2) == Size(5, 2)) == False
@@ -122,6 +128,12 @@ def test_commons():
     assert Size(1, 2).to_pos() == Pos(1, 2)
     
     ### Range ###
+    range = Range(1, 2, 3, 4)
+    assert range.x1 == 1 and range.y1 == 2 and range.x2 == 3 and range.y2 == 4
+    
+    assert range.get_from_pos() == Pos(1, 2)
+    assert range.get_to_pos()   == Pos(3, 4)
+    
     assert Range(0, 1, 2, 3) == Range(0, 1, 2, 3)
     assert (Range(0, 1, 2, 3) == Range(10, 1, 2, 3)) == False
     assert (Range(0, 1, 2, 3) == Range(0, 11, 2, 3)) == False
@@ -156,9 +168,26 @@ def test_commons():
     assert Range(3, 5, 10, 20).is_in(Pos(10, 19)) == False  
     assert Range(3, 5, 10, 20).is_in(Pos(10, 20)) == False  
     
-    assert RangeF(0, 1, 2, 3) == Range(0.0, 1.0, 2.0, 3.0)
+    assert RangeF(0, 1, 2, 3)               == Range(0.0, 1.0, 2.0, 3.0)
+    assert RangeI(0.1, 1.1, 2.1, 3.1)       == Range(0, 1, 2, 3)
+    assert RangePP(Pos(0, 1), Pos(2, 3))    == Range(0, 1, 2, 3) 
+    
+    assert RangeF(0.1, 1.1, 2.1, 3.1).to_range_i() == RangeI(0, 1, 2, 3)
+    assert RangeI(0, 1, 2, 3).to_range_f() == RangeF(0, 1, 2, 3)
+    
+    assert Range(10, 20, 30, 40) / Size(10, 5) == Range(1, 4, 3, 8)
+    assert Range(10, 20, 30, 40).get_normalized(10, 5) == Range(1, 4, 3, 8)
+    assert Range(10, 20, 30, 40).get_normalized_s(Size(10, 5)) == Range(1, 4, 3, 8)
+    
+    assert Range(1, 2, 3, 4).to_tuple() == (1, 2, 3, 4)
     
     ### Area ###
+    area = Area(1, 2, 3, 4)
+    assert area.x == 1 and area.y == 2 and area.width == 3 and area.height == 4
+    
+    assert area.get_pos() == Pos(1, 2)
+    assert area.get_size() == Size(3, 4)
+    
     assert Area(0, 1, 2, 3) == Area(0, 1, 2, 3)
     assert (Area(0, 1, 2, 3) == Area(10, 1, 2, 3)) == False
     assert (Area(0, 1, 2, 3) == Area(0, 11, 2, 3)) == False
@@ -180,6 +209,11 @@ def test_commons():
     assert Area(3, 5, 7, 15).is_in(Pos(9, 20)) == False  
     assert Area(3, 5, 7, 15).is_in(Pos(10, 19)) == False  
     assert Area(3, 5, 7, 15).is_in(Pos(10, 20)) == False  
+    
+    assert Area(1, 2, 3, 4) + Pos(10, 20) == Area(11, 22, 3, 4)
+    assert Area(1, 2, 3, 4) + Size(10, 20) == Area(1, 2, 13, 24)
+    
+    assert Area(1, 2, 3, 4).to_tuple() == (1, 2, 3, 4)
     
     ### Area and Range ###
     assert Area(1, 2, 10, 20).to_range() == Range(1, 2, 11, 22)

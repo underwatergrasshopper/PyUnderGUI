@@ -130,12 +130,12 @@ class FontFetcher:
             for glyph_code in glyph_texture_locations:
                 location = glyph_texture_locations[glyph_code]
                 
-                draw.text((location.begin.x, location.begin.y), chr(glyph_code), glyph_color.to_color_i().get_rgba(), font, spacing = 0)
+                draw.text((location.x1, location.y1), chr(glyph_code), glyph_color.to_color_i().get_rgba(), font, spacing = 0)
                 
             for glyph_code in glyph_texture_locations:
-                location = glyph_texture_locations[glyph_code] / Range(self._min_size.width, final_height, self._min_size.width, final_height)
+                location = glyph_texture_locations[glyph_code] / Size(self._min_size.width, final_height)
                 # converts from Range to tuple(float, float, float, float)
-                glyph_texture_locations[glyph_code] = (location.begin.x, location.begin.y, location.end.x, location.end.y) 
+                glyph_texture_locations[glyph_code] = location.to_tuple()
 
             self._font_info = font_info
             self._font_data = FontData(get_texture_data_and_convert_to_rgba(self._image), glyph_texture_locations)
