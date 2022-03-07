@@ -30,7 +30,7 @@ class OpenGL_Texture(Texture):
     # overrides
     def draw(self, view_range, texture_range, tint = ColorF(1, 1, 1)):
         glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
-        
+
         tint = tint.to_color_f()
         glColor4f(tint.r, tint.g, tint.b, tint.a)
         

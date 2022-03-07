@@ -5,6 +5,7 @@ from .Color             import *
 from .GlyphCodeBlocks   import *
 
 from .FontFetcher       import *
+from .Font              import *
 
 def print_heyo():
     """

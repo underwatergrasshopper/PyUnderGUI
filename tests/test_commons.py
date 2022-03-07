@@ -180,6 +180,14 @@ def test_commons():
     assert Range(10, 20, 30, 40).get_normalized_s(Size(10, 5)) == Range(1, 4, 3, 8)
     
     assert Range(1, 2, 3, 4).to_tuple() == (1, 2, 3, 4)
+    assert Range(1, 2, 3, 4).to_dict()  == {'x1' : 1, 'y1' : 2, 'x2' : 3, 'y2' : 4}
+    
+    range = Range(1, 2, 3, 4)
+    
+    range.flip_on_x_axis(10)
+    assert range == Range(1, 6, 3, 8)
+    range.flip_on_y_axis(10)
+    assert range == Range(7, 6, 9, 8)
     
     ### Area ###
     area = Area(1, 2, 3, 4)
@@ -214,6 +222,7 @@ def test_commons():
     assert Area(1, 2, 3, 4) + Size(10, 20) == Area(1, 2, 13, 24)
     
     assert Area(1, 2, 3, 4).to_tuple() == (1, 2, 3, 4)
+    assert Area(1, 2, 3, 4).to_dict() == {'x' : 1, 'y' : 2, 'width' : 3, 'height' : 4}
     
     ### Area and Range ###
     assert Area(1, 2, 10, 20).to_range() == Range(1, 2, 11, 22)
@@ -231,13 +240,13 @@ def test_commons():
     assert font_data.texture_data.data          == b''
     assert font_data.texture_data.pixel_format  == PixelFormat.UNKNOWN
     assert font_data.texture_data.size          == Size(0, 1)
-    assert font_data.glyph_texture_locations    == {}
+    assert font_data.texture_glyph_infos        == {}
 
     font_data = FontData(TextureData(b'abc', PixelFormat.RGBA, Size(12, 13)), {4 : (1.0, 2.0, 3.0, 4.0)})
     assert font_data.texture_data.data          == b'abc'
     assert font_data.texture_data.pixel_format  == PixelFormat.RGBA
     assert font_data.texture_data.size          == Size(12, 13)
-    assert font_data.glyph_texture_locations    == {4 : (1.0, 2.0, 3.0, 4.0)}
+    assert font_data.texture_glyph_infos        == {4 : (1.0, 2.0, 3.0, 4.0)}
     
     ### FontSource ###
     font_source = FontSource("a", "b", "c", "d")

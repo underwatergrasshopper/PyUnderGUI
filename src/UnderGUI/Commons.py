@@ -22,7 +22,8 @@ __all__ = [
     'FontSource',
     'FontSourceRegister',
     'GlyphCodeBlock',
-    'GlyphCodeBlockGroup'
+    'GlyphCodeBlockGroup',
+    'TextureGlyphInfo'
 ]
 
 class PixelFormat(Enum):
@@ -222,10 +223,38 @@ class Range:
         """
         return (self.x1, self.y1, self.x2, self.y2)
     
+    def to_dict(self):
+        """
+        :rtype: dict(str, float or int)
+        """
+        return {"x1" : self.x1, "y1" : self.y1, "x2" : self.x2, "y2" : self.y2}
+    
+    def normalize(self, width, height):
+        """
+        Divides range by size.
+        
+        :param int or float                       width:
+        :param int or float                       height:
+        """
+        self.x1 /= width
+        self.y1 /= height
+        self.x2 /= width
+        self.y2 /= height
+        
+    def normalize_s(self, size):
+        """
+        Divides range by size.
+        
+        :param UnderGUI.Size                      size:
+        """
+        self.normalize(size.widht, size.height)
+    
     def get_normalized(self, width, height):
         """
         Divides range by size.
         
+        :param int or float                       width:
+        :param int or float                       height:
         :rtype: UnderGUI.Range
         :return: Range within space (width, height) described as fraction of (width, height).
         """
@@ -235,11 +264,24 @@ class Range:
         """
         Divides range by size.
         
+        :param UnderGUI.Size                      size:
         :rtype: UnderGUI.Range
         :return: Range within space (size.width, size.height) described as fraction of (size.width, size.height).
         """
         return self.get_normalized(size.width, size.height)
+
+    def flip_on_x_axis(self, height):
+        """
+        :param int or float                       height:
+        """
+        self.y1, self.y2 = height - self.y2, height - self.y1
         
+    def flip_on_y_axis(self, width):
+        """
+        :param int or float                       height:
+        """
+        self.x1, self.x2 = width - self.x2, width - self.x1
+
     def __eq__(self, other):
         """
         :param UnderGUI.Range                      other:
@@ -405,6 +447,12 @@ class Area:
         """
         return (self.x, self.y, self.width, self.height)
     
+    def to_dict(self):
+        """
+        :rtype: dict(str, float or int)
+        """
+        return {"x" : self.x, "y" : self.y, "width" : self.width, "height" : self.height}
+    
     def __eq__(self, other):
         """
         :param UnderGUI.Area                       other:
@@ -519,22 +567,33 @@ class FontInfo:
         
         self.size_unit  = size_unit
         
+class TextureGlyphInfo:
+    """
+    :ivar UnderGUI.RangeF                          glyph_range:
+        Range where glyph is located in texture. Coordinate values are floats between 0 and 1 (normalized texture coordinates) with oringin at left-bottom.
+    :ivar UnderGUI.Size                            size:
+        Area where glyph is located in texture in pixels. Where coordinates system have origin at left-top.
+    """
+    def __init__(self, glyph_range, area):
+        self.glyph_range    = glyph_range
+        self.area           = area
+        
+        
 class FontData:
     """
-    :ivar bytes                                    data:
-    :ivar UnderGUI.PixelFormat                     pixel_format:
-    :ivar UnderGUI.Size                            size:
-    :ivar dict(int, RangeF)                        glyph_texture_locations:
+    :ivar UnderGUI.TextureData                     texture_data:
+    :ivar dict(int, UnderGUI.TextureGlyphInfo)     texture_glyph_infos:
     """
-    def __init__(self, texture_data = None, glyph_texture_locations = None):
+    def __init__(self, texture_data = None, texture_glyph_infos = None):
         """
         :param UnderGUI.TextureData                    texture_data:
-            Image data of font texture.
-        :param dict(int, tuple(float, float, float))   glyph_texture_locations:
-            Maps glyph code to location as tuble (x1, y1, x2, y2) in font texture. Values of tuple are in range from 0 to 1.
+        :param dict(int, TextureGlyphInfo)             texture_glyph_infos:
         """
         self.texture_data               = texture_data              if texture_data else TextureData()
-        self.glyph_texture_locations    = glyph_texture_locations   if glyph_texture_locations else {}
+        self.texture_glyph_infos        = texture_glyph_infos       if texture_glyph_infos else {}
+        
+        
+        
         
 class FontSource:
     """

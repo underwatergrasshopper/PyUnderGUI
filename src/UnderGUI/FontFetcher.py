@@ -102,7 +102,7 @@ class FontFetcher:
             x = 0
             y = 0
             
-            glyph_texture_locations = {}
+            texture_glyph_infos = {}
             
             for glyph_code_block in self._glyph_code_blocks:
                 for code in range(glyph_code_block.first, glyph_code_block.last + 1):
@@ -118,7 +118,9 @@ class FontFetcher:
                             x = 0
                             y += glyph_height
     
-                        glyph_texture_locations[code] = Area(x, y, glyph_width, glyph_height).to_range()
+                        area        = Area(x, y, glyph_width, glyph_height)
+                        glyph_range = area.to_range()
+                        texture_glyph_infos[code] = TextureGlyphInfo(glyph_range, area)
                         
                         x += glyph_width
     
@@ -127,18 +129,18 @@ class FontFetcher:
             self._image = PIL.Image.new('RGBA', (self._min_size.width, final_height), background_color.to_color_i().get_rgba())
             draw = PIL.ImageDraw.Draw(self._image)
             
-            for glyph_code in glyph_texture_locations:
-                location = glyph_texture_locations[glyph_code]
+            for glyph_code in texture_glyph_infos:
+                pos = texture_glyph_infos[glyph_code].area.get_pos()
                 
-                draw.text((location.x1, location.y1), chr(glyph_code), glyph_color.to_color_i().get_rgba(), font, spacing = 0)
-                
-            for glyph_code in glyph_texture_locations:
-                location = glyph_texture_locations[glyph_code] / Size(self._min_size.width, final_height)
-                # converts from Range to tuple(float, float, float, float)
-                glyph_texture_locations[glyph_code] = location.to_tuple()
+                draw.text((pos.x, pos.y), chr(glyph_code), glyph_color.to_color_i().get_rgba(), font, spacing = 0)
+
+                glyph_range_ref = texture_glyph_infos[glyph_code].glyph_range
+                glyph_range_ref.normalize(self._min_size.width, final_height)
+                # flip from image coordinates (origin left-top) to texture coordinates (origin left-bottom).
+                glyph_range_ref.flip_on_x_axis(1.0)  
 
             self._font_info = font_info
-            self._font_data = FontData(get_texture_data_and_convert_to_rgba(self._image), glyph_texture_locations)
+            self._font_data = FontData(get_texture_data_and_convert_to_rgba(self._image), texture_glyph_infos)
 
             
     def set_export_path(self, export_path):
@@ -163,10 +165,18 @@ class FontFetcher:
   
             self._image.save(url + "/Font.png", "PNG")
  
+            # json.dump requires trivial structures to be able dump data to json file.
+            trivialized_texture_glyph_infos = {}
+            for code, info in self._font_data.texture_glyph_infos.items():
+                combined = {}
+                combined.update(info.glyph_range.to_dict())
+                combined.update(info.area.to_dict())
+                trivialized_texture_glyph_infos[code] = combined
+                
             json_url = url + "/Font.json"
             try:
                 with open(json_url, "w", encoding = "utf-8") as file:
-                    json.dump(self._font_data.glyph_texture_locations, file, ensure_ascii = False, indent = 4)
+                    json.dump(trivialized_texture_glyph_infos, file, ensure_ascii = False, indent = 4)
             except Exception as exception:
                 raise Fail("UnderGUI: Cannot save font data in '%s' file. %s" % (json_url, str(exception))) from exception 
 

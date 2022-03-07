@@ -35,9 +35,18 @@ class Texture:
         else:
             self.create(texture_data.data, texture_data.pixel_format, texture_data.size.width, texture_data.size.height) 
 
+    def create_from_td(self, texture_data):
+        """
+        Creates texture from texture data.
+        
+        :param UnderGUI.TextureData                texture_data:                       
+        :raises UnderGUI.Fail:
+        """
+        self.create(texture_data.data, texture_data.pixel_format, texture_data.size.width, texture_data.size.height)
+        
     def create(self, data, pixel_format, width, height):
         """
-        Creates texture from image data.
+        Creates texture from texture data.
         
         :param bytes                               data:                       
             Pixels of an image. Four bytes per pixel if pixel_format is PixelFormat.RGBA. 
@@ -88,8 +97,7 @@ class Texture:
         By default, Range is corresponding to (left, bottom, right, top).
         
         :param UnderGUI.Range                      view_range:                 
-            Coordinates of region in window client area. Coordinates are normalized to range from 0.0 to 1.0.
-            Max span is Range(0, 0, 1, 1).
+            Coordinates of region in window client area. 
         :param UnderGUI.Range                      texture_range:  
             Coordinates of region in texture. Coordinates are normalized to range from 0.0 to 1.0.
             Max span is Range(0, 0, 1, 1).
@@ -106,9 +114,8 @@ class Texture:
         Draws fragment of texture into region in window client area.
         By default, Range is corresponding to (left, bottom, right, top).
         
-        :param UnderGUI.Range                      view_range:                 
-            Coordinates of region in window client area. Coordinates are in pixels.
-            Max span is Range(0, 0, window_client_width, window_client_heigh).
+        :param UnderGUI.Range                      view_range:               
+            Coordinates of region in window client area. 
         :param UnderGUI.Range                      texture_range:             
             Coordinates of region in texture. Coordinates are in pixels.
             Max span is Range(0, 0, texture_width, texture_heigh).
