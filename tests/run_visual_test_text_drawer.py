@@ -12,52 +12,53 @@ from OpenGL.GLUT import *
 WIDTH           = 800
 HEIGHT          = 600
 
-g_shunter       = None
-g_drawer        = None
-g_font_fetcher  = None
-g_font          = None
-g_big_font      = None
+class Global:
+    shunter       = None
+    font_fetcher  = None
+    font          = None
+    big_font      = None
+    text_drawer   = None
+g = Global()
 
 ################################################################################
 
 def create():
-    global g_font_fetcher, g_shunter, g_drawer, g_font, g_big_font
+    global g
     
-    g_shunter   = Shunter()
-    g_drawer    = Drawer()
+    g.shunter   = Shunter()
     
-    g_font_fetcher = FontFetcher()
-    g_font_fetcher.add_font_source("Courier New", FontSource(normal_url = "cour.ttf", bold_url = "courbd.ttf", italic_url = "couri.ttf", bold_and_italic_url = "courbi.ttf"))
-    g_font_fetcher.set_font_texture_minimal_size(Size(512, 512))
-    g_font_fetcher.add_glyph_block_group(UnicodeBlockGroup.EUROPE)
+    g.font_fetcher = FontFetcher()
+    g.font_fetcher.add_font_source("Courier New", FontSource(normal_url = "cour.ttf", bold_url = "courbd.ttf", italic_url = "couri.ttf", bold_and_italic_url = "courbi.ttf"))
+    g.font_fetcher.set_font_texture_minimal_size(Size(512, 512))
+    g.font_fetcher.add_glyph_block_group(UnicodeBlockGroup.EUROPE)
 
-    g_font      = Font(g_font_fetcher, FontInfo("Courier New", 16, size_unit = SizeUnit.PIXEL))
-    g_big_font  = Font(g_font_fetcher, FontInfo("Courier New", 32, style = FontStyle.BOLD))
+    g.font      = Font(g.font_fetcher, FontInfo("Courier New", 16, size_unit = SizeUnit.PIXEL))
+    g.big_font  = Font(g.font_fetcher, FontInfo("Courier New", 32, style = FontStyle.BOLD))
     
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0, WIDTH, 0, HEIGHT, -1, 1);
-    glMatrixMode(GL_MODELVIEW);
+    g.text_drawer = TextDrawer(g.font)
     
+    g.shunter.setup_window_client_area(Size(WIDTH, HEIGHT))
     
 def destroy():
-    global g_font_fetcher, g_shunter, g_drawer, g_font, g_big_font
+    global g
 
 
 def display():
-    global g_font_fetcher, g_shunter, g_drawer, g_font, g_big_font
+    global g
+
+    g.shunter.setup_draw(ColorF(0, 0, 0.5))
     
-    g_drawer.fill_view(ColorF(0, 0, 0.5))
-    g_shunter.setup_for_texture_draw()
+    g.text_drawer.set_position(Pos(10, 300))
+    g.text_drawer.set_tint(ColorF(0.7, 0.5, 0.5))
+    g.text_drawer.draw("First line.\n\tSecond line.\nThird line.")
+    g.text_drawer.draw("\nFourth line.", font = g.big_font)
+    g.text_drawer.draw("\nSome ")
+    g.text_drawer.draw("mixed", font = g.big_font)
+    g.text_drawer.draw(" text.")
     
-    td = TextDrawer(g_font)
-    td.set_position(Pos(10, 300))
-    td.set_tint(ColorF(0.7, 0.5, 0.5))
-    td.draw("First line.\n\tSecond line.\nThird line.")
-    td.draw("\nFourth line.", font = g_big_font)
-    td.draw("\nSome ")
-    td.draw("mixed", font = g_big_font)
-    td.draw(" text.")
+    g.text_drawer.set_position(Pos(300, 200))
+    g.text_drawer.set_tint(ColorF(0.5, 0.7, 0.5))
+    g.text_drawer.draw("First line.\n\tSecond line.\nThird line.")
     
     glutSwapBuffers()
 

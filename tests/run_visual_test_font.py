@@ -13,7 +13,6 @@ WIDTH           = 800
 HEIGHT          = 600
 
 g_shunter       = None
-g_drawer        = None
 g_font_fetcher  = None
 g_font          = None
 g_big_font      = None
@@ -24,7 +23,6 @@ def create():
     global g_font_fetcher, g_shunter, g_drawer, g_font, g_big_font
     
     g_shunter   = Shunter()
-    g_drawer    = Drawer()
     
     g_font_fetcher = FontFetcher()
     g_font_fetcher.add_font_source("Courier New", FontSource(normal_url = "cour.ttf", bold_url = "courbd.ttf", italic_url = "couri.ttf", bold_and_italic_url = "courbi.ttf"))
@@ -34,11 +32,7 @@ def create():
     g_font      = Font(g_font_fetcher, FontInfo("Courier New", 16, size_unit = SizeUnit.PIXEL))
     g_big_font  = Font(g_font_fetcher, FontInfo("Courier New", 32, style = FontStyle.BOLD))
     
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glOrtho(0, WIDTH, 0, HEIGHT, -1, 1);
-    glMatrixMode(GL_MODELVIEW);
-    
+    g_shunter.setup_window_client_area(Size(WIDTH, HEIGHT))
     
 def destroy():
     global g_font_fetcher, g_shunter, g_drawer, g_font, g_big_font
@@ -47,8 +41,7 @@ def destroy():
 def display():
     global g_font_fetcher, g_shunter, g_drawer, g_font, g_big_font
     
-    g_drawer.fill_view(ColorF(0, 0, 0.5))
-    g_shunter.setup_for_texture_draw()
+    g_shunter.setup_draw(ColorF(0, 0, 0.5))
     
     g_font.draw_text(0, 0, "Some interesting text. \u011B")
     g_big_font.draw_text(100, 100, "Much more bigger text. \u011B", ColorF(1, 0.2, 0.2, 1))
