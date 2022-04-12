@@ -23,8 +23,8 @@ g_big_font      = None
 def create():
     global g_font_fetcher, g_shunter, g_drawer, g_font, g_big_font
     
-    g_shunter   = create_shunter()
-    g_drawer    = create_drawer()
+    g_shunter   = Shunter()
+    g_drawer    = Drawer()
     
     g_font_fetcher = FontFetcher()
     g_font_fetcher.add_font_source("Courier New", FontSource(normal_url = "cour.ttf", bold_url = "courbd.ttf", italic_url = "couri.ttf", bold_and_italic_url = "courbi.ttf"))

@@ -19,7 +19,7 @@ class Font:
         :param UnderGUI.FontInfo                   font_info:
         """
         self._font_fetcher_ref  = font_fetcher_ref
-        self._texture           = create_texture()
+        self._texture           = Texture()
         self._font_data         = FontData()
  
         self.create(font_info)

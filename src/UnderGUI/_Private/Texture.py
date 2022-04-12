@@ -1,3 +1,6 @@
+from OpenGL.GL              import *
+from OpenGL.GLU             import *
+
 from UnderGUI.Color         import *
 from UnderGUI.Commons       import *
 from UnderGUI.Exceptions    import *
@@ -9,17 +12,20 @@ class Texture:
     """            
     :ivar int                                      _width:
     :ivar int                                      _height:
+    :ivar int                                      _tex_obj_id:
     :ivar bool                                     _is_created:
     """
     def __init__(self):
         self._width         = 0
         self._height        = 0
+        self._tex_obj_id = 0
 
         self._is_created    = False
 
-    # to override
     def __del__(self):
-        pass
+        if self._tex_obj_id:
+            glDeleteTextures(self._tex_obj_id)
+        
 
     def load(self, image_url):
         """
@@ -90,7 +96,6 @@ class Texture:
         """:rtype: int"""
         return self._height
         
-    # to override
     def draw(self, view_range, texture_range, tint = ColorF(1, 1, 1)):
         """
         Draws fragment of texture into region in window client area.
@@ -107,7 +112,26 @@ class Texture:
             UnderGUI.ColorF or UnderGUI.ColorB or UnderGUI.ColorI
         :raises UnderGUI.Fail:
         """
-        pass
+        glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
+
+        tint = tint.to_color_f()
+        glColor4f(tint.r, tint.g, tint.b, tint.a)
+        
+        glBegin(GL_TRIANGLE_STRIP)
+        
+        glTexCoord2f(   texture_range.x1,   texture_range.y1)
+        glVertex2f(     view_range.x1,      view_range.y1)
+        
+        glTexCoord2f(   texture_range.x2,   texture_range.y1)
+        glVertex2f(     view_range.x2,      view_range.y1)
+        
+        glTexCoord2f(   texture_range.x1,   texture_range.y2)
+        glVertex2f(     view_range.x1,      view_range.y2)
+        
+        glTexCoord2f(   texture_range.x2,   texture_range.y2)
+        glVertex2f(     view_range.x2,      view_range.y2)
+        
+        glEnd()
         
     def draw_from_pixel_range(self, view_range, texture_range, tint = ColorF(1, 1, 1)):
         """
@@ -127,7 +151,6 @@ class Texture:
         """
         self.draw(view_range, texture_range / Size(self._width, self._height), tint)
     
-    # to override
     def _bare_create(self, data, pixel_format, width, height):
         """
         Only creates texture from image data, using specific api under hood. 
@@ -140,4 +163,31 @@ class Texture:
         :param int                                 height:
         :raises UnderGUI.Fail:
         """
-        raise Fail("UnderGUI: Method Texture._bare_create is not overrode.")
+        if pixel_format == PixelFormat.RGBA:
+            self._create_opengl_texture(data, GL_RGBA, width, height)
+        else:
+            raise Fail("UnderGUI: Unsupported pixel format: '%s'." % (pixel_format.name))
+        
+    def _create_opengl_texture(self, data, internal_format, width, height):
+        """
+        :param bytes                               data:
+        :param int                                 internal_format: 
+            Expected values: GL_RGBA.
+        :param int                                 width:
+        :param int                                 height:
+        :raises UnderGUI.Fail:
+        """
+        self._tex_obj_id = glGenTextures(1)
+        
+        if self._tex_obj_id == 0:
+            raise Fail("UnderGUI: Can not create OpenGL texture object id.")
+        else:
+            glBindTexture(GL_TEXTURE_2D, self._tex_obj_id)
+            
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT)
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT)
+            
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
+
+            glTexImage2D(GL_TEXTURE_2D, 0, internal_format, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data)
