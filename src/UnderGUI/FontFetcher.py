@@ -130,10 +130,11 @@ class FontFetcher:
             draw = PIL.ImageDraw.Draw(self._image)
             
             for glyph_code in texture_glyph_infos:
+                # creates font texture
                 pos = texture_glyph_infos[glyph_code].area.get_pos()
-                
                 draw.text((pos.x, pos.y), chr(glyph_code), glyph_color.to_color_i().get_rgba(), font, spacing = 0)
 
+                # converts coordinate to texture range
                 glyph_range_ref = texture_glyph_infos[glyph_code].glyph_range
                 glyph_range_ref.normalize(self._min_size.width, final_height)
                 # flip from image coordinates (origin left-top) to texture coordinates (origin left-bottom).

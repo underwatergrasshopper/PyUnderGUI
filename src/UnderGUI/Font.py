@@ -37,6 +37,14 @@ class Font:
         self._texture.create_from_td(self._font_data.texture_data)
         
     def draw_text(self, x, y, text, tint = ColorF(1, 1, 1, 1)):
+        """
+        Draws the text at position (x, y). Where (x, y) is location of left-bottom corner of first drawed glyph of the text.
+        :param int                                 x:
+        :param int                                 y:
+        :param str                                 text:
+        :param UnderGUI.Color                      tint:
+            Color of drawed text.
+        """
         n = x
         for glyph in text:
             code = ord(glyph)
