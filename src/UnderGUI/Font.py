@@ -66,9 +66,9 @@ class Font:
         for glyph in text:
             code = ord(glyph)
             
-            size = self._font_data.glyph_sizes[code]
+            size = self._font_data.texture_glyph_infos[code].area.get_size()
             
-            height = min(height, size.height)
+            height = max(height, size.height)
             width += size.width
             
         return Size(width, height)

@@ -6,6 +6,7 @@ from .GlyphCodeBlocks   import *
 
 from .FontFetcher       import *
 from .Font              import *
+from .TextDrawer        import *
 
 def print_heyo():
     """
