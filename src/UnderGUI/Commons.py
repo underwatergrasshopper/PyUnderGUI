@@ -23,7 +23,9 @@ __all__ = [
     'FontSourceRegister',
     'GlyphCodeBlock',
     'GlyphCodeBlockGroup',
-    'TextureGlyphInfo'
+    'TextureGlyphInfo',
+    'AnchorX',
+    'AnchorY',
 ]
 
 class PixelFormat(Enum):
@@ -669,3 +671,13 @@ class GlyphCodeBlockGroup:
         combined.blocks = self.blocks + other.blocks
         return combined
 
+class AnchorX(Enum):
+    LEFT    = 0
+    MIDDLE  = 1
+    RIGHT   = 2
+    
+class AnchorY(Enum):
+    BOTTOM  = 0
+    MIDDLE  = 1
+    TOP     = 2
+    

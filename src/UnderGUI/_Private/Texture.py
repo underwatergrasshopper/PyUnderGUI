@@ -133,6 +133,8 @@ class Texture:
         
         glEnd()
         
+        glBindTexture(GL_TEXTURE_2D, 0)
+        
     def draw_from_pixel_range(self, view_range, texture_range, tint = ColorF(1, 1, 1)):
         """
         Draws fragment of texture into region in window client area.
@@ -191,3 +193,5 @@ class Texture:
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)
 
             glTexImage2D(GL_TEXTURE_2D, 0, internal_format, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data)
+            
+            glBindTexture(GL_TEXTURE_2D, 0)
