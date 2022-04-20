@@ -59,10 +59,29 @@ def display():
     g.text_drawer.draw("mixed", font = g.big_font)
     g.text_drawer.draw(" text.")
     
-    fill_area(Area(300, 100, 300, 300), ColorF(0, 0, 0, 0.2))
+    ### text wrap test ###
+    fill_area(Area(300, 100, 100, 300), ColorF(0, 0, 0, 0.2))
     g.text_drawer.set_position(Pos(300, 200))
     g.text_drawer.set_tint(ColorF(0.5, 0.7, 0.5))
-    g.text_drawer.draw("First line.\n\tSecond line.\nThird line.", font = g.font2)
+    g.text_drawer.draw("This is some real text for wrapping and other stuff.\nAnd another line.\n\t*Option 1.\n\t*Option 2.", font = g.font2, max_line_lenght = 100)
+    
+    # smallest text width
+    fill_area(Area(410, 100, 1, 300), ColorF(0, 0, 0, 0.2))
+    g.text_drawer.set_position(Pos(410, 200))
+    g.text_drawer.set_tint(ColorF(0.5, 0.7, 0.5))
+    g.text_drawer.draw("This is some real text for wrapping and other stuff.\nAnd another line.", font = g.font2, max_line_lenght = 1)
+    
+    # not text
+    fill_area(Area(500, 100, 100, 300), ColorF(0, 0, 0, 0.2))
+    g.text_drawer.set_position(Pos(500, 200))
+    g.text_drawer.set_tint(ColorF(0.5, 0.7, 0.5))
+    g.text_drawer.draw("", font = g.font2, max_line_lenght = 100)
+    
+    # single letter text
+    fill_area(Area(610, 100, 100, 300), ColorF(0, 0, 0, 0.2))
+    g.text_drawer.set_position(Pos(610, 200))
+    g.text_drawer.set_tint(ColorF(0.5, 0.7, 0.5))
+    g.text_drawer.draw("f", font = g.font2, max_line_lenght = 100)
     
     glutSwapBuffers()
 

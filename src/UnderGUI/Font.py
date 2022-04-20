@@ -63,13 +63,14 @@ class Font:
         height  = 0
         width   = 0
         
-        for glyph in text:
-            code = ord(glyph)
-            
-            size = self._font_data.texture_glyph_infos[code].area.get_size()
-            
-            height = max(height, size.height)
-            width += size.width
+        if text != "":
+            for glyph in text:
+                code = ord(glyph)
+                
+                size = self._font_data.texture_glyph_infos[code].area.get_size()
+                
+                height = max(height, size.height)
+                width += size.width
             
         return Size(width, height)
             

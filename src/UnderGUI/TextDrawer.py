@@ -2,7 +2,9 @@ from .Font          import *
 from .Commons       import *
 from .Color         import *
 from .Exceptions    import *
+
 from copy           import copy
+import re
 
 __all__ = ['TextDrawer']
 
@@ -43,12 +45,17 @@ class TextDrawer:
             Number of spaces in tabulation.
         """
         self._tab_size = size
-           
-    def draw(self, text, font = None):
+    
+    def get_text_block_size(self, text, font = None, max_line_lenght = 0):
         """
+        Formats text into multiple line text block when lines length is above max_line_lenght and returns size in pixels of text block.
         :param str                                 text:
         :param UnderGUI.Font                       font:
             Optional. If None then font provided at creation of TextDrawer is used.
+        :param int                                 max_line_lenght:
+            Optional. Maximal length in pixels of text line. Ignored when value is less than 1.
+        :rtype Size:
+        :return: Size of text block in pixels.
         :raises UnderGUI.Fail: No font provided, either by draw function or at creation of TextDrawer object.
         """
         if not font:
@@ -57,8 +64,33 @@ class TextDrawer:
         if not font:
             raise Fail("UnderGUI: Font not provided.")
         
-        text = text.replace("\t", " " * self._tab_size)
-        lines = text.split("\n")
+        lines = self._make_raw_lines(text, font, max_line_lenght)
+        
+        width = 0
+        for line in lines:
+            width = max(width, font.get_text_size(line).width)
+
+        return Size(width, font.get_text_size("X").height)
+        
+           
+    def draw(self, text, font = None, max_line_lenght = 0):
+        """
+        Formats text into multiple line text block when lines lengths are above max_line_lenght and draws text block.
+        :param str                                 text:
+        :param UnderGUI.Font                       font:
+            Optional. If None then font provided at creation of TextDrawer is used.
+        :param int                                 max_line_lenght:
+            Optional. Maximal length in pixels of text line. If text line length is higher then it splits text line into two lines. 
+            Ignored when value is less than 1.
+        :raises UnderGUI.Fail: No font provided, either by draw function or at creation of TextDrawer object.
+        """
+        if not font:
+            font = self._default_font_ref
+            
+        if not font:
+            raise Fail("UnderGUI: Font not provided.")
+        
+        lines = self._make_raw_lines(text, font, max_line_lenght)
         
         pos = self._pos
         for line in lines:
@@ -69,3 +101,44 @@ class TextDrawer:
             size = font.get_text_size(line) if len(line) else Size(0, font.get_text_size("X").height)
             self._pos.x += size.width
             pos = Pos(self._origin.x, self._pos.y - size.height)
+            
+    def _make_raw_lines(self, text, font, max_line_lenght):
+        """
+        :param str                                 text:
+        :param UnderGUI.Font                       font:
+        :param int                                 max_line_lenght:
+        """
+        text = text.replace("\t", " " * self._tab_size)
+        lines = text.split("\n")
+        return self._wrap_text_lines(lines, font, max_line_lenght)
+        
+    def _wrap_text_lines(self, lines, font, max_line_lenght):
+        """
+        :param str                                 text:
+        :param UnderGUI.Font                       font:
+        :param int                                 max_line_lenght:
+        """
+        lines = copy(lines)
+        
+        if max_line_lenght > 0:
+            ix = 0;
+            while ix < len(lines):
+                line = lines[ix]
+                
+                if len(line) > 1 and font.get_text_size(line).width > max_line_lenght:
+                    lines[ix] = ""
+                    lines.insert(ix, "")
+                    
+                    words = re.findall(r'[^ ]*[ ]*', line)
+                    
+                    length = 0
+                    for word in words:
+                        length += font.get_text_size(word).width
+                        
+                        if length <= max_line_lenght or len(lines[ix]) == 0:
+                            lines[ix] += word
+                        else:
+                            lines[ix + 1] += word
+                ix += 1
+        return lines
+            
