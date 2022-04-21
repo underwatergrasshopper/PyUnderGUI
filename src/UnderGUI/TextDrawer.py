@@ -125,7 +125,7 @@ class TextDrawer:
         lines = copy(lines)
         
         if max_line_lenght > 0:
-            ix = 0;
+            ix = 0
             while ix < len(lines):
                 line = lines[ix]
                 
