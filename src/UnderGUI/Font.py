@@ -74,7 +74,25 @@ class Font:
             
         return Size(width, height)
             
-        
+    def get_split_ix(self, text, length):
+        """
+        :param str                                 text:
+        :param int                                 length:
+            In pixels.
+        :rtype int:
+        :return: Index of place in given text where it's width in pixels is bigger than given lengt.
+        """
+        width = 0
+        if text != "":
+            for ix in range(0, len(text)):
+                glyph = text[ix]          
+                code = ord(glyph)
+                
+                width += self._font_data.texture_glyph_infos[code].area.get_size().width
+                if width > length:
+                    return ix
+            return len(text) - 1
+        return 0
     
     
         

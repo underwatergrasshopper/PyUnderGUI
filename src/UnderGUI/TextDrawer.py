@@ -75,14 +75,18 @@ class TextDrawer:
            
     def draw(self, text, font = None, max_line_lenght = 0):
         """
-        Formats text into multiple line text block when lines lengths are above max_line_lenght and draws text block.
+        Drawstext into window client area. If max_line_lenght is greater than 0, 
+        then wrap lines of text at max_line_lenght, by moving excess of text from one line to another.
+        
+        Moving excess of the text from one line to next line works at two levels.
+        1. Moves excess of words from a line to the next line, where there is more than one word in the line.
+        2. Moves excess of letters from a line to the next line, where there is only one word in the line.
         :param str                                 text:
         :param UnderGUI.Font                       font:
             Optional. If None then font provided at creation of TextDrawer is used.
         :param int                                 max_line_lenght:
-            Optional. Maximal length in pixels of text line. If text line length is higher then it splits text line into two lines. 
-            Ignored when value is less than 1.
-        :raises UnderGUI.Fail: No font provided, either by draw function or at creation of TextDrawer object.
+            Optional. Maximal length in pixels of text line. 
+        :raises UnderGUI.Fail: When no font provided, either by draw function or at creation of TextDrawer object.
         """
         if not font:
             font = self._default_font_ref
@@ -131,14 +135,19 @@ class TextDrawer:
                     
                     words = re.findall(r'[^ ]*[ ]*', line)
                     
-                    length = 0
+                    line_length = 0 # in pixels
                     for word in words:
-                        length += font.get_text_size(word).width
-                        
-                        if length <= max_line_lenght or len(lines[ix]) == 0:
+                        line_length += font.get_text_size(word).width
+                        if line_length <= max_line_lenght:
                             lines[ix] += word
                         else:
-                            lines[ix + 1] += word
+                            if len(lines[ix]) == 0: 
+                                # splits first word from current line (between current and next line) when it doesn't fit in current line
+                                split_ix = max(1, font.get_split_ix(word, max_line_lenght))
+                                lines[ix] += word[:split_ix]
+                                lines[ix + 1] += word[split_ix:]
+                            else:
+                                lines[ix + 1] += word
                 ix += 1
         return lines
             
