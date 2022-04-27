@@ -429,12 +429,26 @@ class Area:
         """
         return self.to_range().is_in(pos)
     
+    def set_pos(self, pos):
+        """
+        :param UnderGUI.Pos                        pos:
+        """
+        self.x = pos.x
+        self.y = pos.y
+    
     def get_pos(self):        
         """
         :rtype: UnderGUI.Pos 
         :return: (x, y) 
         """
         return Pos(self.x, self.y)
+    
+    def set_size(self, size):
+        """
+        :param UnderGUI.Size                       size:
+        """
+        self.width  = size.width
+        self.height = size.height
     
     def get_size(self):        
         """

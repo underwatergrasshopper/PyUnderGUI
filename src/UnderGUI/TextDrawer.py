@@ -70,7 +70,7 @@ class TextDrawer:
         for line in lines:
             width = max(width, font.get_text_size(line).width)
 
-        return Size(width, font.get_text_size("X").height)
+        return Size(width, font.get_text_size("X").height * len(lines))
         
            
     def draw(self, text, font = None, max_line_lenght = 0):

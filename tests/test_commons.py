@@ -196,6 +196,12 @@ def test_commons():
     assert area.get_pos() == Pos(1, 2)
     assert area.get_size() == Size(3, 4)
     
+    area.set_pos(Pos(10, 20))
+    assert area.x == 10 and area.y == 20 and area.width == 3 and area.height == 4 
+    
+    area.set_size(Size(30, 40))
+    assert area.x == 10 and area.y == 20 and area.width == 30 and area.height == 40
+    
     assert Area(0, 1, 2, 3) == Area(0, 1, 2, 3)
     assert (Area(0, 1, 2, 3) == Area(10, 1, 2, 3)) == False
     assert (Area(0, 1, 2, 3) == Area(0, 11, 2, 3)) == False

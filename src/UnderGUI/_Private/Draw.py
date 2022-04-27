@@ -2,7 +2,11 @@ from OpenGL.GL import *
 
 from UnderGUI.Color import *
 
-__all__ = ['fill_area']
+__all__ = [
+    'fill_area',
+    'restrict_draw_to_area',
+    'restrict_draw_to_window_client_area'
+]
 
 def fill_area(area, color):
     """
@@ -23,4 +27,15 @@ def fill_area(area, color):
     glVertex2f(view_range.x2, view_range.y2)
     glEnd()
     
+    
+def restrict_draw_to_area(area):
+    """
+    :param UnderGUI.Area                       area:                 
+        The only area in window client region, what will be allowed to draw into. 
+    """
+    glEnable(GL_SCISSOR_TEST)
+    glScissor(area.x, area.y, area.width, area.height)
+    
+def restrict_draw_to_window_client_area():
+    glDisable(GL_SCISSOR_TEST)
     
