@@ -37,7 +37,7 @@ class FramedText:
     :ivar int                                      _outside_text_height:
     :ivar int                                      _offset_y:
     :ivar bool                                     _is_restrict_draw_to_area:
-    :ivar bool                                     _is_updatea_sheduled:
+    :ivar bool                                     _is_update_sheduled:
     """
     def __init__(self, area, text, font, tint = ColorF(1, 1, 1, 1), background_color = ColorF(0, 0, 0, 0), is_restrict_draw_to_area = True):
         """
@@ -203,12 +203,12 @@ class FramedText:
         )
             
     def _update_if_sheduled(self):
-        if self._is_updatea_sheduled:
+        if self._is_update_sheduled:
             self._update()
-            self._is_updatea_sheduled = False
+            self._is_update_sheduled = False
             
     def _shedule_update(self):
-        self._is_updatea_sheduled = True 
+        self._is_update_sheduled = True 
         
         
 
