@@ -247,12 +247,14 @@ def test_commons():
     assert font_data.texture_data.pixel_format  == PixelFormat.UNKNOWN
     assert font_data.texture_data.size          == Size(0, 1)
     assert font_data.texture_glyph_infos        == {}
+    assert font_data.max_glyph_height           == 0
 
-    font_data = FontData(TextureData(b'abc', PixelFormat.RGBA, Size(12, 13)), {4 : (1.0, 2.0, 3.0, 4.0)})
+    font_data = FontData(TextureData(b'abc', PixelFormat.RGBA, Size(12, 13)), {4 : (1.0, 2.0, 3.0, 4.0)}, 10)
     assert font_data.texture_data.data          == b'abc'
     assert font_data.texture_data.pixel_format  == PixelFormat.RGBA
     assert font_data.texture_data.size          == Size(12, 13)
     assert font_data.texture_glyph_infos        == {4 : (1.0, 2.0, 3.0, 4.0)}
+    assert font_data.max_glyph_height           == 10
     
     ### FontSource ###
     font_source = FontSource("a", "b", "c", "d")

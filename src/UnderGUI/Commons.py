@@ -599,14 +599,19 @@ class FontData:
     """
     :ivar UnderGUI.TextureData                     texture_data:
     :ivar dict(int, UnderGUI.TextureGlyphInfo)     texture_glyph_infos:
+    :ivar int                                      max_glyph_height:
+        In pixels.
     """
-    def __init__(self, texture_data = None, texture_glyph_infos = None):
+    def __init__(self, texture_data = None, texture_glyph_infos = None, max_glyph_height = 0):
         """
         :param UnderGUI.TextureData                    texture_data:
         :param dict(int, TextureGlyphInfo)             texture_glyph_infos:
+        :param int                                     max_glyph_height:
+            In pixels.
         """
         self.texture_data               = texture_data              if texture_data else TextureData()
         self.texture_glyph_infos        = texture_glyph_infos       if texture_glyph_infos else {}
+        self.max_glyph_height           = max_glyph_height
         
         
         

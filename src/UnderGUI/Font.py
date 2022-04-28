@@ -73,6 +73,9 @@ class Font:
                 width += size.width
             
         return Size(width, height)
+    
+    def get_max_glyph_height(self):
+        return self._font_data.max_glyph_height
             
     def get_split_ix(self, text, length):
         """

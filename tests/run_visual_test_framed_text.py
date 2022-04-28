@@ -59,7 +59,7 @@ def create():
         font = g.font,
         tint = ColorF(1, 1, 1),
         background_color = ColorF(0, 0, 0, 0.2),
-        is_restrict_draw_area = False
+        is_restrict_draw_to_area = False
     )
 
     g.scroll_test_framed_text.scroll_text_to(ScrollPlace.END)

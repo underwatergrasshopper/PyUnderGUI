@@ -70,7 +70,7 @@ class TextDrawer:
         for line in lines:
             width = max(width, font.get_text_size(line).width)
 
-        return Size(width, font.get_text_size("X").height * len(lines))
+        return Size(width, font.get_max_glyph_height() * len(lines))
         
            
     def draw(self, text, font = None, max_line_lenght = 0):
@@ -102,7 +102,7 @@ class TextDrawer:
 
             font.draw_text(self._pos.x, self._pos.y, line, self._tint)
             
-            size = font.get_text_size(line) if len(line) else Size(0, font.get_text_size("X").height)
+            size = font.get_text_size(line) if len(line) else Size(0, font.get_max_glyph_height())
             self._pos.x += size.width
             pos = Pos(self._origin.x, self._pos.y - size.height)
             

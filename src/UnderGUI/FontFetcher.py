@@ -141,7 +141,7 @@ class FontFetcher:
                 glyph_range_ref.flip_on_x_axis(1.0)  
 
             self._font_info = font_info
-            self._font_data = FontData(get_texture_data_and_convert_to_rgba(self._image), texture_glyph_infos)
+            self._font_data = FontData(get_texture_data_and_convert_to_rgba(self._image), texture_glyph_infos, glyph_height)
 
             
     def set_export_path(self, export_path):

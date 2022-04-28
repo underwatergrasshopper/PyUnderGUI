@@ -27,7 +27,7 @@ class FramedText:
         In pixels.
     :ivar str                                      _text:
     """
-    def __init__(self, area, text, font, tint = ColorF(1, 1, 1, 1), background_color = ColorF(0, 0, 0, 0), is_restrict_draw_area = True):
+    def __init__(self, area, text, font, tint = ColorF(1, 1, 1, 1), background_color = ColorF(0, 0, 0, 0), is_restrict_draw_to_area = True):
         """
         :param UnderGUI.Area                       area:
             In pixels.
@@ -47,7 +47,7 @@ class FramedText:
         self._outside_text_height       = 0
         self._offset_y                  = 0
         
-        self._is_restrict_draw_area     = is_restrict_draw_area
+        self._is_restrict_draw_to_area     = is_restrict_draw_to_area
         
         self.update()
 
@@ -93,17 +93,17 @@ class FramedText:
         """
         return self._text
     
-    def set_is_restrict_draw_area(self, is_restrict_draw_area):
+    def set_is_restrict_draw_to_area(self, is_restrict_draw_to_area):
         """
         :param bool                                text:
         """
-        self._is_restrict_draw_area = is_restrict_draw_area
+        self._is_restrict_draw_to_area = is_restrict_draw_to_area
         
-    def get_is_restrict_draw_area(self):
+    def get_is_restrict_draw_to_area(self):
         """
         :rtype bool:
         """
-        return self._is_restrict_draw_area
+        return self._is_restrict_draw_to_area
     
     def scroll_text_by(self, offset_y, unit = ScrollUnit.PIXEL):
         """
@@ -142,7 +142,7 @@ class FramedText:
 
     def update(self):
         self._text_height           = self._text_drawer.get_text_block_size(self._text, max_line_lenght = self._area.width).height
-        self._glyph_height          = self._font.get_text_size("X").height
+        self._glyph_height          = self._font.get_max_glyph_height()
 
         # height of the text (in pixels), which is outside of text frame
         self._outside_text_height   = self._text_height - self._area.height if self._text_height > self._area.height else 0
@@ -161,12 +161,12 @@ class FramedText:
         self._text_drawer.set_position(self._text_pos)
         self._text_drawer.set_tint(self._tint)
         
-        if self._is_restrict_draw_area:
+        if self._is_restrict_draw_to_area:
             restrict_draw_to_area(self._area)
             
         self._text_drawer.draw(self._text, max_line_lenght = self._area.width)
         
-        if self._is_restrict_draw_area:
+        if self._is_restrict_draw_to_area:
             restrict_draw_to_window_client_area()
 
 
