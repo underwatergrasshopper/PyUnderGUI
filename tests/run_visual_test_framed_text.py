@@ -54,14 +54,15 @@ def create():
     )
     
     g.scroll_test_framed_text = FramedText(
-        area = Area(0, 0, 0, 0), 
+        area = Area(510, 200, 100, 150), 
         text = "This is some real text for wrapping and other stuff.\nAnd another line with very-much-long-word.\n\t*Option 1.\n\t*Option 2.",
         font = g.font,
         tint = ColorF(1, 1, 1),
         background_color = ColorF(0, 0, 0, 0.2),
         is_restrict_draw_area = False
     )
-    
+
+    g.scroll_test_framed_text.scroll_text_to(ScrollPlace.END)
     
 def destroy():
     global g
@@ -79,7 +80,6 @@ def display():
     g.framed_text.set_size(Size(200, 300))
     g.framed_text.draw()
 
-    g.scroll_test_framed_text.set_area(Area(510, 200, 100, 150))
     g.scroll_test_framed_text.draw()
 
     glutSwapBuffers()
@@ -103,7 +103,9 @@ def do_on_mouse(button, state, x, y):
     # print(button, state, x, y) # debug
     wheel_direction = get_mouse_wheel_direction(button, state)
     # print(wheel_direction) # debug
-    g.scroll_test_framed_text.scroll_text(20 * wheel_direction)
+    # g.scroll_test_framed_text.scroll_text_by(5 * wheel_direction)
+    g.scroll_test_framed_text.scroll_text_by(0.25 * wheel_direction, ScrollUnit.OUTSIDE_TEXT)
+    # g.scroll_test_framed_text.scroll_text_by(wheel_direction, ScrollUnit.LINE)
     
     g.is_redraw = True
     
