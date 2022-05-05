@@ -70,6 +70,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
+docs/generated/doctrees/
 
 # PyBuilder
 target/
@@ -130,3 +131,6 @@ dmypy.json
 
 # Notepad++
 *.bak
+
+# Project
+temp_junk/

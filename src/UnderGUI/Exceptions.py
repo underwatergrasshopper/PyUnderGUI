@@ -1,7 +1,7 @@
-# Contains all exception classes.
-
 __all__ = ['Fail']
 
-# Generic exception for any error.
 class Fail(Exception):
+    """
+    Generic exception for any error. Convert to string to get error message.
+    """
     pass

@@ -1,0 +1,1293 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>UnderGUI package &#8212; PyUnderGUI 0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to PyUnderGUI’s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to PyUnderGUI’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyUnderGUI 0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">UnderGUI package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-UnderGUI">
+<span id="undergui-package"></span><h1>UnderGUI package<a class="headerlink" href="#module-UnderGUI" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.Area">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">Area</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Area beginning at location (x, y) with size of (width, height).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>auto</em>) – </p></li>
+<li><p><strong>y</strong> (<em>auto</em>) – </p></li>
+<li><p><strong>width</strong> (<em>auto</em>) – </p></li>
+<li><p><strong>height</strong> (<em>auto</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Area.get_pos">
+<span class="sig-name descname"><span class="pre">get_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Area.get_pos" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Pos" title="UnderGUI.Pos">UnderGUI.Pos</a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(x, y)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Area.get_size">
+<span class="sig-name descname"><span class="pre">get_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Area.get_size" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Size" title="UnderGUI.Size">UnderGUI.Size</a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(width, height)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Area.is_in">
+<span class="sig-name descname"><span class="pre">is_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Area.is_in" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference internal" href="#UnderGUI.Pos" title="UnderGUI.Pos"><em>UnderGUI.Pos</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True - if position is in area, False - otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Area.to_range">
+<span class="sig-name descname"><span class="pre">to_range</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Area.to_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to UnderGUI.Range.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Range">UnderGUI.Range</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Area.to_tuple">
+<span class="sig-name descname"><span class="pre">to_tuple</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Area.to_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(auto, auto, auto, auto)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.AreaF">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">AreaF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.AreaF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI.Area" title="UnderGUI.Commons.Area"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI.Commons.Area</span></code></a></p>
+<p>Area with values stored as floats.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.AreaI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">AreaI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.AreaI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI.Area" title="UnderGUI.Commons.Area"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI.Commons.Area</span></code></a></p>
+<p>Area with values stored as ints.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.AreaPS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">AreaPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.AreaPS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI.Area" title="UnderGUI.Commons.Area"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI.Commons.Area</span></code></a></p>
+<p>Area constructed from position and size.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.Color">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Interface.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Color.get_rgba">
+<span class="sig-name descname"><span class="pre">get_rgba</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Color.get_rgba" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(auto, auto, auto, auto)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Color.to_color_b">
+<span class="sig-name descname"><span class="pre">to_color_b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Color.to_color_b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorB" title="UnderGUI.ColorB">UnderGUI.ColorB</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Color.to_color_f">
+<span class="sig-name descname"><span class="pre">to_color_f</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Color.to_color_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorF" title="UnderGUI.ColorF">UnderGUI.ColorF</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Color.to_color_i">
+<span class="sig-name descname"><span class="pre">to_color_i</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Color.to_color_i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorI" title="UnderGUI.ColorI">UnderGUI.ColorI</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.ColorB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">ColorB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">b'\xff'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI.Color" title="UnderGUI.Color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI.Color.Color</span></code></a></p>
+<p>Color with each channel as bytes.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.ColorB.to_color_b">
+<span class="sig-name descname"><span class="pre">to_color_b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorB.to_color_b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorB" title="UnderGUI.ColorB">UnderGUI.ColorB</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.ColorB.to_color_f">
+<span class="sig-name descname"><span class="pre">to_color_f</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorB.to_color_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorF" title="UnderGUI.ColorF">UnderGUI.ColorF</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.ColorB.to_color_i">
+<span class="sig-name descname"><span class="pre">to_color_i</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorB.to_color_i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorI" title="UnderGUI.ColorI">UnderGUI.ColorI</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.ColorF">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">ColorF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI.Color" title="UnderGUI.Color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI.Color.Color</span></code></a></p>
+<p>Color with each channel as float.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.ColorF.to_color_b">
+<span class="sig-name descname"><span class="pre">to_color_b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorF.to_color_b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorB" title="UnderGUI.ColorB">UnderGUI.ColorB</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.ColorF.to_color_f">
+<span class="sig-name descname"><span class="pre">to_color_f</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorF.to_color_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorF" title="UnderGUI.ColorF">UnderGUI.ColorF</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.ColorF.to_color_i">
+<span class="sig-name descname"><span class="pre">to_color_i</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorF.to_color_i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorI" title="UnderGUI.ColorI">UnderGUI.ColorI</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.ColorI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">ColorI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">255</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI.Color" title="UnderGUI.Color.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI.Color.Color</span></code></a></p>
+<p>Color with each channel as int.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.ColorI.to_color_b">
+<span class="sig-name descname"><span class="pre">to_color_b</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorI.to_color_b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorB" title="UnderGUI.ColorB">UnderGUI.ColorB</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.ColorI.to_color_f">
+<span class="sig-name descname"><span class="pre">to_color_f</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorI.to_color_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorF.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorF" title="UnderGUI.ColorF">UnderGUI.ColorF</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.ColorI.to_color_i">
+<span class="sig-name descname"><span class="pre">to_color_i</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.ColorI.to_color_i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to ColorI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.ColorI" title="UnderGUI.ColorI">UnderGUI.ColorI</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="UnderGUI.Fail">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">Fail</span></span><a class="headerlink" href="#UnderGUI.Fail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Generic exception for any error. Convert to string to get error message.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.FontData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">FontData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">texture_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">glyph_texture_locations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>bytes</em>) – </p></li>
+<li><p><strong>pixel_format</strong> (<a class="reference internal" href="#UnderGUI.PixelFormat" title="UnderGUI.PixelFormat"><em>UnderGUI.PixelFormat</em></a>) – </p></li>
+<li><p><strong>size</strong> (<a class="reference internal" href="#UnderGUI.Size" title="UnderGUI.Size"><em>UnderGUI.Size</em></a>) – </p></li>
+<li><p><strong>glyph_texture_locations</strong> (<em>dict</em><em>(</em><em>int</em><em>, </em><a class="reference internal" href="#UnderGUI.RangeF" title="UnderGUI.RangeF"><em>RangeF</em></a><em>)</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">FontFetcher</span></span><a class="headerlink" href="#UnderGUI.FontFetcher" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Fetches font’s glyphs into texture and maps their locations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_min_size</strong> (<a class="reference internal" href="#UnderGUI.Size" title="UnderGUI.Size"><em>UnderGUI.Size</em></a>) – </p></li>
+<li><p><strong>_font_data</strong> (<a class="reference internal" href="#UnderGUI.FontData" title="UnderGUI.FontData"><em>UnderGUI.FontData</em></a>) – </p></li>
+<li><p><strong>_font_source_register</strong> (<a class="reference internal" href="#UnderGUI.FontSourceRegister" title="UnderGUI.FontSourceRegister"><em>UnderGUI.FontSourceRegister</em></a>) – </p></li>
+<li><p><strong>_glyph_code_blocks</strong> (<em>list</em><em>(</em><a class="reference internal" href="#UnderGUI.GlyphCodeBlock" title="UnderGUI.GlyphCodeBlock"><em>UnderGUI.GlyphCodeBlock</em></a><em>)</em>) – </p></li>
+<li><p><strong>_image</strong> (<em>PIL.Image</em>) – </p></li>
+<li><p><strong>_export_path</strong> (<em>str</em>) – </p></li>
+<li><p><strong>_font_info</strong> (<a class="reference internal" href="#UnderGUI.FontInfo" title="UnderGUI.FontInfo"><em>UnderGUI.FontInfo</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.add_font_source">
+<span class="sig-name descname"><span class="pre">add_font_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_source</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.add_font_source" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>font_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>font_source</strong> (<a class="reference internal" href="#UnderGUI.FontSource" title="UnderGUI.FontSource"><em>UnderGUI.FontSource</em></a>) – URLs of font files. Those files are searched firstly in run directory and secondary in system font folder (%windir%/Fonts for windows).
+Supported formats of font files: ttf.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.add_glyph_block">
+<span class="sig-name descname"><span class="pre">add_glyph_block</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.add_glyph_block" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers block of glyph codes, which will be drawn into generated font texture.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>block</strong> (<a class="reference internal" href="#UnderGUI.GlyphCodeBlock" title="UnderGUI.GlyphCodeBlock"><em>UnderGUI.GlyphCodeBlock</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.add_glyph_block_group">
+<span class="sig-name descname"><span class="pre">add_glyph_block_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">block_group</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.add_glyph_block_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers group of glyph code blocks, which will be drawn into generated font texture.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>block</strong> (<a class="reference internal" href="#UnderGUI.GlyphCodeBlock" title="UnderGUI.GlyphCodeBlock"><em>UnderGUI.GlyphCodeBlock</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.add_glyph_range">
+<span class="sig-name descname"><span class="pre">add_glyph_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.add_glyph_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers block of glyph codes from range &lt;frist, last&gt;, which will be drawn into generated font texture.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>first</strong> (<em>int</em>) – </p></li>
+<li><p><strong>last</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export texture and glyph locations to location set by ‘set_export_path’.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.fetch">
+<span class="sig-name descname"><span class="pre">fetch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">glyph_color=&lt;UnderGUI.Color.ColorI</span> <span class="pre">object&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_color=&lt;UnderGUI.Color.ColorI</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.fetch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches font from file and creates texture.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>font_info</strong> (<a class="reference internal" href="#UnderGUI.FontInfo" title="UnderGUI.FontInfo"><em>UnderGUI.FontInfo</em></a>) – </p></li>
+<li><p><strong>background_color</strong> (<a class="reference internal" href="#UnderGUI.Color" title="UnderGUI.Color"><em>UnderGUI.Color</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#UnderGUI.Fail" title="UnderGUI.Fail"><strong>UnderGUI.Fail</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.get_font_data">
+<span class="sig-name descname"><span class="pre">get_font_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.get_font_data" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.FontData" title="UnderGUI.FontData">UnderGUI.FontData</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.is_exported">
+<span class="sig-name descname"><span class="pre">is_exported</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.is_exported" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.set_export_path">
+<span class="sig-name descname"><span class="pre">set_export_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.set_export_path" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>export_path</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.set_font_texture_minimal_size">
+<span class="sig-name descname"><span class="pre">set_font_texture_minimal_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.set_font_texture_minimal_size" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>min_size</strong> (<a class="reference internal" href="#UnderGUI.Size" title="UnderGUI.Size"><em>UnderGUI.Size</em></a>) – Height of generated texture can be bigger than min_size.height, to fit all font glyphs of requested characters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontFetcher.show">
+<span class="sig-name descname"><span class="pre">show</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontFetcher.show" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.FontInfo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">FontInfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">FontStyle.NORMAL</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size_unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SizeUnit.PIXEL</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>size</strong> (<em>int</em>) – </p></li>
+<li><p><strong>style</strong> (<a class="reference internal" href="#UnderGUI.FontStyle" title="UnderGUI.FontStyle"><em>UnderGUI.FontStyle</em></a>) – </p></li>
+<li><p><strong>size_unit</strong> (<a class="reference internal" href="#UnderGUI.SizeUnit" title="UnderGUI.SizeUnit"><em>UnderGUI.SizeUnit</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.FontSource">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">FontSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">normal_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bold_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">italic_url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bold_and_italic_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>normal_url</strong> (<em>str</em>) – </p></li>
+<li><p><strong>bold_url</strong> (<em>str</em>) – </p></li>
+<li><p><strong>italic_url</strong> (<em>str</em>) – </p></li>
+<li><p><strong>bold_and_italic_url</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.FontSourceRegister">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">FontSourceRegister</span></span><a class="headerlink" href="#UnderGUI.FontSourceRegister" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><strong>_register</strong> (<em>dict</em><em>(</em><em>str</em><em>, </em><a class="reference internal" href="#UnderGUI.FontSource" title="UnderGUI.FontSource"><em>FontSource</em></a><em>)</em>) – Maps name of the font to its source locations.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontSourceRegister.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_source</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontSourceRegister.add" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>font_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>font_source</strong> (<a class="reference internal" href="#UnderGUI.FontSource" title="UnderGUI.FontSource"><em>FontSource</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.FontSourceRegister.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_style</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontSourceRegister.get" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>font_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>font_style</strong> (<a class="reference internal" href="#UnderGUI.FontStyle" title="UnderGUI.FontStyle"><em>FontStyle</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.FontStyle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">FontStyle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.FontStyle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.FontStyle.BOLD">
+<span class="sig-name descname"><span class="pre">BOLD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#UnderGUI.FontStyle.BOLD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.FontStyle.BOLD_AND_ITALIC">
+<span class="sig-name descname"><span class="pre">BOLD_AND_ITALIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#UnderGUI.FontStyle.BOLD_AND_ITALIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.FontStyle.ITALIC">
+<span class="sig-name descname"><span class="pre">ITALIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#UnderGUI.FontStyle.ITALIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.FontStyle.NORMAL">
+<span class="sig-name descname"><span class="pre">NORMAL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#UnderGUI.FontStyle.NORMAL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.GlyphCodeBlock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">GlyphCodeBlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.GlyphCodeBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent subset set of characters (glyphs) from range: first to last (last is also included).
+:ivar int                                      first:
+:ivar int                                      last:</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.GlyphCodeBlockGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">GlyphCodeBlockGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">blocks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.GlyphCodeBlockGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><strong>blocks</strong> (<em>list</em><em>(</em><a class="reference internal" href="#UnderGUI.GlyphCodeBlock" title="UnderGUI.GlyphCodeBlock"><em>UnderGUI.GlyphCodeBlock</em></a><em>)</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.PixelFormat">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">PixelFormat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.PixelFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.PixelFormat.RGBA">
+<span class="sig-name descname"><span class="pre">RGBA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#UnderGUI.PixelFormat.RGBA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.PixelFormat.UNKNOWN">
+<span class="sig-name descname"><span class="pre">UNKNOWN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#UnderGUI.PixelFormat.UNKNOWN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.Pos">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">Pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Pos.to_size">
+<span class="sig-name descname"><span class="pre">to_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Pos.to_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to UnderGUI.Size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Size" title="UnderGUI.Size">UnderGUI.Size</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.Range">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">Range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Range from (x1, y1) to (x2, y2).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x1</strong> (<em>auto</em>) – </p></li>
+<li><p><strong>y1</strong> (<em>auto</em>) – </p></li>
+<li><p><strong>x2</strong> (<em>auto</em>) – </p></li>
+<li><p><strong>y2</strong> (<em>auto</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Range.get_from_pos">
+<span class="sig-name descname"><span class="pre">get_from_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range.get_from_pos" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Pos" title="UnderGUI.Pos">UnderGUI.Pos</a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(x1, y1)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Range.get_normalized">
+<span class="sig-name descname"><span class="pre">get_normalized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range.get_normalized" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divides range by size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Range">UnderGUI.Range</a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Range within space (width, height) described as fraction of (width, height).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Range.get_normalized_s">
+<span class="sig-name descname"><span class="pre">get_normalized_s</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range.get_normalized_s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divides range by size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Range">UnderGUI.Range</a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Range within space (size.width, size.height) described as fraction of (size.width, size.height).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Range.get_to_pos">
+<span class="sig-name descname"><span class="pre">get_to_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range.get_to_pos" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Pos" title="UnderGUI.Pos">UnderGUI.Pos</a></p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(x2, y2)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Range.is_in">
+<span class="sig-name descname"><span class="pre">is_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range.is_in" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pos</strong> (<a class="reference internal" href="#UnderGUI.Pos" title="UnderGUI.Pos"><em>UnderGUI.Pos</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True - if position is in range, False - otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Range.to_area">
+<span class="sig-name descname"><span class="pre">to_area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range.to_area" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to Area.
+:rtype: UnderGUI.Area</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Range.to_range_f">
+<span class="sig-name descname"><span class="pre">to_range_f</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range.to_range_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to RangeF.
+:rtype: UnderGUI.RangeF</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Range.to_range_i">
+<span class="sig-name descname"><span class="pre">to_range_i</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range.to_range_i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to RangeI.
+:rtype: UnderGUI.RangeI</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Range.to_tuple">
+<span class="sig-name descname"><span class="pre">to_tuple</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Range.to_tuple" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(auto, auto, auto, auto)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.RangeF">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">RangeF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.RangeF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Commons.Range"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI.Commons.Range</span></code></a></p>
+<p>Range with values stored as floats.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.RangeF.to_range_f">
+<span class="sig-name descname"><span class="pre">to_range_f</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.RangeF.to_range_f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to RangeF.
+:rtype: UnderGUI.RangeF</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.RangeI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">RangeI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.RangeI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Commons.Range"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI.Commons.Range</span></code></a></p>
+<p>Range with values stored as ints.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.RangeI.to_range_i">
+<span class="sig-name descname"><span class="pre">to_range_i</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.RangeI.to_range_i" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to RangeI.
+:rtype: UnderGUI.RangeI</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.RangePP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">RangePP</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_pos</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.RangePP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Commons.Range"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI.Commons.Range</span></code></a></p>
+<p>Range created from positions.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.Size">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">Size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI.Size.to_pos">
+<span class="sig-name descname"><span class="pre">to_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.Size.to_pos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts to UnderGUI.Pos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Pos" title="UnderGUI.Pos">UnderGUI.Pos</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.SizeUnit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">SizeUnit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.SizeUnit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.SizeUnit.PIXEL">
+<span class="sig-name descname"><span class="pre">PIXEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#UnderGUI.SizeUnit.PIXEL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.SizeUnit.POINT">
+<span class="sig-name descname"><span class="pre">POINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#UnderGUI.SizeUnit.POINT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.TextureData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">TextureData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PixelFormat.UNKNOWN</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.TextureData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>bytes</em>) – </p></li>
+<li><p><strong>pixel_format</strong> (<a class="reference internal" href="#UnderGUI.PixelFormat" title="UnderGUI.PixelFormat"><em>UnderGUI.PixelFormat</em></a>) – </p></li>
+<li><p><strong>size</strong> (<a class="reference internal" href="#UnderGUI.Size" title="UnderGUI.Size"><em>UnderGUI.Size</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">UnicodeBlock</span></span><a class="headerlink" href="#UnderGUI.UnicodeBlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.BASIC_LATIN">
+<span class="sig-name descname"><span class="pre">BASIC_LATIN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.BASIC_LATIN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.COMBINING_DIACRITICAL_MARKS">
+<span class="sig-name descname"><span class="pre">COMBINING_DIACRITICAL_MARKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.COMBINING_DIACRITICAL_MARKS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.CYRILLIC">
+<span class="sig-name descname"><span class="pre">CYRILLIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.CYRILLIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.CYRILLIC_SUPPLEMENT">
+<span class="sig-name descname"><span class="pre">CYRILLIC_SUPPLEMENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.CYRILLIC_SUPPLEMENT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.GREEK_AND_COPTIC">
+<span class="sig-name descname"><span class="pre">GREEK_AND_COPTIC</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.GREEK_AND_COPTIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.IPA_EXTENSIONS">
+<span class="sig-name descname"><span class="pre">IPA_EXTENSIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.IPA_EXTENSIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.LATIN_1_SUPPLEMENT">
+<span class="sig-name descname"><span class="pre">LATIN_1_SUPPLEMENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.LATIN_1_SUPPLEMENT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.LATIN_EXTENDED_A">
+<span class="sig-name descname"><span class="pre">LATIN_EXTENDED_A</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.LATIN_EXTENDED_A" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.LATIN_EXTENDED_B">
+<span class="sig-name descname"><span class="pre">LATIN_EXTENDED_B</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.LATIN_EXTENDED_B" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlock.SPACING_MODIFIER_LETTERS">
+<span class="sig-name descname"><span class="pre">SPACING_MODIFIER_LETTERS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlock</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlock.SPACING_MODIFIER_LETTERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlockGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">UnicodeBlockGroup</span></span><a class="headerlink" href="#UnderGUI.UnicodeBlockGroup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlockGroup.ASCII">
+<span class="sig-name descname"><span class="pre">ASCII</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlockGroup</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlockGroup.ASCII" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlockGroup.EUROPE">
+<span class="sig-name descname"><span class="pre">EUROPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlockGroup</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlockGroup.EUROPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="UnderGUI.UnicodeBlockGroup.RUSSIA">
+<span class="sig-name descname"><span class="pre">RUSSIA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;UnderGUI.Commons.GlyphCodeBlockGroup</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#UnderGUI.UnicodeBlockGroup.RUSSIA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="UnderGUI.convert_size_in_points_to_size_in_pixels">
+<span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">convert_size_in_points_to_size_in_pixels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.convert_size_in_points_to_size_in_pixels" title="Permalink to this definition">¶</a></dt>
+<dd><p>6pt = 8px = 0.5em
+7pt = 9px = 0.55em
+7.5pt = 10px = 0.625em
+8pt = 11px = 0.7em
+9pt = 12px = 0.75em
+10pt = 13px = 0.8em
+10.5pt = 14px = 0.875em
+11pt = 15px = 0.95em
+12pt = 16px = 1em
+13pt = 17px = 1.05em
+13.5pt = 18px = 1.125em
+14pt = 19px = 1.2em
+14.5pt = 20px = 1.25em
+15pt = 21px = 1.3em
+16pt = 22px = 1.4em
+17pt = 23px = 1.45em 
+18pt = 24px = 1.5em 
+20pt = 26px = 1.6em 
+22pt = 29px = 1.8em 
+24pt = 32px = 2em
+26pt = 35px = 2.2em 
+27pt = 36px = 2.25em 
+28pt = 37px = 2.3em
+29pt = 38px = 2.35em
+30pt = 40px = 2.45em
+32pt = 42px = 2.55em
+34pt = 45px = 2.75em
+36pt = 48px = 3em</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> (<em>int</em>) – Size in points.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Size in pixels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="UnderGUI.get_proper_image_conversion_mode">
+<span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">get_proper_image_conversion_mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.get_proper_image_conversion_mode" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image</strong> (<em>PIL.Image</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>One of formats to which image can be converted, by PIL.Image.tobytes with raw converter. Either “RGBA” or “RGBX”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="UnderGUI.get_texture_data_and_convert_to_rgba">
+<span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">get_texture_data_and_convert_to_rgba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.get_texture_data_and_convert_to_rgba" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image</strong> (<em>PIL.Image</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#UnderGUI.TextureData" title="UnderGUI.TextureData">UnderGUI.TextureData</a></p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Fail" title="UnderGUI.Fail"><strong>UnderGUI.Fail</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="UnderGUI.load_image_and_convert_to_rgba">
+<span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">load_image_and_convert_to_rgba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.load_image_and_convert_to_rgba" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image_url</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Under.GUI.TextureData</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#UnderGUI.Fail" title="UnderGUI.Fail"><strong>UnderGUI.Fail</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="UnderGUI.print_heyo">
+<span class="sig-prename descclassname"><span class="pre">UnderGUI.</span></span><span class="sig-name descname"><span class="pre">print_heyo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI.print_heyo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function which prints heyo.</p>
+</dd></dl>
+
+</section>
+<section id="module-UnderGUI._Private">
+<span id="undergui-private-subpackage"></span><h1>UnderGUI._Private subpackage<a class="headerlink" href="#module-UnderGUI._Private" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI._Private.Drawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI._Private.</span></span><span class="sig-name descname"><span class="pre">Drawer</span></span><a class="headerlink" href="#UnderGUI._Private.Drawer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Draws to window client area.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Drawer.fill_view">
+<span class="sig-name descname"><span class="pre">fill_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Drawer.fill_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills window client area with color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>color</strong> (<a class="reference internal" href="#UnderGUI.ColorF" title="UnderGUI.ColorF"><em>UnderGUI.ColorF</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorI" title="UnderGUI.ColorI"><em>UnderGUI.ColorI</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorB" title="UnderGUI.ColorB"><em>UnderGUI.ColorB</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI._Private.OpenGL_Drawer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI._Private.</span></span><span class="sig-name descname"><span class="pre">OpenGL_Drawer</span></span><a class="headerlink" href="#UnderGUI._Private.OpenGL_Drawer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI._Private.Drawer" title="UnderGUI._Private.Drawer.Drawer"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI._Private.Drawer.Drawer</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.OpenGL_Drawer.fill_view">
+<span class="sig-name descname"><span class="pre">fill_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.OpenGL_Drawer.fill_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fills window client area with color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>color</strong> (<a class="reference internal" href="#UnderGUI.ColorF" title="UnderGUI.ColorF"><em>UnderGUI.ColorF</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorI" title="UnderGUI.ColorI"><em>UnderGUI.ColorI</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorB" title="UnderGUI.ColorB"><em>UnderGUI.ColorB</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI._Private.OpenGL_Shunter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI._Private.</span></span><span class="sig-name descname"><span class="pre">OpenGL_Shunter</span></span><a class="headerlink" href="#UnderGUI._Private.OpenGL_Shunter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI._Private.Shunter" title="UnderGUI._Private.Shunter.Shunter"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI._Private.Shunter.Shunter</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.OpenGL_Shunter.setup_for_texture_draw">
+<span class="sig-name descname"><span class="pre">setup_for_texture_draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.OpenGL_Shunter.setup_for_texture_draw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI._Private.OpenGL_Texture">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI._Private.</span></span><span class="sig-name descname"><span class="pre">OpenGL_Texture</span></span><a class="headerlink" href="#UnderGUI._Private.OpenGL_Texture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnderGUI._Private.Texture" title="UnderGUI._Private.Texture.Texture"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnderGUI._Private.Texture.Texture</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><p><strong>_tex_obj_id</strong> (<em>int</em>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.OpenGL_Texture.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tint=&lt;UnderGUI.Color.ColorF</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.OpenGL_Texture.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws fragment of texture into region in window client area.
+By default, Range is corresponding to (left, bottom, right, top).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>view_range</strong> (<a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Range"><em>UnderGUI.Range</em></a>) – Coordinates of region in window client area. Coordinates are normalized to range from 0.0 to 1.0.
+Max span is Range(0, 0, 1, 1).</p></li>
+<li><p><strong>texture_range</strong> (<a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Range"><em>UnderGUI.Range</em></a>) – Coordinates of region in texture. Coordinates are normalized to range from 0.0 to 1.0.
+Max span is Range(0, 0, 1, 1).</p></li>
+<li><p><strong>tint</strong> (<a class="reference internal" href="#UnderGUI.ColorF" title="UnderGUI.ColorF"><em>UnderGUI.ColorF</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorB" title="UnderGUI.ColorB"><em>UnderGUI.ColorB</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorI" title="UnderGUI.ColorI"><em>UnderGUI.ColorI</em></a>) – Modulates color of drawn texture fragment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#UnderGUI.Fail" title="UnderGUI.Fail"><strong>UnderGUI.Fail</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI._Private.Shunter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI._Private.</span></span><span class="sig-name descname"><span class="pre">Shunter</span></span><a class="headerlink" href="#UnderGUI._Private.Shunter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Setups under-hood environment before and after specific actions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Shunter.setup_for_texture_draw">
+<span class="sig-name descname"><span class="pre">setup_for_texture_draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Shunter.setup_for_texture_draw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="UnderGUI._Private.Texture">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">UnderGUI._Private.</span></span><span class="sig-name descname"><span class="pre">Texture</span></span><a class="headerlink" href="#UnderGUI._Private.Texture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_width</strong> (<em>int</em>) – </p></li>
+<li><p><strong>_height</strong> (<em>int</em>) – </p></li>
+<li><p><strong>_is_created</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Texture.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_format</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Texture.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates texture from image data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>bytes</em>) – Pixels of an image. Four bytes per pixel if pixel_format is PixelFormat.RGBA. 
+Order of color channels is RGBA.</p></li>
+<li><p><strong>pixel_format</strong> (<a class="reference internal" href="#UnderGUI.PixelFormat" title="UnderGUI.PixelFormat"><em>UnderGUI.PixelFormat</em></a>) – </p></li>
+<li><p><strong>width</strong> (<em>int</em>) – </p></li>
+<li><p><strong>height</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#UnderGUI.Fail" title="UnderGUI.Fail"><strong>UnderGUI.Fail</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Texture.destroy">
+<span class="sig-name descname"><span class="pre">destroy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Texture.destroy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Texture.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tint=&lt;UnderGUI.Color.ColorF</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Texture.draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws fragment of texture into region in window client area.
+By default, Range is corresponding to (left, bottom, right, top).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>view_range</strong> (<a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Range"><em>UnderGUI.Range</em></a>) – Coordinates of region in window client area. Coordinates are normalized to range from 0.0 to 1.0.
+Max span is Range(0, 0, 1, 1).</p></li>
+<li><p><strong>texture_range</strong> (<a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Range"><em>UnderGUI.Range</em></a>) – Coordinates of region in texture. Coordinates are normalized to range from 0.0 to 1.0.
+Max span is Range(0, 0, 1, 1).</p></li>
+<li><p><strong>tint</strong> (<a class="reference internal" href="#UnderGUI.ColorF" title="UnderGUI.ColorF"><em>UnderGUI.ColorF</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorB" title="UnderGUI.ColorB"><em>UnderGUI.ColorB</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorI" title="UnderGUI.ColorI"><em>UnderGUI.ColorI</em></a>) – Modulates color of drawn texture fragment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#UnderGUI.Fail" title="UnderGUI.Fail"><strong>UnderGUI.Fail</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Texture.draw_from_pixel_range">
+<span class="sig-name descname"><span class="pre">draw_from_pixel_range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tint=&lt;UnderGUI.Color.ColorF</span> <span class="pre">object&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Texture.draw_from_pixel_range" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draws fragment of texture into region in window client area.
+By default, Range is corresponding to (left, bottom, right, top).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>view_range</strong> (<a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Range"><em>UnderGUI.Range</em></a>) – Coordinates of region in window client area. Coordinates are in pixels.
+Max span is Range(0, 0, window_client_width, window_client_heigh).</p></li>
+<li><p><strong>texture_range</strong> (<a class="reference internal" href="#UnderGUI.Range" title="UnderGUI.Range"><em>UnderGUI.Range</em></a>) – Coordinates of region in texture. Coordinates are in pixels.
+Max span is Range(0, 0, texture_width, texture_heigh).</p></li>
+<li><p><strong>tint</strong> (<a class="reference internal" href="#UnderGUI.ColorF" title="UnderGUI.ColorF"><em>UnderGUI.ColorF</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorB" title="UnderGUI.ColorB"><em>UnderGUI.ColorB</em></a><em> or </em><a class="reference internal" href="#UnderGUI.ColorI" title="UnderGUI.ColorI"><em>UnderGUI.ColorI</em></a>) – Modulates color of drawn texture fragment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#UnderGUI.Fail" title="UnderGUI.Fail"><strong>UnderGUI.Fail</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Texture.get_height">
+<span class="sig-name descname"><span class="pre">get_height</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Texture.get_height" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Texture.get_width">
+<span class="sig-name descname"><span class="pre">get_width</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Texture.get_width" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Texture.is_created">
+<span class="sig-name descname"><span class="pre">is_created</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Texture.is_created" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="UnderGUI._Private.Texture.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnderGUI._Private.Texture.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates texture from loaded image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>image_url</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#UnderGUI.Fail" title="UnderGUI.Fail"><strong>UnderGUI.Fail</strong></a> – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">UnderGUI package</a></li>
+<li><a class="reference internal" href="#module-UnderGUI._Private">UnderGUI._Private subpackage</a></li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to PyUnderGUI’s documentation!</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/UnderGUI.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to PyUnderGUI’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">PyUnderGUI 0.4 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">UnderGUI package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, underwatergrasshopper.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>
