@@ -27,6 +27,8 @@ __all__ = [
     'AnchorAxisX',
     'AnchorAxisY',
     'AnchorGroup',
+    'convert_sub_range_to_left_bottom_orientation',
+    'convert_sub_range_to_left_bottom_orientation_in_area',
 ]
 
 class PixelFormat(Enum):
@@ -722,6 +724,55 @@ class AnchorGroup:
     
     
     
+def convert_sub_range_to_left_bottom_orientation(base_range, sub_range, anchor_group):
+    """
+    :param UnderGUI.Range                          base_range:
+    :param UnderGUI.Range                          sub_range:
+    :param UnderGUI.AnchorGroup                    anchor_group:
+        Anchor group of sub_range towards base_range.
+    :rtype UnderGUI.Range:
+    """
+    base_area = base_range.to_area()
+    convert_sub_range_to_left_bottom_orientation_in_area(base_area, sub_range, anchor_group)
     
+def convert_sub_range_to_left_bottom_orientation_in_area(base_area, sub_range, anchor_group):
+    """
+    :param UnderGUI.Area                           base_area:
+    :param UnderGUI.Range                          sub_range:
+    :param UnderGUI.AnchorGroup                    anchor_group:
+        Anchor group of sub_range towards base_area.
+    :rtype UnderGUI.Range:
+    """
+    solved_range = Range(0, 0, 0, 0)
+    
+    if anchor_group.x1_anchor == AnchorAxisX.LEFT:
+        solved_range.x1 = sub_range.x1 + base_area.x
+    elif anchor_group.x1_anchor == AnchorAxisX.MIDDLE:
+        solved_range.x1 = base_area.width / 2.0 + sub_range.x1 + base_area.x
+    elif anchor_group.x1_anchor == AnchorAxisX.RIGHT:
+        solved_range.x1 = base_area.width + sub_range.x1 + base_area.x
+    
+    if anchor_group.x2_anchor == AnchorAxisX.LEFT:
+        solved_range.x2 = sub_range.x2 + base_area.x
+    elif anchor_group.x2_anchor == AnchorAxisX.MIDDLE:
+        solved_range.x2 = base_area.width / 2.0 + sub_range.x2 + base_area.x
+    elif anchor_group.x2_anchor == AnchorAxisX.RIGHT:
+        solved_range.x2 = base_area.width + sub_range.x2 + base_area.x
+        
+    if anchor_group.y1_anchor == AnchorAxisY.BOTTOM:
+        solved_range.y1 = sub_range.y1 + base_area.y
+    elif anchor_group.y1_anchor == AnchorAxisY.MIDDLE:
+        solved_range.y1 = base_area.height / 2.0 + sub_range.y1 + base_area.y
+    elif anchor_group.y1_anchor == AnchorAxisY.TOP:
+        solved_range.y1 = base_area.height + sub_range.y1 + base_area.y
+        
+    if anchor_group.y2_anchor == AnchorAxisY.BOTTOM:
+        solved_range.y2 = sub_range.y2 + base_area.y
+    elif anchor_group.y2_anchor == AnchorAxisY.MIDDLE:
+        solved_range.y2 = base_area.height / 2.0 + sub_range.y2 + base_area.y
+    elif anchor_group.y2_anchor == AnchorAxisY.TOP:
+        solved_range.y2 = base_area.height + sub_range.y2 + base_area.y
+        
+    return solved_range
     
     

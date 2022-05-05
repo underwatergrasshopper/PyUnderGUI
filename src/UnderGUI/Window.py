@@ -21,8 +21,9 @@ class Window:
         """
         return self._name 
     
-    def get_resolution(self):
+    def get_drawable_area_size(self):
         """
         :rtype UnderGUI.Size:
         """
+        # TODO: exclude title bar and frames, only client area by default
         return self._resolution 
