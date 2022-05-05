@@ -1,3 +1,10 @@
+# v0.5.0
+
+Changes:
+- Removed support for implementing other API'es than OpenGL.
+- Added TextDrawer.
+- Added FramedText.
+
 # v0.4.0
 
 Changes:
