@@ -291,6 +291,14 @@ def test_commons():
     assert glyph_code_block_group.blocks[2].first == 31
     assert glyph_code_block_group.blocks[2].last == 40
     
+    
+    ### AnchorGroup ###
+    anchor_group = AnchorGroup(AnchorAxisX.LEFT, AnchorAxisY.BOTTOM, AnchorAxisX.MIDDLE, AnchorAxisY.TOP)
+    assert anchor_group.x1_anchor == AnchorAxisX.LEFT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.MIDDLE and anchor_group.y2_anchor == AnchorAxisY.TOP 
+        
+    anchor_group = AnchorGroup(AnchorAxisX.LEFT, AnchorAxisY.BOTTOM, AnchorAxisX.LEFT, AnchorAxisY.MIDDLE)
+    assert anchor_group.x1_anchor == AnchorAxisX.LEFT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.LEFT and anchor_group.y2_anchor == AnchorAxisY.MIDDLE 
+    
 if __name__ == "__main__":
     run_test(test_commons)
 

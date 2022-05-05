@@ -24,8 +24,9 @@ __all__ = [
     'GlyphCodeBlock',
     'GlyphCodeBlockGroup',
     'TextureGlyphInfo',
-    'AnchorX',
-    'AnchorY',
+    'AnchorAxisX',
+    'AnchorAxisY',
+    'AnchorGroup',
 ]
 
 class PixelFormat(Enum):
@@ -690,13 +691,37 @@ class GlyphCodeBlockGroup:
         combined.blocks = self.blocks + other.blocks
         return combined
 
-class AnchorX(Enum):
+class AnchorAxisX(Enum):
     LEFT    = 0
     MIDDLE  = 1
     RIGHT   = 2
     
-class AnchorY(Enum):
+class AnchorAxisY(Enum):
     BOTTOM  = 0
     MIDDLE  = 1
     TOP     = 2
+    
+class AnchorGroup:
+    """
+    :ivar UnderGUI.AnchorAxisX                     x1_anchor:
+    :ivar UnderGUI.AnchorAxisY                     y1_anchor:
+    :ivar UnderGUI.AnchorAxisX                     x2_anchor:
+    :ivar UnderGUI.AnchorAxisY                     y2_anchor:
+    """
+    def __init__(self, x1_anchor, y1_anchor, x2_anchor, y2_anchor):
+        """
+        :param UnderGUI.AnchorAxisX                    x1_anchor:
+        :param UnderGUI.AnchorAxisY                    y1_anchor:
+        :param UnderGUI.AnchorAxisX                    x2_anchor:
+        :param UnderGUI.AnchorAxisY                    y2_anchor:
+        """
+        self.x1_anchor = x1_anchor
+        self.y1_anchor = y1_anchor
+        self.x2_anchor = x2_anchor
+        self.y2_anchor = y2_anchor
+    
+    
+    
+    
+    
     
