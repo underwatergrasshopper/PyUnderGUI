@@ -1,10 +1,11 @@
 from OpenGL.GL import *
 
 from UnderGUI.Color import *
+from UnderGUI.Commons import *
 
 __all__ = [
     'fill_area',
-    'fill_range',
+    'fill_span',
     'restrict_draw_to_area',
     'restrict_draw_to_window_client_area'
 ]
@@ -16,12 +17,12 @@ def fill_area(area, color):
     :param UnderGUI.Color                      color:                                                           
         Color of the fill.
     """
-    fill_range(area.to_range(), color)
+    fill_span(area.to_span(), color)
 
-def fill_range(pos_range, color):
+def fill_span(span, color):
     """
-    :param UnderGUI.Range                      pos_range:                 
-        Range in window client region. 
+    :param UnderGUI.span                       span:                 
+        span in window client region. 
     :param UnderGUI.Color                      color:                                                           
         Color of the fill.
     """
@@ -30,10 +31,10 @@ def fill_range(pos_range, color):
     glColor4f(color.r, color.g, color.b, color.a)
     
     glBegin(GL_TRIANGLE_STRIP)
-    glVertex2f(pos_range.x1, pos_range.y1)
-    glVertex2f(pos_range.x2, pos_range.y1)
-    glVertex2f(pos_range.x1, pos_range.y2)
-    glVertex2f(pos_range.x2, pos_range.y2)
+    glVertex2f(span.x1, span.y1)
+    glVertex2f(span.x2, span.y1)
+    glVertex2f(span.x1, span.y2)
+    glVertex2f(span.x2, span.y2)
     glEnd()
 
 def restrict_draw_to_area(area):

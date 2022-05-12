@@ -1,7 +1,6 @@
 import math
 from TestKit import *
 from UnderGUI.Commons import *
-from lxml.html.builder import FONT
 
 __all__ = ['test_commons']
 
@@ -127,67 +126,67 @@ def test_commons():
     assert Pos(1, 2).to_size() == Size(1, 2)
     assert Size(1, 2).to_pos() == Pos(1, 2)
     
-    ### Range ###
-    range = Range(1, 2, 3, 4)
-    assert range.x1 == 1 and range.y1 == 2 and range.x2 == 3 and range.y2 == 4
+    ### Span ###
+    span = Span(1, 2, 3, 4)
+    assert span.x1 == 1 and span.y1 == 2 and span.x2 == 3 and span.y2 == 4
     
-    assert range.get_from_pos() == Pos(1, 2)
-    assert range.get_to_pos()   == Pos(3, 4)
+    assert span.get_from_pos() == Pos(1, 2)
+    assert span.get_to_pos()   == Pos(3, 4)
     
-    assert Range(0, 1, 2, 3) == Range(0, 1, 2, 3)
-    assert (Range(0, 1, 2, 3) == Range(10, 1, 2, 3)) == False
-    assert (Range(0, 1, 2, 3) == Range(0, 11, 2, 3)) == False
-    assert (Range(0, 1, 2, 3) == Range(1, 1, 12, 3)) == False
-    assert (Range(0, 1, 2, 3) == Range(1, 1, 2, 13)) == False
+    assert Span(0, 1, 2, 3) == Span(0, 1, 2, 3)
+    assert (Span(0, 1, 2, 3) == Span(10, 1, 2, 3)) == False
+    assert (Span(0, 1, 2, 3) == Span(0, 11, 2, 3)) == False
+    assert (Span(0, 1, 2, 3) == Span(1, 1, 12, 3)) == False
+    assert (Span(0, 1, 2, 3) == Span(1, 1, 2, 13)) == False
 
-    assert (Range(0, 1, 2, 3) != Range(0, 1, 2, 3)) == False
-    assert Range(0, 1, 2, 3) != Range(10, 1, 2, 3)
-    assert Range(0, 1, 2, 3) != Range(0, 11, 2, 3)
-    assert Range(0, 1, 2, 3) != Range(1, 1, 12, 3)
-    assert Range(0, 1, 2, 3) != Range(1, 1, 2, 13)
+    assert (Span(0, 1, 2, 3) != Span(0, 1, 2, 3)) == False
+    assert Span(0, 1, 2, 3) != Span(10, 1, 2, 3)
+    assert Span(0, 1, 2, 3) != Span(0, 11, 2, 3)
+    assert Span(0, 1, 2, 3) != Span(1, 1, 12, 3)
+    assert Span(0, 1, 2, 3) != Span(1, 1, 2, 13)
 
-    assert (Range(5, 2, 3, 4) * Range(10, 100, 1000, 10000)) == Range(50, 200, 3000, 40000)
-    assert (Range(6, 20, 60, 3000) / Range(2, 5, 10, 100)) == Range(3, 4, 6, 30)
-    assert (Range(6.0, 20.0, 60.0, 3000.0) / Range(2.0, 5.0, 10.0, 100.0)) == Range(3.0, 4.0, 6.0, 30.0)
-    assert (Range(5, 2, 3, 4) + Range(10, 100, 1000, 10000)) == Range(15, 102, 1003, 10004)
-    assert (Range(10, 20, 30, 40) - Range(1, 2, 3, 4)) == Range(9, 18, 27, 36)
+    assert (Span(5, 2, 3, 4) * Span(10, 100, 1000, 10000)) == Span(50, 200, 3000, 40000)
+    assert (Span(6, 20, 60, 3000) / Span(2, 5, 10, 100)) == Span(3, 4, 6, 30)
+    assert (Span(6.0, 20.0, 60.0, 3000.0) / Span(2.0, 5.0, 10.0, 100.0)) == Span(3.0, 4.0, 6.0, 30.0)
+    assert (Span(5, 2, 3, 4) + Span(10, 100, 1000, 10000)) == Span(15, 102, 1003, 10004)
+    assert (Span(10, 20, 30, 40) - Span(1, 2, 3, 4)) == Span(9, 18, 27, 36)
     
-    assert (Range(1, 2, 3, 4) * 10) == Range(10, 20, 30, 40)
-    assert (Range(10, 20, 30, 40) / 10) == Range(1, 2, 3, 4)
-    assert (Range(10.0, 20.0, 30.0, 40.0) / 10.0) == Range(1.0, 2.0, 3.0, 4.0)
-    assert (Range(1, 2, 3, 4) + 10) == Range(11, 12, 13, 14)
-    assert (Range(10, 20, 30, 40) - 1) == Range(9, 19, 29, 39)
+    assert (Span(1, 2, 3, 4) * 10) == Span(10, 20, 30, 40)
+    assert (Span(10, 20, 30, 40) / 10) == Span(1, 2, 3, 4)
+    assert (Span(10.0, 20.0, 30.0, 40.0) / 10.0) == Span(1.0, 2.0, 3.0, 4.0)
+    assert (Span(1, 2, 3, 4) + 10) == Span(11, 12, 13, 14)
+    assert (Span(10, 20, 30, 40) - 1) == Span(9, 19, 29, 39)
     
-    assert Range(3, 5, 10, 20).is_in(Pos(3, 5)) == True
-    assert Range(3, 5, 10, 20).is_in(Pos(4, 6)) == True
-    assert Range(3, 5, 10, 20).is_in(Pos(9, 19)) == True
-    assert Range(3, 5, 10, 20).is_in(Pos(2, 5)) == False
-    assert Range(3, 5, 10, 20).is_in(Pos(3, 4)) == False
-    assert Range(3, 5, 10, 20).is_in(Pos(2, 4)) == False
-    assert Range(3, 5, 10, 20).is_in(Pos(9, 20)) == False  
-    assert Range(3, 5, 10, 20).is_in(Pos(10, 19)) == False  
-    assert Range(3, 5, 10, 20).is_in(Pos(10, 20)) == False  
+    assert Span(3, 5, 10, 20).is_in(Pos(3, 5)) == True
+    assert Span(3, 5, 10, 20).is_in(Pos(4, 6)) == True
+    assert Span(3, 5, 10, 20).is_in(Pos(9, 19)) == True
+    assert Span(3, 5, 10, 20).is_in(Pos(2, 5)) == False
+    assert Span(3, 5, 10, 20).is_in(Pos(3, 4)) == False
+    assert Span(3, 5, 10, 20).is_in(Pos(2, 4)) == False
+    assert Span(3, 5, 10, 20).is_in(Pos(9, 20)) == False  
+    assert Span(3, 5, 10, 20).is_in(Pos(10, 19)) == False  
+    assert Span(3, 5, 10, 20).is_in(Pos(10, 20)) == False  
     
-    assert RangeF(0, 1, 2, 3)               == Range(0.0, 1.0, 2.0, 3.0)
-    assert RangeI(0.1, 1.1, 2.1, 3.1)       == Range(0, 1, 2, 3)
-    assert RangePP(Pos(0, 1), Pos(2, 3))    == Range(0, 1, 2, 3) 
+    assert SpanF(0, 1, 2, 3)               == Span(0.0, 1.0, 2.0, 3.0)
+    assert SpanI(0.1, 1.1, 2.1, 3.1)       == Span(0, 1, 2, 3)
+    assert SpanPP(Pos(0, 1), Pos(2, 3))    == Span(0, 1, 2, 3) 
     
-    assert RangeF(0.1, 1.1, 2.1, 3.1).to_range_i() == RangeI(0, 1, 2, 3)
-    assert RangeI(0, 1, 2, 3).to_range_f() == RangeF(0, 1, 2, 3)
+    assert SpanF(0.1, 1.1, 2.1, 3.1).to_span_i() == SpanI(0, 1, 2, 3)
+    assert SpanI(0, 1, 2, 3).to_span_f() == SpanF(0, 1, 2, 3)
     
-    assert Range(10, 20, 30, 40) / Size(10, 5) == Range(1, 4, 3, 8)
-    assert Range(10, 20, 30, 40).get_normalized(10, 5) == Range(1, 4, 3, 8)
-    assert Range(10, 20, 30, 40).get_normalized_s(Size(10, 5)) == Range(1, 4, 3, 8)
+    assert Span(10, 20, 30, 40) / Size(10, 5) == Span(1, 4, 3, 8)
+    assert Span(10, 20, 30, 40).get_normalized(10, 5) == Span(1, 4, 3, 8)
+    assert Span(10, 20, 30, 40).get_normalized_s(Size(10, 5)) == Span(1, 4, 3, 8)
     
-    assert Range(1, 2, 3, 4).to_tuple() == (1, 2, 3, 4)
-    assert Range(1, 2, 3, 4).to_dict()  == {'x1' : 1, 'y1' : 2, 'x2' : 3, 'y2' : 4}
+    assert Span(1, 2, 3, 4).to_tuple() == (1, 2, 3, 4)
+    assert Span(1, 2, 3, 4).to_dict()  == {'x1' : 1, 'y1' : 2, 'x2' : 3, 'y2' : 4}
     
-    range = Range(1, 2, 3, 4)
+    span = Span(1, 2, 3, 4)
     
-    range.flip_on_x_axis(10)
-    assert range == Range(1, 6, 3, 8)
-    range.flip_on_y_axis(10)
-    assert range == Range(7, 6, 9, 8)
+    span.flip_on_x_axis(10)
+    assert span == Span(1, 6, 3, 8)
+    span.flip_on_y_axis(10)
+    assert span == Span(7, 6, 9, 8)
     
     ### Area ###
     area = Area(1, 2, 3, 4)
@@ -230,9 +229,9 @@ def test_commons():
     assert Area(1, 2, 3, 4).to_tuple() == (1, 2, 3, 4)
     assert Area(1, 2, 3, 4).to_dict() == {'x' : 1, 'y' : 2, 'width' : 3, 'height' : 4}
     
-    ### Area and Range ###
-    assert Area(1, 2, 10, 20).to_range() == Range(1, 2, 11, 22)
-    assert Range(1, 2, 11, 22).to_area() == Area(1, 2, 10, 20)
+    ### Area and Span ###
+    assert Area(1, 2, 10, 20).to_span() == Span(1, 2, 11, 22)
+    assert Span(1, 2, 11, 22).to_area() == Area(1, 2, 10, 20)
     
     ### FontInfo ###
     font_info = FontInfo("Courier New", 22, FontStyle.ITALIC, SizeUnit.POINT)

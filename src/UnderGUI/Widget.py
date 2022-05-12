@@ -11,14 +11,14 @@ class Widget:
     """
     :ivar UnderGUI.Widget                      _parent:
     :ivar list(UnderGUI.Widget)                _childs:
-    :ivar UnderGUI.Range                       _local_range:
+    :ivar UnderGUI.Span                        _local_span:
     :ivar UnderGUI.AnchorGroup                 _anchor_group:
     :ivar UnderGUI.Window                      _window:
     """
-    def __init__(self, parent, area_or_local_range, anchor_group = None, window = None):
+    def __init__(self, parent, area_or_local_span, anchor_group = None, window = None):
         """
         :param UnderGUI.Widget or None             parent:
-        :param UnderGUI.Area or UnderGUI.Range     area_or_local_range:
+        :param UnderGUI.Area or UnderGUI.Span     area_or_local_span:
         :param UnderGUI.AnchorGroup or None        anchor_group:
         :param UnderGUI.Window or None             window:
         
@@ -26,19 +26,21 @@ class Widget:
         """
         self._parent        = parent
         self._childs        = []
-        self._local_range   = area_or_local_range       if isinstance(area_or_local_range, Range)   else area_or_local_range.to_range()
+        self._local_span   = area_or_local_span       if isinstance(area_or_local_span, Span)   else area_or_local_span.to_span()
         self._anchor_group  = anchor_group              if anchor_group                             else AnchorGroup(AnchorAxisX.LEFT, AnchorAxisY.BOTTOM, AnchorAxisX.LEFT, AnchorAxisY.BOTTOM)
         self._window        = window                    if not self._parent                         else self._parent._window
         
         if not self._window:
             raise Fail("UnderGUI: Widget: No Window class object have been provided.")
         
-        self._solve_global_range()
+        self._solve_global_span()
         
-    def _solve_global_range(self):
-        self._global_range = convert_sub_range_to_left_bottom_orientation_in_area(
-            base_area = self._parent.to_area() if self._parent else AreaPS(Pos(0, 0), self._window.get_drawable_area_size()),
-            self._local_range,
+    def _solve_global_span(self):
+        base_area = self._parent.to_area() if self._parent else AreaPS(Pos(0, 0), self._window.get_drawable_area_size())
+        
+        self._global_span = convert_sub_span_to_left_bottom_orientation_in_area(
+            base_area,
+            self._local_span,
             self._anchor_group
         )
         
@@ -48,7 +50,7 @@ class Widget:
        
     # to override 
     def _draw(self):
-        fill_range(self._local_range, ColorF(1, 0, 0))
+        fill_span(self._local_span, ColorF(1, 0, 0))
     
     def _update_all(self):
         self._update()

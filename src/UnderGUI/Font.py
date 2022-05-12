@@ -50,7 +50,7 @@ class Font:
             code = ord(glyph)
             
             info = self._font_data.texture_glyph_infos[code]
-            self._texture.draw(Area(n, y, info.area.width, info.area.height).to_range(), info.glyph_range, tint)
+            self._texture.draw(Area(n, y, info.area.width, info.area.height).to_span(), info.glyph_span, tint)
 
             n += info.area.width
     

@@ -50,9 +50,9 @@ class FontFetcher:
         self._font_source_register.add(font_name, font_source)
         
         
-    def add_glyph_range(self, first, last):
+    def add_glyph_span(self, first, last):
         """
-        Registers block of glyph codes from range <frist, last>, which will be drawn into generated font texture.
+        Registers block of glyph codes from span <frist, last>, which will be drawn into generated font texture.
         
         :param int                                 first:
         :param int                                 last:
@@ -119,8 +119,8 @@ class FontFetcher:
                             y += glyph_height
     
                         area        = Area(x, y, glyph_width, glyph_height)
-                        glyph_range = area.to_range()
-                        texture_glyph_infos[code] = TextureGlyphInfo(glyph_range, area)
+                        glyph_span = area.to_span()
+                        texture_glyph_infos[code] = TextureGlyphInfo(glyph_span, area)
                         
                         x += glyph_width
     
@@ -134,11 +134,11 @@ class FontFetcher:
                 pos = texture_glyph_infos[glyph_code].area.get_pos()
                 draw.text((pos.x, pos.y), chr(glyph_code), glyph_color.to_color_i().get_rgba(), font, spacing = 0)
 
-                # converts coordinate to texture range
-                glyph_range_ref = texture_glyph_infos[glyph_code].glyph_range
-                glyph_range_ref.normalize(self._min_size.width, final_height)
+                # converts coordinate to texture span
+                glyph_span_ref = texture_glyph_infos[glyph_code].glyph_span
+                glyph_span_ref.normalize(self._min_size.width, final_height)
                 # flip from image coordinates (origin left-top) to texture coordinates (origin left-bottom).
-                glyph_range_ref.flip_on_x_axis(1.0)  
+                glyph_span_ref.flip_on_x_axis(1.0)  
 
             self._font_info = font_info
             self._font_data = FontData(get_texture_data_and_convert_to_rgba(self._image), texture_glyph_infos, glyph_height)
@@ -170,7 +170,7 @@ class FontFetcher:
             trivialized_texture_glyph_infos = {}
             for code, info in self._font_data.texture_glyph_infos.items():
                 combined = {}
-                combined.update(info.glyph_range.to_dict())
+                combined.update(info.glyph_span.to_dict())
                 combined.update(info.area.to_dict())
                 trivialized_texture_glyph_infos[code] = combined
                 

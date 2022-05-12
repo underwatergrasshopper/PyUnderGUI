@@ -96,16 +96,16 @@ class Texture:
         """:rtype: int"""
         return self._height
         
-    def draw(self, view_range, texture_range, tint = ColorF(1, 1, 1)):
+    def draw(self, view_span, texture_span, tint = ColorF(1, 1, 1)):
         """
         Draws fragment of texture into region in window client area.
-        By default, Range is corresponding to (left, bottom, right, top).
+        By default, span is corresponding to (left, bottom, right, top).
         
-        :param UnderGUI.Range                      view_range:                 
+        :param UnderGUI.Span                      view_span:                 
             Coordinates of region in window client area. 
-        :param UnderGUI.Range                      texture_range:  
-            Coordinates of region in texture. Coordinates are normalized to range from 0.0 to 1.0.
-            Max span is Range(0, 0, 1, 1).
+        :param UnderGUI.Span                      texture_span:  
+            Coordinates of region in texture. Coordinates are normalized to span from 0.0 to 1.0.
+            Max span is Span(0, 0, 1, 1).
         :param                                     tint:                                                           
             Modulates color of drawn texture fragment.
         :type                                      tint: 
@@ -119,39 +119,39 @@ class Texture:
         
         glBegin(GL_TRIANGLE_STRIP)
         
-        glTexCoord2f(   texture_range.x1,   texture_range.y1)
-        glVertex2f(     view_range.x1,      view_range.y1)
+        glTexCoord2f(   texture_span.x1,   texture_span.y1)
+        glVertex2f(     view_span.x1,      view_span.y1)
         
-        glTexCoord2f(   texture_range.x2,   texture_range.y1)
-        glVertex2f(     view_range.x2,      view_range.y1)
+        glTexCoord2f(   texture_span.x2,   texture_span.y1)
+        glVertex2f(     view_span.x2,      view_span.y1)
         
-        glTexCoord2f(   texture_range.x1,   texture_range.y2)
-        glVertex2f(     view_range.x1,      view_range.y2)
+        glTexCoord2f(   texture_span.x1,   texture_span.y2)
+        glVertex2f(     view_span.x1,      view_span.y2)
         
-        glTexCoord2f(   texture_range.x2,   texture_range.y2)
-        glVertex2f(     view_range.x2,      view_range.y2)
+        glTexCoord2f(   texture_span.x2,   texture_span.y2)
+        glVertex2f(     view_span.x2,      view_span.y2)
         
         glEnd()
         
         glBindTexture(GL_TEXTURE_2D, 0)
         
-    def draw_from_pixel_range(self, view_range, texture_range, tint = ColorF(1, 1, 1)):
+    def draw_from_pixel_span(self, view_span, texture_span, tint = ColorF(1, 1, 1)):
         """
         Draws fragment of texture into region in window client area.
-        By default, Range is corresponding to (left, bottom, right, top).
+        By default, Span is corresponding to (left, bottom, right, top).
         
-        :param UnderGUI.Range                      view_range:               
+        :param UnderGUI.Span                      view_span:               
             Coordinates of region in window client area. 
-        :param UnderGUI.Range                      texture_range:             
+        :param UnderGUI.Span                      texture_span:             
             Coordinates of region in texture. Coordinates are in pixels.
-            Max span is Range(0, 0, texture_width, texture_heigh).
+            Max span is Span(0, 0, texture_width, texture_heigh).
         :param                                     tint:                                                           
             Modulates color of drawn texture fragment.
         :type                                      tint: 
             UnderGUI.ColorF or UnderGUI.ColorB or UnderGUI.ColorI
         :raises UnderGUI.Fail:
         """
-        self.draw(view_range, texture_range / Size(self._width, self._height), tint)
+        self.draw(view_span, texture_span / Size(self._width, self._height), tint)
     
     def _bare_create(self, data, pixel_format, width, height):
         """

@@ -81,15 +81,15 @@ def display():
     
     g_shunter.setup_draw(ColorF(0, 0, 0.5))
 
-    g_texture.draw(Range(-1, -1, 0, 0), Range(0, 0, 1, 1))
-    g_texture.draw(Range(0, 0, 1, 1), Range(1.0 / 6, 0.25, 5.0 / 6, 0.75))
+    g_texture.draw(Span(-1, -1, 0, 0), Span(0, 0, 1, 1))
+    g_texture.draw(Span(0, 0, 1, 1), Span(1.0 / 6, 0.25, 5.0 / 6, 0.75))
     
-    g_texture.draw_from_pixel_range(Range(-1, 0, 0, 1), Range(0, 0, 6, 4), ColorF(0, 1, 1))
-    g_texture.draw_from_pixel_range(Range(0, -1, 1, 0), Range(1, 1, 5, 3))
+    g_texture.draw_from_pixel_span(Span(-1, 0, 0, 1), Span(0, 0, 6, 4), ColorF(0, 1, 1))
+    g_texture.draw_from_pixel_span(Span(0, -1, 1, 0), Span(1, 1, 5, 3))
     
-    # g_texture.draw_from_pixel_range(Range(-0.5, -0.5, 0.5, 0.5), Range(0, 0, 6, 4))
-    # g_texture.draw_from_pixel_range(Range(-0.5, -0.5, 0.5, 0.5), Range(2, 2, 6, 4))
-    # g_texture.draw_from_pixel_range(Range(-0.5, -0.5, 0.5, 0.5), Range(0, 0, 2, 4))
+    # g_texture.draw_from_pixel_span(Span(-0.5, -0.5, 0.5, 0.5), Span(0, 0, 6, 4))
+    # g_texture.draw_from_pixel_span(Span(-0.5, -0.5, 0.5, 0.5), Span(2, 2, 6, 4))
+    # g_texture.draw_from_pixel_span(Span(-0.5, -0.5, 0.5, 0.5), Span(0, 0, 2, 4))
 
     glutSwapBuffers()
 

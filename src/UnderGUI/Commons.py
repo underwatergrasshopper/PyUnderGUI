@@ -6,10 +6,10 @@ __all__ = [
     'PixelFormat',
     'Pos',
     'Size',
-    'RangePP',
-    'Range',
-    'RangeF',
-    'RangeI',
+    'SpanPP',
+    'Span',
+    'SpanF',
+    'SpanI',
     'AreaPS',
     'Area',
     'AreaI',
@@ -27,8 +27,8 @@ __all__ = [
     'AnchorAxisX',
     'AnchorAxisY',
     'AnchorGroup',
-    'convert_sub_range_to_left_bottom_orientation',
-    'convert_sub_range_to_left_bottom_orientation_in_area',
+    'convert_sub_span_to_left_bottom_orientation',
+    'convert_sub_span_to_left_bottom_orientation_in_area',
 ]
 
 class PixelFormat(Enum):
@@ -158,9 +158,9 @@ class Size:
             return Size(self.width - other.width, self.height - other.height)
         return Size(self.width - other, self.height - other)
         
-class Range:
+class Span:
     """
-    Range from (x1, y1) to (x2, y2).
+    Span from (x1, y1) to (x2, y2).
 
     :ivar auto                                x1:
     :ivar auto                                y1:
@@ -204,23 +204,23 @@ class Range:
         """
         :param UnderGUI.Pos                        pos:
         :rtype: bool
-        :return: True - if position is in range, False - otherwise.
+        :return: True - if position is in span, False - otherwise.
         """
         return self.get_from_pos() <= pos and pos < self.get_to_pos()
     
-    def to_range_i(self):
+    def to_span_i(self):
         """
-        Converts to RangeI.
-        :rtype: UnderGUI.RangeI
+        Converts to SpanI.
+        :rtype: UnderGUI.SpanI
         """
-        return RangeI(self.x1, self.y1, self.x2, self.y2)
+        return SpanI(self.x1, self.y1, self.x2, self.y2)
     
-    def to_range_f(self):
+    def to_span_f(self):
         """
-        Converts to RangeF.
-        :rtype: UnderGUI.RangeF
+        Converts to SpanF.
+        :rtype: UnderGUI.SpanF
         """
-        return RangeF(self.x1, self.y1, self.x2, self.y2)
+        return SpanF(self.x1, self.y1, self.x2, self.y2)
     
     def to_tuple(self):
         """
@@ -236,7 +236,7 @@ class Range:
     
     def normalize(self, width, height):
         """
-        Divides range by size.
+        Divides span by size.
         
         :param int or float                       width:
         :param int or float                       height:
@@ -248,7 +248,7 @@ class Range:
         
     def normalize_s(self, size):
         """
-        Divides range by size.
+        Divides span by size.
         
         :param UnderGUI.Size                      size:
         """
@@ -256,22 +256,22 @@ class Range:
     
     def get_normalized(self, width, height):
         """
-        Divides range by size.
+        Divides span by size.
         
         :param int or float                       width:
         :param int or float                       height:
-        :rtype: UnderGUI.Range
-        :return: Range within space (width, height) described as fraction of (width, height).
+        :rtype: UnderGUI.Span
+        :return: Span within space (width, height) described as fraction of (width, height).
         """
         return self / Size(width, height)
     
     def get_normalized_s(self, size):
         """
-        Divides range by size.
+        Divides span by size.
         
         :param UnderGUI.Size                      size:
-        :rtype: UnderGUI.Range
-        :return: Range within space (size.width, size.height) described as fraction of (size.width, size.height).
+        :rtype: UnderGUI.Span
+        :return: Span within space (size.width, size.height) described as fraction of (size.width, size.height).
         """
         return self.get_normalized(size.width, size.height)
 
@@ -289,70 +289,70 @@ class Range:
 
     def __eq__(self, other):
         """
-        :param UnderGUI.Range                      other:
+        :param UnderGUI.Span                      other:
         :rtype: bool
         """
         return self.get_from_pos() == other.get_from_pos() and self.get_to_pos() == other.get_to_pos()
         
     def __ne__(self, other):
         """
-        :param UnderGUI.Range                      other:
+        :param UnderGUI.Span                      other:
         :rtype: bool
         """
         return self.get_from_pos() != other.get_from_pos() or self.get_to_pos() != other.get_to_pos()
         
     def __mul__(self, other):
         """
-        :param UnderGUI.Range or int or float      other:
-        :rtype: UnderGUI.Range 
+        :param UnderGUI.Span or int or float      other:
+        :rtype: UnderGUI.Span 
         """
-        if isinstance(other, Range):
-            return Range(self.x1 * other.x1, self.y1 * other.y1, self.x2 * other.x2, self.y2 * other.y2)
-        return Range(self.x1 * other, self.y1 * other, self.x2 * other, self.y2 * other)
+        if isinstance(other, Span):
+            return Span(self.x1 * other.x1, self.y1 * other.y1, self.x2 * other.x2, self.y2 * other.y2)
+        return Span(self.x1 * other, self.y1 * other, self.x2 * other, self.y2 * other)
         
     def __truediv__(self, other):
         """
-        :param UnderGUI.Range UnderGUI.Size or int or float      other:
-        :rtype: UnderGUI.Range 
+        :param UnderGUI.Span UnderGUI.Size or int or float      other:
+        :rtype: UnderGUI.Span 
         """
-        if isinstance(other, Range):
-            return Range(self.x1 / other.x1, self.y1 / other.y1, self.x2 / other.x2, self.y2 / other.y2)
+        if isinstance(other, Span):
+            return Span(self.x1 / other.x1, self.y1 / other.y1, self.x2 / other.x2, self.y2 / other.y2)
         if isinstance(other, Size):
-            return Range(self.x1 / other.width, self.y1 / other.height, self.x2 / other.width, self.y2 / other.height)
-        return Range(self.x1 / other, self.y1 / other, self.x2 / other, self.y2 / other)
+            return Span(self.x1 / other.width, self.y1 / other.height, self.x2 / other.width, self.y2 / other.height)
+        return Span(self.x1 / other, self.y1 / other, self.x2 / other, self.y2 / other)
         
     def __floordiv__(self, other):
         """
-        :param UnderGUI.Range UnderGUI.Size or int or float      other:
-        :rtype: UnderGUI.Range 
+        :param UnderGUI.Span UnderGUI.Size or int or float      other:
+        :rtype: UnderGUI.Span 
         """
-        if isinstance(other, Range):
-            return Range(self.x1 / other.x1, self.y1 / other.y1, self.x2 / other.x2, self.y2 / other.y2)
+        if isinstance(other, Span):
+            return Span(self.x1 / other.x1, self.y1 / other.y1, self.x2 / other.x2, self.y2 / other.y2)
         if isinstance(other, Size):
-            return Range(self.x1 / other.width, self.y1 / other.height, self.x2 / other.width, self.y2 / other.height)
-        return Range(self.x1 / other, self.y1 / other, self.x2 / other, self.y2 / other)
+            return Span(self.x1 / other.width, self.y1 / other.height, self.x2 / other.width, self.y2 / other.height)
+        return Span(self.x1 / other, self.y1 / other, self.x2 / other, self.y2 / other)
         
     def __add__(self, other):
         """
-        :param UnderGUI.Range or int or float      other:
-        :rtype: UnderGUI.Range 
+        :param UnderGUI.Span or int or float      other:
+        :rtype: UnderGUI.Span 
         """
-        if isinstance(other, Range):
-            return Range(self.x1 + other.x1, self.y1 + other.y1, self.x2 + other.x2, self.y2 + other.y2)
-        return Range(self.x1 + other, self.y1 + other, self.x2 + other, self.y2 + other)
+        if isinstance(other, Span):
+            return Span(self.x1 + other.x1, self.y1 + other.y1, self.x2 + other.x2, self.y2 + other.y2)
+        return Span(self.x1 + other, self.y1 + other, self.x2 + other, self.y2 + other)
         
     def __sub__(self, other):
         """
-        :param UnderGUI.Range or int or float      other:
-        :rtype: UnderGUI.Range 
+        :param UnderGUI.Span or int or float      other:
+        :rtype: UnderGUI.Span 
         """
-        if isinstance(other, Range):
-            return Range(self.x1 - other.x1, self.y1 - other.y1, self.x2 - other.x2, self.y2 - other.y2)
-        return Range(self.x1 - other, self.y1 - other, self.x2 - other, self.y2 - other)
+        if isinstance(other, Span):
+            return Span(self.x1 - other.x1, self.y1 - other.y1, self.x2 - other.x2, self.y2 - other.y2)
+        return Span(self.x1 - other, self.y1 - other, self.x2 - other, self.y2 - other)
     
-class RangePP(Range):
+class SpanPP(Span):
     """
-    Range created from positions.
+    Span created from positions.
     """
     def __init__(self, from_pos, to_pos):
         """
@@ -361,9 +361,9 @@ class RangePP(Range):
         """
         super().__init__(from_pos.x, from_pos.y, to_pos.x, to_pos.y)
         
-class RangeF(Range):
+class SpanF(Span):
     """
-    Range with values stored as floats.
+    Span with values stored as floats.
     """
     def __init__(self, x1, y1, x2, y2):
         """
@@ -375,12 +375,12 @@ class RangeF(Range):
         super().__init__(float(x1), float(y1), float(x2), float(y2))
         
     # overload
-    def to_range_f(self):
+    def to_span_f(self):
         return self
         
-class RangeI(Range):
+class SpanI(Span):
     """
-    Range with values stored as ints.
+    Span with values stored as ints.
     """
     def __init__(self, x1, y1, x2, y2):
         """
@@ -392,7 +392,7 @@ class RangeI(Range):
         super().__init__(int(x1), int(y1), int(x2), int(y2))
         
     # overload
-    def to_range_i(self):
+    def to_span_i(self):
         return self
     
 class Area:
@@ -416,13 +416,13 @@ class Area:
         self.width      = width
         self.height     = height
         
-    def to_range(self):
+    def to_span(self):
         """
-        Converts to UnderGUI.Range.
+        Converts to UnderGUI.Span.
         
-        :rtype: UnderGUI.Range
+        :rtype: UnderGUI.Span
         """
-        return Range(self.x, self.y, self.x + self.width, self.y + self.height)
+        return Span(self.x, self.y, self.x + self.width, self.y + self.height)
     
     def is_in(self, pos):
         """
@@ -430,7 +430,7 @@ class Area:
         :rtype: bool
         :return: True - if position is in area, False - otherwise.
         """
-        return self.to_range().is_in(pos)
+        return self.to_span().is_in(pos)
     
     def set_pos(self, pos):
         """
@@ -588,13 +588,13 @@ class FontInfo:
         
 class TextureGlyphInfo:
     """
-    :ivar UnderGUI.RangeF                          glyph_range:
-        Range where glyph is located in texture. Coordinate values are floats between 0 and 1 (normalized texture coordinates) with oringin at left-bottom.
+    :ivar UnderGUI.SpanF                          glyph_span:
+        Span where glyph is located in texture. Coordinate values are floats between 0 and 1 (normalized texture coordinates) with oringin at left-bottom.
     :ivar UnderGUI.Size                            size:
         Area where glyph is located in texture in pixels. Where coordinates system have origin at left-top.
     """
-    def __init__(self, glyph_range, area):
-        self.glyph_range    = glyph_range
+    def __init__(self, glyph_span, area):
+        self.glyph_span    = glyph_span
         self.area           = area
         
         
@@ -667,7 +667,7 @@ class FontSourceRegister:
 
 class GlyphCodeBlock:
     """
-    Represent subset set of characters (glyphs) from range: first to last (last is also included).
+    Represent subset set of characters (glyphs) from span: first to last (last is also included).
     :ivar int                                      first:
     :ivar int                                      last:
     """
@@ -724,55 +724,55 @@ class AnchorGroup:
     
     
     
-def convert_sub_range_to_left_bottom_orientation(base_range, sub_range, anchor_group):
+def convert_sub_span_to_left_bottom_orientation(base_span, sub_span, anchor_group):
     """
-    :param UnderGUI.Range                          base_range:
-    :param UnderGUI.Range                          sub_range:
+    :param UnderGUI.Span                          base_span:
+    :param UnderGUI.Span                          sub_span:
     :param UnderGUI.AnchorGroup                    anchor_group:
-        Anchor group of sub_range towards base_range.
-    :rtype UnderGUI.Range:
+        Anchor group of sub_span towards base_span.
+    :rtype UnderGUI.Span:
     """
-    base_area = base_range.to_area()
-    convert_sub_range_to_left_bottom_orientation_in_area(base_area, sub_range, anchor_group)
+    base_area = base_span.to_area()
+    convert_sub_span_to_left_bottom_orientation_in_area(base_area, sub_span, anchor_group)
     
-def convert_sub_range_to_left_bottom_orientation_in_area(base_area, sub_range, anchor_group):
+def convert_sub_span_to_left_bottom_orientation_in_area(base_area, sub_span, anchor_group):
     """
     :param UnderGUI.Area                           base_area:
-    :param UnderGUI.Range                          sub_range:
+    :param UnderGUI.Span                          sub_span:
     :param UnderGUI.AnchorGroup                    anchor_group:
-        Anchor group of sub_range towards base_area.
-    :rtype UnderGUI.Range:
+        Anchor group of sub_span towards base_area.
+    :rtype UnderGUI.Span:
     """
-    solved_range = Range(0, 0, 0, 0)
+    solved_span = Span(0, 0, 0, 0)
     
     if anchor_group.x1_anchor == AnchorAxisX.LEFT:
-        solved_range.x1 = sub_range.x1 + base_area.x
+        solved_span.x1 = sub_span.x1 + base_area.x
     elif anchor_group.x1_anchor == AnchorAxisX.MIDDLE:
-        solved_range.x1 = base_area.width / 2.0 + sub_range.x1 + base_area.x
+        solved_span.x1 = base_area.width / 2.0 + sub_span.x1 + base_area.x
     elif anchor_group.x1_anchor == AnchorAxisX.RIGHT:
-        solved_range.x1 = base_area.width + sub_range.x1 + base_area.x
+        solved_span.x1 = base_area.width + sub_span.x1 + base_area.x
     
     if anchor_group.x2_anchor == AnchorAxisX.LEFT:
-        solved_range.x2 = sub_range.x2 + base_area.x
+        solved_span.x2 = sub_span.x2 + base_area.x
     elif anchor_group.x2_anchor == AnchorAxisX.MIDDLE:
-        solved_range.x2 = base_area.width / 2.0 + sub_range.x2 + base_area.x
+        solved_span.x2 = base_area.width / 2.0 + sub_span.x2 + base_area.x
     elif anchor_group.x2_anchor == AnchorAxisX.RIGHT:
-        solved_range.x2 = base_area.width + sub_range.x2 + base_area.x
+        solved_span.x2 = base_area.width + sub_span.x2 + base_area.x
         
     if anchor_group.y1_anchor == AnchorAxisY.BOTTOM:
-        solved_range.y1 = sub_range.y1 + base_area.y
+        solved_span.y1 = sub_span.y1 + base_area.y
     elif anchor_group.y1_anchor == AnchorAxisY.MIDDLE:
-        solved_range.y1 = base_area.height / 2.0 + sub_range.y1 + base_area.y
+        solved_span.y1 = base_area.height / 2.0 + sub_span.y1 + base_area.y
     elif anchor_group.y1_anchor == AnchorAxisY.TOP:
-        solved_range.y1 = base_area.height + sub_range.y1 + base_area.y
+        solved_span.y1 = base_area.height + sub_span.y1 + base_area.y
         
     if anchor_group.y2_anchor == AnchorAxisY.BOTTOM:
-        solved_range.y2 = sub_range.y2 + base_area.y
+        solved_span.y2 = sub_span.y2 + base_area.y
     elif anchor_group.y2_anchor == AnchorAxisY.MIDDLE:
-        solved_range.y2 = base_area.height / 2.0 + sub_range.y2 + base_area.y
+        solved_span.y2 = base_area.height / 2.0 + sub_span.y2 + base_area.y
     elif anchor_group.y2_anchor == AnchorAxisY.TOP:
-        solved_range.y2 = base_area.height + sub_range.y2 + base_area.y
+        solved_span.y2 = base_area.height + sub_span.y2 + base_area.y
         
-    return solved_range
+    return solved_span
     
     
