@@ -746,17 +746,17 @@ class AnchorGroup:
 def make_anchor_group(anchor_string):
     """
     :param str                                    anchor_string: 
-        Format "<X><Y><X><Y>" where:
-        <X>
+        Format "<AxisX><AxisY><AxisX><AxisY>", where each character is anchor for specific axis. They refers to span from (x1, y1) to (x2, y2).
+        <AxisX>
             L    - Left
             M    - Middle
             R    - Right
-        <Y>
+        <AxisY>
             B    - Bottom
             M    - Middle
             T    - Top
         
-        Default string is "LBLB". anchor_string can have 0-4 characters. If 3 or few characters given then corresponding missing character are same as default.
+        Default string is "LBLB". anchor_string can have 0-4 characters. If 3 or few characters given, then corresponding missing characters are same as default.
             
         Examples:
         "LBTR"     - Left-Bottom Top-Right

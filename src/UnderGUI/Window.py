@@ -23,7 +23,7 @@ class Window:
         
         self._set_drawable_area_size(self._resolution)
         
-        self._root_widget           = Root(self)
+        self._root_widget           = Root(self).place(self.get_drawable_area())
 
 
     def get_name(self):
@@ -71,7 +71,7 @@ class Window:
     
 class Root(Widget):
     def __init__(self, window):
-        super().__init__(None, window.get_drawable_area(), window = window)
+        super().__init__(None, window)
                
                          
 

@@ -14,7 +14,7 @@ class Widget:
     :ivar UnderGUI.AnchorGroup                 _anchor_group:
     :ivar UnderGUI.Window                      _window:
     """
-    def __init__(self, parent, span_or_area, anchor_group = None, window = None):
+    def __init__(self, parent, window = None):
         """
         :param UnderGUI.Widget or None             parent:
         :param UnderGUI.Area or UnderGUI.Span      span_or_area:
@@ -29,49 +29,45 @@ class Widget:
         if self._parent:
             self._parent._childs += [self]
         
-        self._local_span    = span_or_area              if isinstance(span_or_area, Span)           else span_or_area.to_span()
-        self._anchor_group  = anchor_group              if anchor_group                             else AnchorGroup(AnchorAxisX.LEFT, AnchorAxisY.BOTTOM, AnchorAxisX.LEFT, AnchorAxisY.BOTTOM)
-        self._window        = window                    if not self._parent                         else self._parent._window
+        self._local_span    = Span(0, 0, 0, 0)
+        self._global_span   = Span(0, 0, 0, 0)
+        self._anchor_group  = make_anchor_group("")
+        self._window        = window if not self._parent else self._parent._window
         if not self._window:
             raise Fail("UnderGUI: Widget: No Window class object have been provided.")
-        
-        self._global_span   = Span(0, 0, 0, 0)
-        
-        self._update()
 
-    def _get_base_area(self):
+    def place(self, span_or_area, anchor_string = ""):
         """
-        :rtype: UnderGUI.Area
+        :param UnderGUI.Span or UnderGUI.Area      span_or_area:
+        :param str                                 anchor_string:
+            Format "<AxisX><AxisY><AxisX><AxisY>", where each character is anchor for specific axis. They refers to span from (x1, y1) to (x2, y2).
+            <AxisX>
+                L    - Left
+                M    - Middle
+                R    - Right
+            <AxisY>
+                B    - Bottom
+                M    - Middle
+                T    - Top
+            
+            Default string is "LBLB". anchor_string can have 0-4 characters. If 3 or few characters given, then corresponding missing characters are same as default.
+                
+            Examples:
+            "LBTR"     - Left-Bottom Top-Right
+            "LBLB"     - Left-Bottom Left-Bottom
+            "LB"       - Left-Bottom Left-Bottom
+            ""         - Left-Bottom Left-Bottom
+        :rtype: UnderGUI.Widget
+        :return: Reference to self.
         """
-        if self._parent:
-            return self._parent._global_span.to_area() 
-        return self._window.get_drawable_area()
-
-    def _solve_global_span(self):
-        self._global_span = convert_sub_span_to_left_bottom_orientation_in_area(self._get_base_area(), self._local_span, self._anchor_group)
-        # print(self._global_span.x1, self._global_span.y1, self._global_span.x2, self._global_span.y2) # debug
-        
-    # to override
-    def _update(self):
-        self._solve_global_span()
-       
-    # to override 
-    def _draw(self):
-        pass
-    
-    def _update_all(self):
+        self._local_span    = span_or_area if isinstance(span_or_area, Span) else span_or_area.to_span()
+        self._anchor_group  = make_anchor_group(anchor_string)
         self._update()
-        for child in self._childs:
-            child._update_all()
-            
-    def _draw_all(self):
-        self._draw()
-        for child in self._childs:
-            child._draw_all()
-            
+        return self
+           
     def draw(self):
-        self._update_all()
-        self._draw_all()
+        self._update()
+        self._draw()
 
     def get_global_span(self):
         """
@@ -96,6 +92,36 @@ class Widget:
         :rtype: UnderGUI.Area
         """
         return self._local_span.to_area()
+    
+    def _get_base_area(self):
+        """
+        :rtype: UnderGUI.Area
+        """
+        if self._parent:
+            return self._parent._global_span.to_area() 
+        return self._window.get_drawable_area()
+
+    def _solve_global_span(self):
+        self._global_span = convert_sub_span_to_left_bottom_orientation_in_area(self._get_base_area(), self._local_span, self._anchor_group)
+        # print(self._global_span.x1, self._global_span.y1, self._global_span.x2, self._global_span.y2) # debug
+        
+    # to override
+    def _update_just_me(self):
+        self._solve_global_span()
+       
+    # to override 
+    def _draw_just_me(self):
+        pass
+    
+    def _update(self):
+        self._update_just_me()
+        for child in self._childs:
+            child._update()
+            
+    def _draw(self):
+        self._draw_just_me()
+        for child in self._childs:
+            child._draw()
             
 
 

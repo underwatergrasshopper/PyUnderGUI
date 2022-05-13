@@ -21,12 +21,12 @@ g = Global()
 
 
 class TextWidget(Widget):
-    def __init__(self, parent, span_or_area, color, anchor_group = None, window = None):
-        super().__init__(parent, span_or_area, anchor_group = anchor_group, window = window)
+    def __init__(self, parent, color):
+        super().__init__(parent)
         self._color = color.to_color_f()
         
     # overridden
-    def _draw(self):
+    def _draw_just_me(self):
         fill_span(self.get_global_span(), self._color)
 
 ################################################################################
@@ -38,16 +38,18 @@ def create():
     g.shunter.setup_window_client_area(Size(WIDTH, HEIGHT))
     
     g.window = Window("Some Name", Size(WIDTH, HEIGHT))
-    widget1 = TextWidget(g.window.get_root_widget(), Area(200, 200, 190, 300), ColorF(1, 0, 0))
-    TextWidget(widget1, Area(10, 10, 50, 140), ColorF(1, 1, 0))
-    TextWidget(widget1, Area(70, 10, 50, 140), ColorF(1, 1, 0))
-    widget2 = TextWidget(widget1, Area(130, 10, 50, 140), ColorF(1, 1, 0))
-    TextWidget(widget2, Area(10, 20, 35, 50), ColorF(0, 1, 0))
+    root = g.window.get_root_widget()
+    
+    widget_a = TextWidget(root, ColorF(1, 0, 0)).place(Area(200, 200, 190, 300))
+    TextWidget(widget_a, ColorF(1, 1, 0)).place(Area(10, 10, 50, 140))
+    TextWidget(widget_a, ColorF(1, 1, 0)).place(Area(70, 10, 50, 140))
+    widget_b = TextWidget(widget_a, ColorF(1, 1, 0)).place(Area(130, 10, 50, 140))
+    TextWidget(widget_b, ColorF(0, 1, 0)).place(Area(10, 20, 35, 50))
 
-    TextWidget(g.window.get_root_widget(), Area(10, 10, 50, 50), ColorF(0, 1, 1), make_anchor_group("LBLB"))
-    TextWidget(g.window.get_root_widget(), Area(10, -60, 50, 50), ColorF(0, 1, 1), make_anchor_group("LTLT"))
-    TextWidget(g.window.get_root_widget(), Area(-60, -60, 50, 50), ColorF(0, 1, 1), make_anchor_group("RTRT"))
-    TextWidget(g.window.get_root_widget(), Area(-60, 10, 50, 50), ColorF(0, 1, 1), make_anchor_group("RBRB"))
+    TextWidget(root, ColorF(0, 1, 1)).place(Area(10, 10, 50, 50), "LBLB")
+    TextWidget(root, ColorF(0, 1, 1)).place(Area(10, -60, 50, 50), "LTLT")
+    TextWidget(root, ColorF(0, 1, 1)).place(Area(-60, -60, 50, 50), "RTRT")
+    TextWidget(root, ColorF(0, 1, 1)).place(Area(-60, 10, 50, 50), "RBRB")
     
     
 
