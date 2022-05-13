@@ -298,6 +298,43 @@ def test_commons():
     anchor_group = AnchorGroup(AnchorAxisX.LEFT, AnchorAxisY.BOTTOM, AnchorAxisX.LEFT, AnchorAxisY.MIDDLE)
     assert anchor_group.x1_anchor == AnchorAxisX.LEFT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.LEFT and anchor_group.y2_anchor == AnchorAxisY.MIDDLE 
     
+    anchor_group = make_anchor_group("")
+    assert anchor_group.x1_anchor == AnchorAxisX.LEFT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.LEFT and anchor_group.y2_anchor == AnchorAxisY.BOTTOM 
+    
+    anchor_group = make_anchor_group("R")
+    assert anchor_group.x1_anchor == AnchorAxisX.RIGHT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.LEFT and anchor_group.y2_anchor == AnchorAxisY.BOTTOM 
+    
+    anchor_group = make_anchor_group("MT")
+    assert anchor_group.x1_anchor == AnchorAxisX.MIDDLE and anchor_group.y1_anchor == AnchorAxisY.TOP and anchor_group.x2_anchor == AnchorAxisX.LEFT and anchor_group.y2_anchor == AnchorAxisY.BOTTOM 
+    
+    anchor_group = make_anchor_group("LBR")
+    assert anchor_group.x1_anchor == AnchorAxisX.LEFT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.RIGHT and anchor_group.y2_anchor == AnchorAxisY.BOTTOM 
+    
+    anchor_group = make_anchor_group("LBRM")
+    assert anchor_group.x1_anchor == AnchorAxisX.LEFT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.RIGHT and anchor_group.y2_anchor == AnchorAxisY.MIDDLE 
+    
+    anchor_group = make_anchor_group("LBLB")
+    assert anchor_group.x1_anchor == AnchorAxisX.LEFT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.LEFT and anchor_group.y2_anchor == AnchorAxisY.BOTTOM 
+    
+    anchor_group = make_anchor_group("LBRT")
+    assert anchor_group.x1_anchor == AnchorAxisX.LEFT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.RIGHT and anchor_group.y2_anchor == AnchorAxisY.TOP 
+    
+    anchor_group = make_anchor_group("tertertdfgd")
+    assert anchor_group.x1_anchor == AnchorAxisX.LEFT and anchor_group.y1_anchor == AnchorAxisY.BOTTOM and anchor_group.x2_anchor == AnchorAxisX.LEFT and anchor_group.y2_anchor == AnchorAxisY.BOTTOM 
+    
+    
+    anchor_group = AnchorGroup(AnchorAxisX.LEFT, AnchorAxisY.BOTTOM, AnchorAxisX.LEFT, AnchorAxisY.BOTTOM)
+    assert anchor_group.to_str() == "LBLB"
+    
+    anchor_group = AnchorGroup(AnchorAxisX.RIGHT, AnchorAxisY.TOP, AnchorAxisX.RIGHT, AnchorAxisY.TOP)
+    assert anchor_group.to_str() == "RTRT"
+    
+    anchor_group = AnchorGroup(AnchorAxisX.MIDDLE, AnchorAxisY.MIDDLE, AnchorAxisX.RIGHT, AnchorAxisY.TOP)
+    assert anchor_group.to_str() == "MMRT"
+    
+    anchor_group = AnchorGroup(AnchorAxisX.RIGHT, AnchorAxisY.TOP, AnchorAxisX.MIDDLE, AnchorAxisY.MIDDLE)
+    assert anchor_group.to_str() == "RTMM"
+    
 if __name__ == "__main__":
     run_test(test_commons)
 

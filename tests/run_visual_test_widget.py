@@ -19,6 +19,16 @@ class Global:
     widget          = None
 g = Global()
 
+
+class TextWidget(Widget):
+    def __init__(self, parent, span_or_area, color, anchor_group = None, window = None):
+        super().__init__(parent, span_or_area, anchor_group = anchor_group, window = window)
+        self._color = color.to_color_f()
+        
+    # overridden
+    def _draw(self):
+        fill_span(self.get_global_span(), self._color)
+
 ################################################################################
 
 def create():
@@ -28,10 +38,19 @@ def create():
     g.shunter.setup_window_client_area(Size(WIDTH, HEIGHT))
     
     g.window = Window("Some Name", Size(WIDTH, HEIGHT))
-    g.widget = Widget(None, Area(100, 100, 200, 300), window = g.window)
+    widget1 = TextWidget(g.window.get_root_widget(), Area(200, 200, 190, 300), ColorF(1, 0, 0))
+    TextWidget(widget1, Area(10, 10, 50, 140), ColorF(1, 1, 0))
+    TextWidget(widget1, Area(70, 10, 50, 140), ColorF(1, 1, 0))
+    widget2 = TextWidget(widget1, Area(130, 10, 50, 140), ColorF(1, 1, 0))
+    TextWidget(widget2, Area(10, 20, 35, 50), ColorF(0, 1, 0))
+
+    TextWidget(g.window.get_root_widget(), Area(10, 10, 50, 50), ColorF(0, 1, 1), make_anchor_group("LBLB"))
+    TextWidget(g.window.get_root_widget(), Area(10, -60, 50, 50), ColorF(0, 1, 1), make_anchor_group("LTLT"))
+    TextWidget(g.window.get_root_widget(), Area(-60, -60, 50, 50), ColorF(0, 1, 1), make_anchor_group("RTRT"))
+    TextWidget(g.window.get_root_widget(), Area(-60, 10, 50, 50), ColorF(0, 1, 1), make_anchor_group("RBRB"))
+    
     
 
-    
 def destroy():
     global g
 
@@ -39,9 +58,9 @@ def destroy():
 def display():
     global g
 
-    g.shunter.setup_draw(ColorF(0, 0, 0.5))
+    g.shunter.setup_draw(ColorF(0, 0, 0.5), is_culling_face = False)
     
-    g.widget.draw()
+    g.window.draw()
 
 
     glutSwapBuffers()

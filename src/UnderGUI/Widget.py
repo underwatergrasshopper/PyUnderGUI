@@ -1,5 +1,4 @@
 from .Commons           import *
-from .Window            import *
 from .Color             import *
 from .Exceptions        import *
 
@@ -15,10 +14,10 @@ class Widget:
     :ivar UnderGUI.AnchorGroup                 _anchor_group:
     :ivar UnderGUI.Window                      _window:
     """
-    def __init__(self, parent, area_or_local_span, anchor_group = None, window = None):
+    def __init__(self, parent, span_or_area, anchor_group = None, window = None):
         """
         :param UnderGUI.Widget or None             parent:
-        :param UnderGUI.Area or UnderGUI.Span     area_or_local_span:
+        :param UnderGUI.Area or UnderGUI.Span      span_or_area:
         :param UnderGUI.AnchorGroup or None        anchor_group:
         :param UnderGUI.Window or None             window:
         
@@ -26,31 +25,39 @@ class Widget:
         """
         self._parent        = parent
         self._childs        = []
-        self._local_span   = area_or_local_span       if isinstance(area_or_local_span, Span)   else area_or_local_span.to_span()
+        
+        if self._parent:
+            self._parent._childs += [self]
+        
+        self._local_span    = span_or_area              if isinstance(span_or_area, Span)           else span_or_area.to_span()
         self._anchor_group  = anchor_group              if anchor_group                             else AnchorGroup(AnchorAxisX.LEFT, AnchorAxisY.BOTTOM, AnchorAxisX.LEFT, AnchorAxisY.BOTTOM)
         self._window        = window                    if not self._parent                         else self._parent._window
-        
         if not self._window:
             raise Fail("UnderGUI: Widget: No Window class object have been provided.")
         
-        self._solve_global_span()
+        self._global_span   = Span(0, 0, 0, 0)
         
+        self._update()
+
+    def _get_base_area(self):
+        """
+        :rtype: UnderGUI.Area
+        """
+        if self._parent:
+            return self._parent._global_span.to_area() 
+        return self._window.get_drawable_area()
+
     def _solve_global_span(self):
-        base_area = self._parent.to_area() if self._parent else AreaPS(Pos(0, 0), self._window.get_drawable_area_size())
-        
-        self._global_span = convert_sub_span_to_left_bottom_orientation_in_area(
-            base_area,
-            self._local_span,
-            self._anchor_group
-        )
+        self._global_span = convert_sub_span_to_left_bottom_orientation_in_area(self._get_base_area(), self._local_span, self._anchor_group)
+        # print(self._global_span.x1, self._global_span.y1, self._global_span.x2, self._global_span.y2) # debug
         
     # to override
     def _update(self):
-        pass
+        self._solve_global_span()
        
     # to override 
     def _draw(self):
-        fill_span(self._local_span, ColorF(1, 0, 0))
+        pass
     
     def _update_all(self):
         self._update()
@@ -65,8 +72,32 @@ class Widget:
     def draw(self):
         self._update_all()
         self._draw_all()
+
+    def get_global_span(self):
+        """
+        :rtype: UnderGUI.Span
+        """
+        return self._global_span
+    
+    def get_span(self):
+        """
+        :rtype: UnderGUI.Span
+        """
+        return self._local_span
+    
+    def get_global_area(self):
+        """
+        :rtype: UnderGUI.Area
+        """
+        return self._global_span.to_area()
+    
+    def get_area(self):
+        """
+        :rtype: UnderGUI.Area
+        """
+        return self._local_span.to_area()
             
-            
+
 
 
             

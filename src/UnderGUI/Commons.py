@@ -27,6 +27,7 @@ __all__ = [
     'AnchorAxisX',
     'AnchorAxisY',
     'AnchorGroup',
+    'make_anchor_group',
     'convert_sub_span_to_left_bottom_orientation',
     'convert_sub_span_to_left_bottom_orientation_in_area',
 ]
@@ -721,24 +722,98 @@ class AnchorGroup:
         self.y1_anchor = y1_anchor
         self.x2_anchor = x2_anchor
         self.y2_anchor = y2_anchor
+        
+    def to_str(self):
+        """
+        :rtype: str
+        """
+        def anchor_x_to_str(anchor):
+            return {
+                AnchorAxisX.LEFT    : "L",
+                AnchorAxisX.MIDDLE  : "M",
+                AnchorAxisX.RIGHT   : "R",
+            }[anchor]
+            
+        def anchor_y_to_str(anchor):
+            return {
+                AnchorAxisY.BOTTOM  : "B",
+                AnchorAxisY.MIDDLE  : "M",
+                AnchorAxisY.TOP     : "T",
+            }[anchor]
+            
+        return anchor_x_to_str(self.x1_anchor) + anchor_y_to_str(self.y1_anchor) + anchor_x_to_str(self.x2_anchor) + anchor_y_to_str(self.y2_anchor)
     
+def make_anchor_group(anchor_string):
+    """
+    :param str                                    anchor_string: 
+        Format "<X><Y><X><Y>" where:
+        <X>
+            L    - Left
+            M    - Middle
+            R    - Right
+        <Y>
+            B    - Bottom
+            M    - Middle
+            T    - Top
+        
+        Default string is "LBLB". anchor_string can have 0-4 characters. If 3 or few characters given then corresponding missing character are same as default.
+            
+        Examples:
+        "LBTR"     - Left-Bottom Top-Right
+        "LBLB"     - Left-Bottom Left-Bottom
+        "LB"       - Left-Bottom Left-Bottom
+        ""         - Left-Bottom Left-Bottom
+    :rtype: UnderGUI.AnchorGroup
+    """
+    def char_to_anchor_x(c):
+        return {
+            "L" : AnchorAxisX.LEFT,
+            "M" : AnchorAxisX.MIDDLE,
+            "R" : AnchorAxisX.RIGHT,
+        }.get(c, AnchorAxisX.LEFT)
+        
+    def char_to_anchor_y(c):
+        return {
+            "B" : AnchorAxisY.BOTTOM,
+            "M" : AnchorAxisY.MIDDLE,
+            "T" : AnchorAxisY.TOP,
+        }.get(c, AnchorAxisY.BOTTOM)
     
+    group = AnchorGroup(AnchorAxisX.LEFT, AnchorAxisY.BOTTOM, AnchorAxisX.LEFT, AnchorAxisY.BOTTOM)
+    
+    if len(anchor_string) == 0:
+        return group
+    group.x1_anchor = char_to_anchor_x(anchor_string[0])
+    
+    if len(anchor_string) == 1:
+        return group
+    group.y1_anchor = char_to_anchor_y(anchor_string[1])
+    
+    if len(anchor_string) == 2:
+        return group
+    group.x2_anchor = char_to_anchor_x(anchor_string[2])
+    
+    if len(anchor_string) == 3:
+        return group
+    group.y2_anchor = char_to_anchor_y(anchor_string[3])
+    
+    return group
     
 def convert_sub_span_to_left_bottom_orientation(base_span, sub_span, anchor_group):
     """
-    :param UnderGUI.Span                          base_span:
-    :param UnderGUI.Span                          sub_span:
+    :param UnderGUI.Span                           base_span:
+    :param UnderGUI.Span                           sub_span:
     :param UnderGUI.AnchorGroup                    anchor_group:
         Anchor group of sub_span towards base_span.
     :rtype UnderGUI.Span:
     """
     base_area = base_span.to_area()
-    convert_sub_span_to_left_bottom_orientation_in_area(base_area, sub_span, anchor_group)
+    return convert_sub_span_to_left_bottom_orientation_in_area(base_area, sub_span, anchor_group)
     
 def convert_sub_span_to_left_bottom_orientation_in_area(base_area, sub_span, anchor_group):
     """
     :param UnderGUI.Area                           base_area:
-    :param UnderGUI.Span                          sub_span:
+    :param UnderGUI.Span                           sub_span:
     :param UnderGUI.AnchorGroup                    anchor_group:
         Anchor group of sub_span towards base_area.
     :rtype UnderGUI.Span:

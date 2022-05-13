@@ -17,12 +17,15 @@ class Shunter:
         glLoadIdentity();
         glOrtho(0, size.width, 0, size.height, -1, 1);
         
-    def setup_draw(self, background_color = None):
+    def setup_draw(self, background_color = None, is_culling_face = True):
         """
         :param UnderGUI.Color or None              background_color:
             Color of window client area. If None then no changes to color of window client area.
         """
-        glEnable(GL_CULL_FACE)
+        if is_culling_face:
+            glEnable(GL_CULL_FACE)
+        else:
+            glDisable(GL_CULL_FACE)
         
         glEnable(GL_BLEND)
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
