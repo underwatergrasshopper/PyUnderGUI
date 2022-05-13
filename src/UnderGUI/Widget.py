@@ -26,16 +26,40 @@ class Widget:
         self._parent        = parent
         self._childs        = []
         
+        self._window        = window if not self._parent else self._parent._window
+        if not self._window:
+            raise Fail("UnderGUI: Widget: No Window class object have been provided.")
+        
         if self._parent:
             self._parent._childs += [self]
         
         self._local_span    = Span(0, 0, 0, 0)
         self._global_span   = Span(0, 0, 0, 0)
         self._anchor_group  = make_anchor_group("")
-        self._window        = window if not self._parent else self._parent._window
-        if not self._window:
-            raise Fail("UnderGUI: Widget: No Window class object have been provided.")
 
+        self._is_marked_to_update   = False
+        
+    def _mark_to_update_up_tree(self):
+        self._is_marked_to_update = True
+        if self._parent:
+            self._parent._mark_to_update_up_tree()
+        
+    def _mark_branch_to_update(self):
+        self._is_marked_to_update = True
+        for child in self._childs:
+            child._mark_branch_to_update()
+            
+    def _mark_to_update(self):
+        if self._parent:
+            self._parent._mark_to_update_up_tree()
+        self._mark_branch_to_update()
+        
+    def _update_if_marked(self):
+        if self._is_marked_to_update:
+            self._update()
+            self._is_marked_to_update = False
+        
+        
     def place(self, span_or_area, anchor_string = ""):
         """
         :param UnderGUI.Span or UnderGUI.Area      span_or_area:
